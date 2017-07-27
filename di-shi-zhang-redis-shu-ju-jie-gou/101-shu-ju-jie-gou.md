@@ -1,4 +1,4 @@
-### String
+### **String**
 
 常用命令：  
 
@@ -28,7 +28,9 @@ String是最常用的一种数据类型，普通的key/value存储都可以归�
 
 m,decr等操作时会转成数值型进行计算，此时redisObject的encoding字段为int。  
 
-Hash
+### 
+
+### Hash
 
 常用命令：  
 
@@ -75,6 +77,8 @@ hget,hset,hgetall 等。
   实现方式：  
 
     上面已经说到Redis Hash对应Value内部实际就是一个HashMap，实际这里会有2种不同实现，这个Hash的成员比较少时Redis为了节省内存会采用类似一维数组的方式来紧凑存储，而不会采用真正的HashMap结构，对应的value redisObject的encoding为zipmap,当成员数量增大时会自动转成真正的HashMap,此时encoding为ht。  
+
+### 
 
 ### List
 
@@ -156,19 +160,21 @@ BLPOP
 
     比如在微博应用中，每个人的好友存在一个集合（set）中，这样求两个人的共同好友的操作，可能就只需要用求交集命令即可。  
 
-    Redis还为集合提供了求交集、并集、差集等操作，可以非常方便的实现
+    Redis还为集合提供了求交集、并集、差集等操作，可以非常方便的实  
+
+  
 
 实现方式：  
 
     set 的内部实现是一个 value永远为null的HashMap，实际就是通过计算hash的方式来快速排重的，这也是set能提供判断一个成员是否在集合内的原因。  
 
-Sort Set
+
+
+### Sort Set
 
 常用命令：  
 
     zadd,zrange,zrem,zcard等  
-
-  
 
   使用场景：  
 

@@ -18,4 +18,7 @@
   * 第二部分 数据库
     * [第十章  Redis](di-shi-zhang-redis-shu-ju-jie-gou.md)
       * [10.1  数据结构](di-shi-zhang-redis-shu-ju-jie-gou/101-shu-ju-jie-gou.md)
+      * [10.2  跳跃表原理](di-shi-zhang-redis-shu-ju-jie-gou/102-1.md)
+      * [10.3  持久化](di-shi-zhang-redis-shu-ju-jie-gou/103.md)
+      * [10.4  高可用](di-shi-zhang-redis-shu-ju-jie-gou/104-gao-ke-yong.md)
 
