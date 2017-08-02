@@ -18,7 +18,18 @@
       * [2.7  TreeMap实现原理](di-yi-bu-fen-ji-chu/27-treemap-shi-xian-yuan-li.md)
       * [2.8  ConcurrentHashMap实现原理](di-yi-bu-fen-ji-chu/28-concurrenthashmap-shi-xian-yuan-li.md)
     * 第三章  IO
-    * 第四章  多线程
+    * [第四章  多线程](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng.md)
+      * 4.1  竞态条件与临界区
+      * [4.2  happen-before规则](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/42-happen-beforegui-ze.md)
+      * [4.3  CyclicBarrier](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/43-cyclicbarrier.md)
+      * [4.4  CountDownLatch](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/44-countdownlatch.md)
+      * [4.5  Semaphore](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/45-semaphore.md)
+      * [4.6  Exchanger](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/46-exchanger.md)
+      * [4.7  Fork Join 框架](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/47-fork-join-kuang-jia.md)
+      * [4.8  Executor框架与线程池](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/48.md)
+      * [4.9  线程池实现原理](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/49.md)
+      * [4.10  线程池之拒绝策略](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/410-xian-cheng-chi-zhi-ju-jue-ce-lve.md)
+      * [4.11 线程的五大状态](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/411-xian-cheng-de-wu-da-zhuang-tai.md)
     * 第五章  网络
     * [第六章  JVM](di-yi-bu-fen-ji-chu/di-liu-zhang-jvm.md)
       * [6.1,1  Java 虚拟机体系结构](di-yi-bu-fen-ji-chu/61-java-xu-ni-ji-ti-xi-jie-gou.md)
