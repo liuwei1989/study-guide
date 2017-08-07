@@ -46,7 +46,7 @@
       * [10.2  跳跃表原理](di-shi-zhang-redis-shu-ju-jie-gou/102-1.md)
       * [10.3  持久化](di-shi-zhang-redis-shu-ju-jie-gou/103.md)
       * [10.4  高可用](di-shi-zhang-redis-shu-ju-jie-gou/104-gao-ke-yong.md)
-    * 第十一章  Mysql
+    * [第十一章  Mysql](di-shi-yi-zhang-mysql.md)
       * [11.0 数据库范式](110-shu-ju-ku-fan-shi.md)
       * [11.1  数据类型](111-shu-ju-lei-xing.md)
       * [11.2  行级锁、表级锁、页级锁](112-xing-ji-suo-3001-biao-ji-suo-3001-ye-ji-suo.md)
