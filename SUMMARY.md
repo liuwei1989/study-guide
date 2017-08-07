@@ -46,4 +46,15 @@
       * [10.2  跳跃表原理](di-shi-zhang-redis-shu-ju-jie-gou/102-1.md)
       * [10.3  持久化](di-shi-zhang-redis-shu-ju-jie-gou/103.md)
       * [10.4  高可用](di-shi-zhang-redis-shu-ju-jie-gou/104-gao-ke-yong.md)
+    * 第十一章  Mysql
+      * [11.0 数据库范式](110-shu-ju-ku-fan-shi.md)
+      * [11.1  数据类型](111-shu-ju-lei-xing.md)
+      * [11.2  行级锁、表级锁、页级锁](112-xing-ji-suo-3001-biao-ji-suo-3001-ye-ji-suo.md)
+      * [11.3  共享锁与排他锁](113-gong-xiang-suo-yu-pai-ta-suo.md)
+      * [11.4 实现原理](114-yuan-li.md)
+      * [11.5  B+树索引和哈希索引的区别](115-b-shu-suo-yin-he-ha-xi-suo-yin-de-qu-bie.md)
+      * [11.6  索引类型](116-suo-yin-lei-xing.md)
+      * [11.7  解聚集索引和非聚集索引](117.md)
+      * [11.8  优化总结一](118-you-hua-zong-jie-yi.md)
+      * [11.9  优化总结二](119-you-hua-zong-jie-er.md)
 
