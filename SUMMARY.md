@@ -40,6 +40,9 @@
       * [6.4 调优](di-yi-bu-fen-ji-chu/64-diao-you.md)
       * [6.5  类加载机制](di-yi-bu-fen-ji-chu/65-lei-jia-zai-ji-zhi.md)
       * [6.6  其它](di-yi-bu-fen-ji-chu/66-qi-ta.md)
+    * 第七章  异常
+      * [7.1  面试题一](di-yi-bu-fen-ji-chu/71-mian-shi-ti-yi.md)
+      * [7.1  异常处理机制](di-yi-bu-fen-ji-chu/71-yi-chang-chu-li-ji-zhi.md)
   * 第二部分 数据库
     * [第十章  Redis](di-shi-zhang-redis-shu-ju-jie-gou.md)
       * [10.1  数据结构](di-shi-zhang-redis-shu-ju-jie-gou/101-shu-ju-jie-gou.md)
@@ -59,7 +62,7 @@
       * [11.9  优化总结二](119-you-hua-zong-jie-er.md)
   * [第三部分  Linux](di-san-bu-fen-linux.md)
     * 第十五章  Linux
-      * 15.1  常用指令
+      * [15.1  常用指令](di-san-bu-fen-linux/151-chang-yong-zhi-ling.md)
       * [15.2  性能检查命令总结](di-san-bu-fen-linux/152-xing-neng-jian-cha-ming-ling-zong-jie.md)
       * [15.3  Linux IO模式及 select、poll、epoll详解](di-san-bu-fen-linux/153-linux-io-mo-shi-ji-select-poll-epoll-xiang-jie.md)
       * [15.4  Zero Copy 简介](di-san-bu-fen-linux/154-zero-copy-jian-jie.md)
@@ -76,4 +79,12 @@
       * [17.1  一级缓存](di-shi-qi-zhang-mybatis/171-huan-cun-shi-xian-xiang-jie.md)
       * [17.2  二级缓存](di-shi-qi-zhang-mybatis/172-er-ji-huan-cun.md)
       * [17.3  面试题](di-shi-qi-zhang-mybatis/173-mian-shi-ti.md)
+  * 第八部分  面试
+    * 第三十章  面试题
+      * [30.1  面试题一](301-mian-shi-ti-yi.md)
+      * [30.2  面试题二](302-mian-shi-ti-er.md)
+      * [30.3  面试题三](303-mian-shi-ti-san.md)
+      * [30.4  面试题四](304-mian-shi-ti-si.md)
+      * [30.5  面试题五](305-mian-shi-ti-wu.md)
+      * [30.6  面试题六](306-mian-shi-ti-liu.md)
 
