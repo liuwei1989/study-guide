@@ -73,5 +73,7 @@
       * [16.1  Spring AOP实现原理](di-shi-liu-zhang-spring/161-spring-aop-shi-xian-yuan-li.md)
       * [16.2 Spring MVC工作原理](di-shi-liu-zhang-spring/162-spring-mvcgong-zuo-yuan-li.md)
     * [第十七章 MyBatis](di-shi-qi-zhang-mybatis.md)
-      * [17.1  缓存实现详解](di-shi-qi-zhang-mybatis/171-huan-cun-shi-xian-xiang-jie.md)
+      * [17.1  一级缓存](di-shi-qi-zhang-mybatis/171-huan-cun-shi-xian-xiang-jie.md)
+      * [17.2  二级缓存](di-shi-qi-zhang-mybatis/172-er-ji-huan-cun.md)
+      * [17.3  面试题](di-shi-qi-zhang-mybatis/173-mian-shi-ti.md)
 
