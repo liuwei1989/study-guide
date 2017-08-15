@@ -8,6 +8,7 @@
       * [1.3  变量](di-yi-bu-fen-ji-chu/di-yi-zhang-123/bian-geng.md)
       * [1.4  面向对象的特征](di-yi-bu-fen-ji-chu/di-yi-zhang-123/mian-xiang-dui-xiang-de-te-zheng.md)
       * [1.5  java关键字](di-yi-bu-fen-ji-chu/di-yi-zhang-123/15-java-guan-jian-zi.md)
+      * [1.6  String类的不可变性](di-yi-bu-fen-ji-chu/di-yi-zhang-123/16-string-lei-de-bu-ke-bian-xing.md)
     * [第二章  集合](di-yi-bu-fen-ji-chu/di-er-zhang-ji-he.md)
       * [2.1  ArrayList实现原理](di-yi-bu-fen-ji-chu/21-arraylist-gong-zuo-yuan-li-ji-shi-xian.md)
       * [2.2 LinkedList实现原理](di-yi-bu-fen-ji-chu/22-linkedlistshi-xian-yuan-li.md)
@@ -79,6 +80,10 @@
       * [17.1  一级缓存](di-shi-qi-zhang-mybatis/171-huan-cun-shi-xian-xiang-jie.md)
       * [17.2  二级缓存](di-shi-qi-zhang-mybatis/172-er-ji-huan-cun.md)
       * [17.3  面试题](di-shi-qi-zhang-mybatis/173-mian-shi-ti.md)
+  * 第五部分  分布式
+    * 第十二五章  zookeeper
+      * [25.1  zookeeper原理](251-zookeeper-yuan-li.md)
+      * [25.2  Zab协议](252-zab-xie-yi.md)
   * 第八部分  面试
     * 第三十章  面试题
       * [30.1  面试题一](301-mian-shi-ti-yi.md)
