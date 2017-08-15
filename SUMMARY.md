@@ -45,6 +45,9 @@
     * 第七章  异常
       * [7.1  面试题一](di-yi-bu-fen-ji-chu/71-mian-shi-ti-yi.md)
       * [7.1  异常处理机制](di-yi-bu-fen-ji-chu/71-yi-chang-chu-li-ji-zhi.md)
+    * 第八章  队列
+      * [8.1  ConcurrentLinkedQueue](di-yi-bu-fen-ji-chu/81-concurrentlinkedqueue.md)
+      * [8.2  Java中的阻塞队列](di-yi-bu-fen-ji-chu/82-java-zhong-de-zu-sai-dui-lie.md)
   * 第二部分 数据库
     * [第十章  Redis](di-shi-zhang-redis-shu-ju-jie-gou.md)
       * [10.1  数据结构](di-shi-zhang-redis-shu-ju-jie-gou/101-shu-ju-jie-gou.md)
@@ -85,7 +88,7 @@
     * 第十二五章  zookeeper
       * [25.1  zookeeper原理](251-zookeeper-yuan-li.md)
       * [25.2  Zab协议](252-zab-xie-yi.md)
-  * 第八部分  面试
+  * [第八部分  面试](di-ba-bu-fen-mian-shi.md)
     * 第三十章  面试题
       * [30.1  面试题一](301-mian-shi-ti-yi.md)
       * [30.2  面试题二](302-mian-shi-ti-er.md)
