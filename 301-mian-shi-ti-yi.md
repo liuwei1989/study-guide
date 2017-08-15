@@ -14,8 +14,8 @@
 
 [ArrayList](https://liuwei2017.gitbooks.io/java/content/di-yi-bu-fen-ji-chu/21-arraylist-gong-zuo-yuan-li-ji-shi-xian.html)、[LinkedList](https://liuwei2017.gitbooks.io/java/content/di-yi-bu-fen-ji-chu/22-linkedlistshi-xian-yuan-li.html)
 
-* > 1.ArrayList是实现了基于动态数组的数据结构，LinkedList基于链表的数据结构。 
-  > 2.对于随机访问get和set，ArrayList觉得优于LinkedList，因为LinkedList要移动指针。 
+* > 1.ArrayList是实现了基于动态数组的数据结构，LinkedList基于链表的数据结构。   
+  > 2.对于随机访问get和set，ArrayList觉得优于LinkedList，因为LinkedList要移动指针。   
   > 3.对于新增和删除操作add和remove，LinedList比较占优势，因为ArrayList要移动数据。
 
 5、Java中的队列都有哪些，有什么区别。
@@ -24,107 +24,59 @@
 >
 > Queue是在两端出入的List，所以也可以用数组或链表来实现。
 >
->
->
 > ## –普通队列–
->
->
 >
 > ### LinkedList
 >
->
->
 > 是的，以双向链表实现的LinkedList既是List，也是Queue。它是唯一一个允许放入null的Queue。
->
->
 >
 > ### ArrayDeque
 >
->
->
 > 以循环数组实现的双向Queue。大小是2的倍数，默认是16。
->
->
 >
 > 普通数组只能快速在末尾添加元素，为了支持FIFO，从数组头快速取出元素，就需要使用循环数组：有队头队尾两个下标：弹出元素时，队头下标递增；加入元素时，如果已到数组空间的末尾，则将元素循环赋值到数组\[0\]\(如果此时队头下标大于0，说明队头弹出过元素，有空位\)，同时队尾下标指向0，再插入下一个元素则赋值到数组\[1\]，队尾下标指向1。如果队尾的下标追上队头，说明数组所有空间已用完，进行双倍的数组扩容。
 >
->
->
 > ### PriorityQueue
->
->
 >
 > 用二叉堆实现的优先级队列，详见入门教程，不再是FIFO而是按元素实现的Comparable接口或传入Comparator的比较结果来出队，数值越小，优先级越高，越先出队。但是注意其iterator\(\)的返回不会排序。
 >
->
->
 > ## –线程安全的队列–
->
->
 >
 > ### ConcurrentLinkedQueue/ConcurrentLinkedDeque
 >
->
->
 > 无界的并发优化的Queue，基于链表，实现了依赖于CAS的无锁算法。
->
->
 >
 > ConcurrentLinkedQueue的结构是单向链表和head/tail两个指针，因为入队时需要修改队尾元素的next指针，以及修改tail指向新入队的元素两个CAS动作无法原子，所以需要的特殊的算法，篇幅所限见入门教程。
 >
->
->
 > ### PriorityBlockingQueue
->
->
 >
 > 无界的并发优化的PriorityQueue，也是基于二叉堆。使用一把公共的读写锁。虽然实现了BlockingQueue接口，其实没有任何阻塞队列的特征，空间不够时会自动扩容。
 >
->
->
 > ### DelayQueue
->
->
 >
 > 内部包含一个PriorityQueue，同样是无界的。元素需实现Delayed接口，每次调用时需返回当前离触发时间还有多久，小于0表示该触发了。
 >
->
->
 > pull\(\)时会用peek\(\)查看队头的元素，检查是否到达触发时间。ScheduledThreadPoolExecutor用了类似的结构。
->
->
 >
 > ## –线程安全的阻塞队列–
 >
->
->
 > BlockingQueue的队列长度受限，用以保证生产者与消费者的速度不会相差太远，避免内存耗尽。队列长度设定后不可改变。当入队时队列已满，或出队时队列已空，不同函数的效果见下表：
 >
->
->
-> |   | 可能报异常 | 返回布尔值 | 可能阻塞等待 | 可设定等待时间 |
+> |  | 可能报异常 | 返回布尔值 | 可能阻塞等待 | 可设定等待时间 |
 > | :--- | :--- | :--- | :--- | :--- |
 > | 入队 | add\(e\) | offer\(e\) | put\(e\) | offer\(e,timeout,unit\) |
 > | 出队 | remove\(\) | poll\(\) | take\(\) | poll\(timeout,unit\) |
 > | 查看 | element\(\) | peek\(\) | 无 | 无 |
 >
->
->
->
->
 > ### ArrayBlockingQueue
->
->
 >
 > 定长的并发优化的BlockingQueue，基于循环数组实现。有一把公共的读写锁与notFull、notEmpty两个Condition管理队列满或空时的阻塞状态。
 >
->
->
 > ### LinkedBlockingQueue/LinkedBlockingDeque
 >
->
->
 > 可选定长的并发优化的BlockingQueue，基于链表实现，所以可以把长度设为Integer.MAX\_VALUE。利用链表的特征，分离了takeLock与putLock两把锁，继续用notEmpty、notFull管理队列满或空时的阻塞状态。
+
+[参考一](https://liuwei2017.gitbooks.io/java/content/di-yi-bu-fen-ji-chu/82-java-zhong-de-zu-sai-dui-lie.html)
 
 6、反射中，Class.forName和classloader的区别
 

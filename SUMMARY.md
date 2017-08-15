@@ -10,6 +10,7 @@
       * [1.5  java关键字](di-yi-bu-fen-ji-chu/di-yi-zhang-123/15-java-guan-jian-zi.md)
       * [1.6.1  不可改变类与字符串池](di-yi-bu-fen-ji-chu/di-yi-zhang-123/16-bu-ke-gai-bian-lei-yu-zi-fu-chuan-chi.md)
       * [1.6.2  String类的不可变性](di-yi-bu-fen-ji-chu/di-yi-zhang-123/16-string-lei-de-bu-ke-bian-xing.md)
+      * [1.7  Class.forName和classloader的区别](di-yi-bu-fen-ji-chu/di-yi-zhang-123/17-class-fornamehe-classloader-de-qu-bie.md)
     * [第二章  集合](di-yi-bu-fen-ji-chu/di-er-zhang-ji-he.md)
       * [2.1  ArrayList实现原理](di-yi-bu-fen-ji-chu/21-arraylist-gong-zuo-yuan-li-ji-shi-xian.md)
       * [2.2 LinkedList实现原理](di-yi-bu-fen-ji-chu/22-linkedlistshi-xian-yuan-li.md)
