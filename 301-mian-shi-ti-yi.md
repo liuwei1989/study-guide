@@ -14,8 +14,8 @@
 
 [ArrayList](https://liuwei2017.gitbooks.io/java/content/di-yi-bu-fen-ji-chu/21-arraylist-gong-zuo-yuan-li-ji-shi-xian.html)、[LinkedList](https://liuwei2017.gitbooks.io/java/content/di-yi-bu-fen-ji-chu/22-linkedlistshi-xian-yuan-li.html)
 
-* > 1.ArrayList是实现了基于动态数组的数据结构，LinkedList基于链表的数据结构。   
-  > 2.对于随机访问get和set，ArrayList觉得优于LinkedList，因为LinkedList要移动指针。   
+* > 1.ArrayList是实现了基于动态数组的数据结构，LinkedList基于链表的数据结构。  
+  > 2.对于随机访问get和set，ArrayList觉得优于LinkedList，因为LinkedList要移动指针。  
   > 3.对于新增和删除操作add和remove，LinedList比较占优势，因为ArrayList要移动数据。
 
 5、Java中的队列都有哪些，有什么区别。
@@ -78,7 +78,7 @@
 
 [参考一](https://liuwei2017.gitbooks.io/java/content/di-yi-bu-fen-ji-chu/82-java-zhong-de-zu-sai-dui-lie.html)
 
-6、反射中，Class.forName和classloader的区别
+[6、反射中，Class.forName和classloader的区别](https://liuwei2017.gitbooks.io/java/content/di-yi-bu-fen-ji-chu/di-yi-zhang-123/17-class-fornamehe-classloader-de-qu-bie.html)
 
 7、Java7、Java8的新特性\(baidu问的,好BT\)
 
