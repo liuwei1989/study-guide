@@ -90,6 +90,9 @@
     * 第十二五章  zookeeper
       * [25.1  zookeeper原理](251-zookeeper-yuan-li.md)
       * [25.2  Zab协议](252-zab-xie-yi.md)
+  * [第六部分 算法](di-liu-bu-fen-suan-fa.md)
+    * [第十二八章 算法](di-liu-bu-fen-suan-fa/di-shi-er-ba-zhang-suan-fa.md)
+      * [28.1 缓存算法–LRU](di-liu-bu-fen-suan-fa/di-shi-er-ba-zhang-suan-fa/281-huan-cun-suan-fa-2013-lru.md)
   * [第八部分  面试](di-ba-bu-fen-mian-shi.md)
     * 第三十章  面试题
       * [30.1  面试题一](301-mian-shi-ti-yi.md)
