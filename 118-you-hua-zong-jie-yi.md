@@ -2,7 +2,7 @@
 
 **1.Innerjoin和左连接，右连接，子查询**
 
-A.     inner join内连接也叫等值连接是，left/rightjoin是外连接。
+A.     inner join内连接也叫等值连接是，left/rightjoin是外连接。
 
 SELECT A.id,A.name,B.id,B.name FROM A LEFT JOIN B ON A.id =B.id;
 
@@ -18,15 +18,15 @@ SELECT A.id,A.name,B.id,B.name FROM A,B WHERE A.id = B.id;
 
 B．子查询的性能又比外连接性能慢，尽量用外连接来替换子查询。
 
-  Select\* from A where exists \(select \* from B where id&gt;=3000 and A.uuid=B.uuid\);
+Select\* from A where exists \(select \* from B where id&gt;=3000 and A.uuid=B.uuid\);
 
 A表的数据为十万级表，B表为百万级表，在本机执行差不多用2秒左右，我们可以通过explain可以查看到子查询是一个相关子查询\(DEPENDENCE SUBQUERY\);[MySQL](http://lib.csdn.net/base/mysql)是先对外表A执行全表查询，然后根据uuid逐次执行子查询，如果外层表是一个很大的表，我们可以想象查询性能会表现比这个更加糟糕。
 
-  一种简单的优化就是用innerjoin的方法来代替子查询，查询语句改为：
+一种简单的优化就是用innerjoin的方法来代替子查询，查询语句改为：
 
-   Select\* from A inner join B using\(uuid\) where b.uuid&gt;=3000;
+Select\* from A inner join B using\(uuid\) where b.uuid&gt;=3000;
 
-  这个语句执行[测试](http://lib.csdn.net/base/softwaretest)不到一秒；
+这个语句执行[测试](http://lib.csdn.net/base/softwaretest)不到一秒；
 
 C．在使用ON 和 WHERE 的时候，记得它们的顺序，如：
 
@@ -98,13 +98,19 @@ Select \* from A order by id limit10000000,10;
 
 B．在遇见上面的情况，我们可以用另外一种语句优化，如：
 
-Select \* from A where id&gt;=\(Select idfrom a limit 10000000,1\) limit 10;
+Select \* from A where id&gt;=\(Select id from a limit 10000000,1\) limit 10;
+
+另一种写法
+
+SELECT \* FROM order a JOIN \(select id from order limit 800000, 20\) b ON a.ID = b.id
 
 确实这样快了很多，不过前提是，id字段建立了索引。也许这个还不是最优的，其实还可以这样写：
 
-Select \* from A where id between 10000000and 10000010;
+Select \* from A where id between 10000000 and 10000010;
 
 这样的效率更加高。
+
+
 
 **4.尽量避免Select \* 命令**
 
@@ -112,31 +118,23 @@ A.从表中读取越多的数据，查询会变得更慢。它会增加磁盘的
 
 **5.尽量不要使用BY RAND\(\)命令**
 
- A．如果您真需要随机显示你的结果，有很多更好的途径实现。而这个函数可能会为表中每一个独立的行执行BY RAND\(\)命令—这个会消耗处理器的处理能力，然后给你仅仅返回一行。
-
-
+A．如果您真需要随机显示你的结果，有很多更好的途径实现。而这个函数可能会为表中每一个独立的行执行BY RAND\(\)命令—这个会消耗处理器的处理能力，然后给你仅仅返回一行。
 
 **6.利用limit 1取得唯一行**
 
 A．有时要查询一张表时，你要知道需要看一行，你可能去查询一条独特的记录。你可以使用limit 1.来终止数据库引擎继续扫描整个表或者索引,如：
 
-Select \* from A  where namelike ‘%xxx’ limit 1;
+Select \* from A  where namelike ‘%xxx’ limit 1;
 
 这样只要查询符合like ‘%xxx’的记录，那么引擎就不会继续扫描表或者索引了。
-
-
 
 **7.尽量少排序**
 
 A.排序操作会消耗较多的CPU资源，所以减少排序可以在缓存命中率高等
 
-
-
 **8.尽量少OR**
 
 A.当where子句中存在多个条件以“或”并存的时候，Mysql的优化器并没有很好的解决其执行计划优化问题，再加上mysql特有的sql与Storage分层[架构](http://lib.csdn.net/base/architecture)方式，造成了其性能比较地下，很多时候使用union all或者union\(必要的时候\)的方式代替“or”会得到更好的效果。
-
-
 
 **9.尽量用union all 代替union**
 
@@ -146,15 +144,11 @@ A.union和union all的差异主要是前者需要将两个（或者多个）结�
 
 A.这里所说的“类型转换”是指where子句中出现column字段的类型和传入的参数类型不一致的时候发生的类型转换。人为的上通过转换函数进行转换，直接导致mysql无法使用索引。如果非要转型，应该在传入参数上进行转换。
 
-
-
 **11.不要在列上进行运算**
 
 A. 如下面:select \* fromusers where YEAR\(adddate\)&lt;2007;将在每个行进行运算，这些导致索引失效进行全表扫描，因此我们可以改成：
 
 Select \* from users where adddate&lt;’2007-01-01’;
-
-
 
 **12.尽量不要使用NOT IN和&lt;&gt;操作**
 
@@ -168,13 +162,9 @@ SELECT \* FROM customerinfo WHERE CustomerIDNOT in \(SELECT CustomerID FROM sale
 
 SELECT \* FROM customerinfo LEFT JOINsalesinfoON customerinfo.CustomerID=salesinfo. CustomerID WHEREsalesinfo.CustomerID IS NULL;
 
-
-
 **13.使用批量插入节省交互（最好是使用存储过程）**
 
 A. 尽量使用insert intousers\(username,password\) values\(‘test1’,’pass1’\), \(‘test2’,’pass2’\), \(‘test3’,’pass3’\);
-
-
 
 **14. 锁定表**
 
@@ -191,8 +181,6 @@ Update inventory set quantity=11 whereitem=’book’;
 UNLOCK TABLES;
 
 这里，我们用一个select语句取出初始数据，通过一些计算，用update语句将新值更新到列表中。包含有write关键字的LOCK TABLE语句可以保证在UNLOCK TABLES命令被执行之前，不会有其他的访问来对inventory进行插入，更新或者删除的操作。
-
-
 
 **15.对多表关联的查询，建立视图**
 
