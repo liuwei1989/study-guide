@@ -43,6 +43,7 @@
       * [6.4 调优](di-yi-bu-fen-ji-chu/64-diao-you.md)
       * [6.5  类加载机制](di-yi-bu-fen-ji-chu/65-lei-jia-zai-ji-zhi.md)
       * [6.6  其它](di-yi-bu-fen-ji-chu/66-qi-ta.md)
+      * [6.7 JVM命令参数大全](di-yi-bu-fen-ji-chu/67-jvmming-ling-can-shu-da-quan.md)
     * 第七章  异常
       * [7.1  面试题一](di-yi-bu-fen-ji-chu/71-mian-shi-ti-yi.md)
       * [7.1  异常处理机制](di-yi-bu-fen-ji-chu/71-yi-chang-chu-li-ji-zhi.md)
