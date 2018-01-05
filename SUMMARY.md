@@ -93,6 +93,7 @@
   * [第六部分 算法](di-liu-bu-fen-suan-fa.md)
     * [第十二八章 算法](di-liu-bu-fen-suan-fa/di-shi-er-ba-zhang-suan-fa.md)
       * [28.1 缓存算法–LRU](di-liu-bu-fen-suan-fa/di-shi-er-ba-zhang-suan-fa/281-huan-cun-suan-fa-2013-lru.md)
+      * [28.2 一致性哈希算法](di-liu-bu-fen-suan-fa/di-shi-er-ba-zhang-suan-fa/282-yi-zhi-xing-ha-xi-suan-fa.md)
   * [第八部分  面试](di-ba-bu-fen-mian-shi.md)
     * 第三十章  面试题
       * [30.1  面试题一](301-mian-shi-ti-yi.md)
