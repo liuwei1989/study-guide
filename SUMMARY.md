@@ -66,7 +66,7 @@
       * [11.7  解聚集索引和非聚集索引](117.md)
       * [11.8  优化总结一](118-you-hua-zong-jie-yi.md)
       * [11.9  优化总结二](119-you-hua-zong-jie-er.md)
-      * 11.10 explain分析查询
+      * [11.10 explain分析查询](1110-explainfen-xi-cha-xun.md)
   * [第三部分  Linux](di-san-bu-fen-linux.md)
     * 第十五章  Linux
       * [15.1  常用指令](di-san-bu-fen-linux/151-chang-yong-zhi-ling.md)
