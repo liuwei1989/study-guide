@@ -110,8 +110,6 @@ Select \* from A where id between 10000000 and 10000010;
 
 这样的效率更加高。
 
-
-
 **4.尽量避免Select \* 命令**
 
 A.从表中读取越多的数据，查询会变得更慢。它会增加磁盘的操作时间，还是在数据库服务器与web服务器是独立分开的情况下，你将会经历非常漫长的网络延迟。仅仅是因为数据不必要的在服务器之间传输。
@@ -152,7 +150,7 @@ Select \* from users where adddate&lt;’2007-01-01’;
 
 **12.尽量不要使用NOT IN和&lt;&gt;操作**
 
-A. NOT IN和&lt;&gt;操作都不会使用索引，而是将会进行全表扫描。NOT IN可以NOT EXISTS代替，id&lt;&gt;3则可以使用id&gt;3 or id &lt;3;如果NOT EXISTS是子查询，还可以尽量转化为外连接或者等值连接，要看具体sql的业务逻辑。
+A. NOT IN和&lt;&gt;操作都不会使用索引，而是将会进行全表扫描。NOT IN可以用NOT EXISTS代替，id&lt;&gt;3则可以使用id&gt;3 or id &lt;3;如果NOT EXISTS是子查询，还可以尽量转化为外连接或者等值连接，要看具体sql的业务逻辑。
 
 B．把NOT IN转化为LEFT JOIN如：
 
