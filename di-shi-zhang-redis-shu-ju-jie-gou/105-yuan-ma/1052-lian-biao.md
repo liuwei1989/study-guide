@@ -1,0 +1,53 @@
+# 链表 {#链表}
+
+### 概述 {#概述}
+
+`<adlist.h>`
+
+* 链表和链表节点的实现
+  ```
+  /* 链表节点 */
+  typedef struct listNode {
+  struct listNode *prev; // 前驱
+  struct listNode *next; // 后继
+  void *value; // 节点值
+  } listNode;
+  ```
+
+```
+/*
+ * 双端链表结构
+ */
+typedef struct list {
+
+    // 表头节点
+    listNode *head;
+
+    // 表尾节点
+    listNode *tail;
+
+    // 节点值复制函数
+    void *(*dup)(void *ptr);
+
+    // 节点值释放函数
+    void (*free)(void *ptr);
+
+    // 节点值对比函数
+    int (*match)(void *ptr, void *key);
+
+    // 链表所包含的节点数量
+    unsigned long len;
+
+} list;
+```
+
+### redis链表特性： {#redis链表特性：}
+
+* 双端： 链表节点带有 prev 和 next 指针，获取前驱后继的复杂度为O\(1\)；
+* 无环： 表头节点prev指针以及表尾节点指向NULL，链表的访问以NULL为终点；
+* 带表头指针和表尾指针: head指针以及tail指针，获取表头和表尾的节点复杂度为O\(1\);
+* 带链表长度计数器： 程序使用len属性来记录节点数，获取节点数量的复杂度为O\(1\);
+* 多态： 链表节点使用void\*指针来保存节点值，可以通过dup， free， match 三个属性为节点的值设置类型特定函数，所以链表可以存放不同类型的值
+
+
+
