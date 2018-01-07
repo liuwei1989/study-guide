@@ -1,0 +1,129 @@
+# 键空间操作 {#键空间操作}
+
+### 概述 {#概述}
+
+数据库的键空间是一个字典所有针对数据库的操作都是通过操作字典实现的。
+
+### 添加新键 {#添加新键}
+
+添加新键值对到数据库中，即向键空间字典中添加键值对，其中键为字符串对象，值为任意一种redis对象。
+
+### 删除键 {#删除键}
+
+删除键空间中对应的键值对对象。
+
+### 更新键 {#更新键}
+
+哈希键更新的时候，新的键值对将被添加到哈希对象。不同类型的键，操作的方法也不同
+
+### 键取值 {#键取值}
+
+从键空间中取出键所对应的值对象，根据值对象的不同，操作的方法也不同。
+
+```
+> GET msg 
+"hello redis"
+```
+
+上述GET命令将从键空间中查找键msg，找到键之后取得该键所对应的字符串对象值，之后再返回值对象的字符串即可。
+
+```
+> RPUSH number 1 2 3
+ (integer) 3
+
+> LRANGE number 0 -1
+1) "1"
+2) "2"
+3) "3"
+```
+
+上述命令首先创建一个列表键，然后调用LRANGE 方法取出列表对象中包含的全部字符串的值。
+
+### 读写键空间时的维护操作 {#读写键空间时的维护操作}
+
+* 在读取一个键之后\(读写都需要\)，服务器会根据键是否存在来更新服务器的键空间命中\(hit\)次数或不命中次数\(miss\)，这两个值可以在INFO stats命令的keyspace\_hits属性和keyspace\_misses属性中查看
+* 在读取一个键之后，服务器会更新键的LRU\(最后一次使用的时间\)，通过这个值来计算键的空转时间。使用OBJECT idletime
+  `<key>`查看键的空转时长
+* 如果服务器发现在读取一个键时发现该键已经过期，那么服务器会先删除这个过期键，然后才执行余下的其他操作。
+* 如果客户端使用WATCH命令监视了某个键，那么服务器在对被监视的键进行修改之后，会将这个键标记为`dirty`，让事务注意到这个键已经被修改了。
+* 服务器每次修改键之后，对脏\(dirty\)键计数器的值增1，这个计数器会触发服务器的持久化以及复制操作
+* 服务器开启数据库通知功能，那么在对键进行修改之后，服务器将按配置发送相应的数据库通知。
+
+### 键的生存和过期时间 {#键的生存和过期时间}
+
+通过EXPIRE命令或者PEXPIRE命令，客户端可以以秒或者毫秒精度为数据库中的某个键设置生存时间\(TTL\),经过指定秒数后，自动删除TTL=0的键。 可以使用`TTL <key>`命令来查看。 也可以使用EXPIREAT PEXPIREAT命令来设置过期时间\(timestamp\)，是一个UNIX时间戳，过期时间到达时，会自动删除这个键。 命令最终都是使用PEXPIREAT来实现的：
+
+```
+// 伪代码：
+// EXPIRE -> PEXPIRE
+func EXPIRE(key, ttl_in_sec){
+  ttl_in_ms = sec_to_ms(ttl_in_sec)
+  PEXPIRE(key, ttl_in_ms)
+  }
+//PEXPIRE -> PEXPIREAT
+func PEXPIRE(key, ttl_in_ms) {
+  now_ms = time();
+  PEXPIREAT(key, now_ms+ttl_in_ms)
+}
+```
+
+redisDb结构的expires过期字典中保存了数据库中所有键的过期时间
+
+* 过期字典的键是一个指针，指向键空间中某个键对象\(共享内存\)
+* 过期字典的值是一个long long类型的整数，这个整数中保存了键所指向的数据库键的过期时间-ms级UNIX时间戳 当使用EXPIRE等命令给数据库键设置过期时间时，服务器会在数据库过期字典中关联给定的数据库键和过期时间。
+  ```
+  // 伪代码
+  func PEXPIREAT(key, expire_time_in_ms) {
+  if (!redisDb.dict.contains(key))
+    return 0; // 关联失败
+  redis.Db.expires[key] = redis_time_in_ms // 关联过期时间
+  return 1; // 关联成功
+  }
+  ```
+
+  执行PERSIST命令可以取消键的过期时间了，也即是取消过期键之与时间戳之间的关联。 TTL = expire\_time\_in\_ms - now\_ms // 过期时间 - 当前时间 = 键的可生存时间
+
+### 过期键的删除策略 {#过期键的删除策略}
+
+* 定时删除：在设置键的过期时间的同时，创建一个定时器timer，让定时器哎键的过期时间来临时，立即执行键的删除操作
+  * 对内存最友好，影响CPU时间，影响服务器吞吐量
+* 惰性删除：放任键过期不管，每次从键空间获取键的时候进行TTL检查，过期的话就删除，如果没有过期就返回该键
+  * 对CPU最友好，容易造成内存泄露。
+* 定期删除：每隔一段时间，程序就对数据库进行一次检查，删除里过期的键。
+  * 整合折中，但是需要合理设置\(每秒执行10次扫描\)
+
+redis中采用惰性删除+定期删除
+
+惰性删除使用expireIfNeeded函数实现过滤，只删除过期字典中存在的函数。 键如果是过期的，那么需要删除这个键，然后向客户端返回空值。
+
+定期删除使用activeExpireCycle函数实现周期性操作。这个函数是由时间事件ServerCron来执行的
+
+```
+DEFAULT_DB_NUMBERS = 16 // 默认每次检查的数据库数量为16
+DEFAULT_KEY_NUMBERS = 20 // 默认每个数据库检查的键数量为20
+current_db = 0 // 全局变量，记录当前定期删除的进度，执行到第几个数据库
+
+func activeExpireCycle() {
+  if server.dbnum < DEFAULT_DB_NUMBERS
+    db_numbers = server.dbnum
+  else
+    db_numbers = DEFAULT_DB_NUMBERS
+
+  for i in db_numbers {
+    if current_db == server.dbnum
+      current_db = 0 // 开始新的一轮遍历
+    redisDb = server.db[i]
+    current_db++
+    for j in DEFAULG_DB_NUMBERS {
+      if redisDb.expires.size() == 0  break // 没有过期时间，跳出数据库
+      key_with_ttl = redisDb.expires.get_random_key()
+      if is_expired(key_with_ttl)
+        delete this key
+      if time_limit() return // 如果时间到了，本次检查结束，跳出。
+    }
+  }
+}
+```
+
+
+

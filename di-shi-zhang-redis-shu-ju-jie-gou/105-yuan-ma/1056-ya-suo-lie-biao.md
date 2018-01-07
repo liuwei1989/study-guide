@@ -1,0 +1,93 @@
+# 压缩列表 {#压缩列表}
+
+### 概述 {#概述}
+
+压缩列表是列表键和哈希键的底层实现之一。列表键中只包含少量的列表项，并且每个列表项是小整数值或者短字符串，采用压缩列表作为列表键的底层实现。哈希键类似。 压缩列表主要是为了节约内存而开发的，由一系列特殊编码的连续内存块组成的顺序型\(sequential\)数据结构。一个压缩列表可以包含任意多个节点，每个节点可以保存一个字节数组或者一个整数值。
+
+```
+/*
+ * 保存 ziplist 节点信息的结构
+ */
+typedef struct zlentry {
+
+    // prevrawlen ：前置节点的长度
+    // prevrawlensize ：编码 prevrawlen 所需的字节大小
+    unsigned int prevrawlensize, prevrawlen;
+
+    // len ：当前节点值的长度
+    // lensize ：编码 len 所需的字节大小
+    unsigned int lensize, len;
+
+    // 当前节点 header 的大小
+    // 等于 prevrawlensize + lensize
+    unsigned int headersize;
+
+    // 当前节点值所使用的编码类型
+    unsigned char encoding;
+
+    // 指向当前节点的指针
+    unsigned char *p;
+
+} zlentry;
+```
+
+```
+/* 
+空白 ziplist 示例图
+
+area        |<---- ziplist header ---->|<-- end -->|
+
+size          4 bytes   4 bytes 2 bytes  1 byte
+            +---------+--------+-------+-----------+
+component   | zlbytes | zltail | zllen | zlend     |
+            |         |        |       |           |
+value       |  1011   |  1010  |   0   | 1111 1111 |
+            +---------+--------+-------+-----------+
+                                       ^
+                                       |
+                               ZIPLIST_ENTRY_HEAD
+                                       &
+address                        ZIPLIST_ENTRY_TAIL
+                                       &
+                               ZIPLIST_ENTRY_END
+
+非空 ziplist 示例图
+
+area        |<---- ziplist header ---->|<----------- entries ------------->|<-end->|
+
+size          4 bytes  4 bytes  2 bytes    ?        ?        ?        ?     1 byte
+            +---------+--------+-------+--------+--------+--------+--------+-------+
+component   | zlbytes | zltail | zllen | entry1 | entry2 |  ...   | entryN | zlend |
+            +---------+--------+-------+--------+--------+--------+--------+-------+
+                                       ^                          ^        ^
+address                                |                          |        |
+                                ZIPLIST_ENTRY_HEAD                |   ZIPLIST_ENTRY_END
+                                                                  |
+                                                        ZIPLIST_ENTRY_TAIL
+*/
+```
+
+| 属性 | 类型 | 长度 | 用途 |
+| :--- | :--- | :--- | :--- |
+| zlbytes属性 | uint32\_t类型 | 4字节 | 记录整个压缩列表所占用的内存字节数：在对压缩列表进行内存重分配或者计算zlend时使用 |
+| zltail | uint32\_t | 4字节 | 记录要锁列表表尾节点距离压缩列表的起始地址有多少字节：通过这个偏移量无需遍历就可以获得表尾节点地址 |
+| zllen | uint16\_t | 2字节 | 记录了压缩列表包含的节点数量：当这个属性的值小于UINT16\_MAX（2^16-1）可直接获得，大于时需要遍历 |
+| entryX | 列表节点 | 不定 | 压缩列表包含的各个节点，节点长度由保存的内容决定 |
+| zlend | uint8\_t | 1字节 | 特殊值0XFF,用于标记压缩列表的末端 |
+
+### 压缩列表节点 {#压缩列表节点}
+
+可以保存字节数组或者整数值
+
+* previous\_entry\_length属性 以字节为单位，记录了压缩列表中前一个节点的长度。可以是1字节或5字节
+  * 如果前一个节点的长度小于254字节，使用1字节就可以保存
+  * 如果前一个节点的长度大于等于254字节，那么previous\_entry\_length属性的长度为5字节，第一个字节设置为0XFE，后面四个字节用于保存前一节点的长度。
+* encoding属性
+  * 记录节点content属性所保存数据的类型及长度
+    * 一字节、两字节或者五字节场，值的最高位为00、01或者10的是字节数组编码：这种编码表示节点的content属性保存着字节数组，数组的长度由编码出去最高两位之后的其他位记录
+    * 一字节长，最高位以11开头的是整数编码：这种编码表示节点的content属性保存着整数值，整数值的类型和长度由编码除去最高两位后的其他位记录
+* content属性
+  * 节点的content属性负责保存节点的值，节点值可以是一个字节数组或者整数，类型和长度由encoding属性决定。
+
+
+

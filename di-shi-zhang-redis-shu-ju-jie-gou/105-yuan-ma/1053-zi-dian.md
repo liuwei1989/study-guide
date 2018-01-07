@@ -1,0 +1,150 @@
+# 字典 {#字典}
+
+### 概述 {#概述}
+
+字典又称为关联数组，映射。用于保存键值对的抽象数据结构。redis中的词典除了用来表示数据库之外，也是哈希键在底层的实现之一，当一个hash键包含的键值对比较多，或者键值对中的元素都是比较长的字符串时，redis就使用字典作为hash键的底层实现。
+
+* 字典的实现，一个哈希表中可以有多个哈希表节点，每一个节点对应字典中的一个键值对。
+
+```
+/*
+ * 哈希表节点
+ */
+typedef struct dictEntry {
+
+    // 键
+    void *key;
+
+    // 值 可以是三种类型
+    union {
+        void *val;
+        uint64_t u64; // 64位的无符号整型数
+        int64_t s64; // 64位的整型数
+    } v;
+
+    // 指向下个哈希表节点，形成链表。 这个指针将多个索引值相同的键值对连接在一起，以此解决键冲突问题。
+    struct dictEntry *next;
+
+} dictEntry;
+```
+
+```
+/*
+ * 哈希表
+ *
+ * 每个字典都使用两个哈希表，从而实现渐进式 rehash 。
+ */
+typedef struct dictht {
+
+    // 哈希表数组 数组中的元素指向 dictEntry结构，保存一个键值对
+    dictEntry **table;
+
+    // 哈希表大小
+    unsigned long size;
+
+    // 哈希表大小掩码，用于计算索引值
+    // 总是等于 size - 1
+    unsigned long sizemask;
+
+    // 该哈希表已有节点的数量
+    unsigned long used;
+
+} dictht;
+```
+
+```
+/*
+ * 字典
+ */
+typedef struct dict {
+
+    // 类型特定函数
+    dictType *type;
+
+    // 私有数据
+    void *privdata;
+
+    // 哈希表，默认使用ht[0]， ht[1]用来实现rehash
+    dictht ht[2];
+
+    // rehash 索引
+    // 当 rehash 不在进行时，值为 -1
+    int rehashidx; /* rehashing not in progress if rehashidx == -1 */
+
+    // 目前正在运行的安全迭代器的数量
+    int iterators; /* number of iterators currently running */
+
+} dict;
+```
+
+* `type`
+  属性是一个指向dictType结构的指针， 每个dictType结构保存了一簇用于操作特定类型键值对的函数，redis基于此来操作不同用途的哈希表
+* privdata 属性保存需要传给特定函数的可选参数。
+
+```
+/*
+ * 字典类型特定函数
+ */
+typedef struct dictType {
+
+    // 计算哈希值的函数
+    unsigned int (*hashFunction)(const void *key);
+
+    // 复制键的函数
+    void *(*keyDup)(void *privdata, const void *key);
+
+    // 复制值的函数
+    void *(*valDup)(void *privdata, const void *obj);
+
+    // 对比键的函数
+    int (*keyCompare)(void *privdata, const void *key1, const void *key2);
+
+    // 销毁键的函数
+    void (*keyDestructor)(void *privdata, void *key);
+
+    // 销毁值的函数
+    void (*valDestructor)(void *privdata, void *obj);
+
+} dictType;
+```
+
+### 哈希算法 {#哈希算法}
+
+当将一个新的键值对添加到字典里面时， 程序需要先根据键值对的键计算出哈希值和索引值，在根据索引值，将包含新键值对的哈希表节点放到哈希数组的指定索引上面。 Redis中计算哈希值和索引值的方法如下：
+
+```
+hash = dict -> type hashFunction(key);
+index = hash & dict -> ht[x].sizemask;
+```
+
+### 解决键冲突与rehash {#解决键冲突与rehash}
+
+当两个或者两个以上的键被分配到了哈希表数组的同一个索引上面时，这些键就产生了冲突。redis的哈希表使用链地址法来解决键冲突，每个哈希表节点都有一个next指针，构成单向链表。新节点排在表头。
+
+随着操作的不断执行，哈希表保存的键值对会逐渐的增多或减少，为了让哈希表的负载因子\(loader factor\)维持在一个合理的范围内，需要及时对哈希表的大小进行相应的扩展或者收缩，采用rehash\(再散列\)来完成操作.
+
+> 1. 为字典ht\[1\]哈希表分配空间，这个hash表的空间大小取决于执行的操作，以及ht\[0\]当前的节点数 -&gt;used属性
+>    > * 如果执行的是扩展操作，那么ht\[1\]的大小为第一个大于等于ht\[0\].used \* 2的2的n次幂
+>    > * 如果执行的是收缩操作，那么ht\[1\]的大小为第一个大于等于ht\[0\].userd的2的n次幂
+> 2. 将保存在ht\[0\]中的所有键值对rehash到ht\[1\]上，然后将键值对放到ht\[1\]的指定位置上
+> 3. 当ht\[0\]包含的所有键值对都迁移到ht\[1\]之后\(ht\[0\]\)位空，释放ht\[0\]，同时将ht\[1\]设置为ht\[0\]，新建一个空白哈希表ht\[1\].
+
+当出现以下情况时，redis会对hash表进行扩展操作：
+
+1. 服务器没有执行BGSAVE命令或者BGWRITEAOF命令，并且哈希表的负载因子大于等于1
+2. 服务器目前正在执行BGSAVE或BGWRITEAOF命令，并且哈希表的负载因子大于等于5
+   `load_factor = ht[0].used / ht[0].size`
+
+当负载因子小于0.1时，程序自动开始对哈希表执行收缩操作
+
+### 渐进式rehash {#渐进式rehash}
+
+为了避免一次性将键值对全部rehash到ht\[1\]上造成服务器性能造成影响，redis分多次，渐进式地将ht\[0\]里面的键值对慢慢地rehash到ht\[1\]。详细步骤如下：
+
+1. 位ht\[1\]分配空间，让字典同时持有ht\[0\]和ht\[1\]两个hash表
+2. 在字典中维持一个索引计数器变量rehashidx，将其设为0，表示rehash工作开始
+3. 在rehash期间，每次对字典执行添加、删除、查找或者更新操作时，程序除了执行指定的操作之外，还会顺带将ht\[0\]表在rehashidx索引上的所有键值对rehash到ht\[1\]上，当rehash工作完成后，程序将rehashidx属性值增加1.
+4. 随着字典操作的不断执行，最终在某个时间点上，ht\[0\]的所有键值对都会被rehash至ht\[1\]，这时程序将rehashidx属性的值设为-1，表示rehash操作已经完成 这样就将rehash键值对的计算工作分摊到字典的每个添加、删除、查找和更新操作上，从而避免了集中式rehash而带来的庞大计算量。 在rehash操作过程中，哈希表有两个，字典的删改查操作会在两个表上进行，新添加到字典的键值对会保存到ht\[1\]里面，而ht\[0\]不在进行任何添加操作。
+
+
+
