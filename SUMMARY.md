@@ -33,6 +33,8 @@
       * [4.9  线程池实现原理](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/49.md)
       * [4.10  线程池之拒绝策略](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/410-xian-cheng-chi-zhi-ju-jue-ce-lve.md)
       * [4.11 线程的五大状态](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/411-xian-cheng-de-wu-da-zhuang-tai.md)
+      * [4.12 JUC](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/412-juc.md)
+        * [4.12.1 AQS简介](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/412-juc/4121-aqsjian-jie.md)
     * 第五章  网络
     * [第六章  JVM](di-yi-bu-fen-ji-chu/di-liu-zhang-jvm.md)
       * [6.1,1  Java 虚拟机体系结构](di-yi-bu-fen-ji-chu/61-java-xu-ni-ji-ti-xi-jie-gou.md)
@@ -105,14 +107,14 @@
       * [17.2  二级缓存](di-shi-qi-zhang-mybatis/172-er-ji-huan-cun.md)
       * [17.3  面试题](di-shi-qi-zhang-mybatis/173-mian-shi-ti.md)
   * 第五部分  分布式
-    * 第十二五章  zookeeper
+    * [第十二五章  zookeeper](di-shi-er-wu-zhang-zookeeper.md)
       * [25.1  zookeeper原理](251-zookeeper-yuan-li.md)
       * [25.2  Zab协议](252-zab-xie-yi.md)
   * [第六部分 算法](di-liu-bu-fen-suan-fa.md)
     * [第十二八章 算法](di-liu-bu-fen-suan-fa/di-shi-er-ba-zhang-suan-fa.md)
       * [28.1 缓存算法–LRU](di-liu-bu-fen-suan-fa/di-shi-er-ba-zhang-suan-fa/281-huan-cun-suan-fa-2013-lru.md)
       * [28.2 一致性哈希算法](di-liu-bu-fen-suan-fa/di-shi-er-ba-zhang-suan-fa/282-yi-zhi-xing-ha-xi-suan-fa.md)
-      * 28.3 基于漏桶\(Leaky bucket\)与令牌桶\(Token bucket\)算法的流量控制
+      * [28.3 基于漏桶\(Leaky bucket\)与令牌桶\(Token bucket\)算法的流量控制](di-liu-bu-fen-suan-fa/di-shi-er-ba-zhang-suan-fa/283-ji-yu-lou-687628-leaky-bucket-yu-ling-pai-687628-token-bucket-suan-fa-de-liu-liang-kong-zhi.md)
   * [第八部分  面试](di-ba-bu-fen-mian-shi.md)
     * 第三十章  面试题
       * [30.1  面试题一](301-mian-shi-ti-yi.md)
