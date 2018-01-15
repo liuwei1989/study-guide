@@ -11,6 +11,8 @@
       * [1.6.1  不可改变类与字符串池](di-yi-bu-fen-ji-chu/di-yi-zhang-123/16-bu-ke-gai-bian-lei-yu-zi-fu-chuan-chi.md)
       * [1.6.2  String类的不可变性](di-yi-bu-fen-ji-chu/di-yi-zhang-123/16-string-lei-de-bu-ke-bian-xing.md)
       * [1.7  Class.forName和classloader的区别](di-yi-bu-fen-ji-chu/di-yi-zhang-123/17-class-fornamehe-classloader-de-qu-bie.md)
+      * [1.8 transient关键字使用小记](di-yi-bu-fen-ji-chu/di-yi-zhang-123/18-transientguan-jian-zi-shi-yong-xiao-ji.md)
+      * [1.9 foreach原理](di-yi-bu-fen-ji-chu/di-yi-zhang-123/19-foreachyuan-li.md)
     * [第二章  集合](di-yi-bu-fen-ji-chu/di-er-zhang-ji-he.md)
       * [2.1  ArrayList实现原理](di-yi-bu-fen-ji-chu/21-arraylist-gong-zuo-yuan-li-ji-shi-xian.md)
       * [2.2 LinkedList实现原理](di-yi-bu-fen-ji-chu/22-linkedlistshi-xian-yuan-li.md)
@@ -24,8 +26,8 @@
     * [第四章  多线程](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng.md)
       * 4.1  竞态条件与临界区
       * [4.2  happen-before规则](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/42-happen-beforegui-ze.md)
-      * [4.3  CyclicBarrier](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/43-cyclicbarrier.md)
       * [4.4  CountDownLatch](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/44-countdownlatch.md)
+      * [4.3  CyclicBarrier](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/43-cyclicbarrier.md)
       * [4.5  Semaphore](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/45-semaphore.md)
       * [4.6  Exchanger](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/46-exchanger.md)
       * [4.7  Fork Join 框架](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/47-fork-join-kuang-jia.md)
@@ -49,7 +51,7 @@
     * 第七章  异常
       * [7.1  面试题一](di-yi-bu-fen-ji-chu/71-mian-shi-ti-yi.md)
       * [7.1  异常处理机制](di-yi-bu-fen-ji-chu/71-yi-chang-chu-li-ji-zhi.md)
-    * 第八章  队列
+    * [第八章  队列](di-yi-bu-fen-ji-chu/di-ba-zhang-dui-lie.md)
       * [8.1  ConcurrentLinkedQueue](di-yi-bu-fen-ji-chu/81-concurrentlinkedqueue.md)
       * [8.2  Java中的阻塞队列](di-yi-bu-fen-ji-chu/82-java-zhong-de-zu-sai-dui-lie.md)
   * 第二部分 数据库
@@ -106,6 +108,12 @@
       * [17.1  一级缓存](di-shi-qi-zhang-mybatis/171-huan-cun-shi-xian-xiang-jie.md)
       * [17.2  二级缓存](di-shi-qi-zhang-mybatis/172-er-ji-huan-cun.md)
       * [17.3  面试题](di-shi-qi-zhang-mybatis/173-mian-shi-ti.md)
+    * [第十八章 Dubbo](di-shi-ba-zhang-dubbo.md)
+      * [18.0 常用标签](180-chang-yong-biao-qian.md)
+      * [18.1 Directory](di-shi-ba-zhang-dubbo/181-directory.md)
+      * [18.2 Java的SPI机制浅析](di-shi-ba-zhang-dubbo/182-javade-spi-ji-zhi-qian-xi.md)
+      * [18.3 Dubbo的SPI机制](di-shi-ba-zhang-dubbo/183-dubbode-spi-ji-zhi.md)
+      * [18.4 服务暴露过程](di-shi-ba-zhang-dubbo/184-fu-wu-bao-lu-guo-cheng.md)
   * 第五部分  分布式
     * [第十二五章  zookeeper](di-shi-er-wu-zhang-zookeeper.md)
       * [25.1  zookeeper原理](251-zookeeper-yuan-li.md)
