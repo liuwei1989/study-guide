@@ -122,7 +122,9 @@
   * 第五部分  分布式
     * [第十二五章  zookeeper](di-shi-er-wu-zhang-zookeeper.md)
       * [25.1  zookeeper原理](251-zookeeper-yuan-li.md)
-      * [25.2  Zab协议](252-zab-xie-yi.md)
+      * [25.2 Zab协议](252-zabxie-yi.md)
+      * [25.3 ZooKeeper之ZAB协议](253-zookeeperzhi-zab-xie-yi.md)
+      * [25.4 Fast Paxos](254-fast-paxos.md)
   * [第六部分 算法](di-liu-bu-fen-suan-fa.md)
     * [第十二八章 算法](di-liu-bu-fen-suan-fa/di-shi-er-ba-zhang-suan-fa.md)
       * [28.1 缓存算法–LRU](di-liu-bu-fen-suan-fa/di-shi-er-ba-zhang-suan-fa/281-huan-cun-suan-fa-2013-lru.md)
