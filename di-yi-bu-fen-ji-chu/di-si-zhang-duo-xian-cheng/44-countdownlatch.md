@@ -19,18 +19,18 @@
 > CountDownLatch的作用是控制一个计数器，每个线程在运行完毕后执行countDown，表示自己运行结束，这对于多个子任务的计算特别有效，比如一个异步任务需要拆分成10个子任务执行，主任务必须知道子任务是否完成，所有子任务完成后才能进行合并计算，从而保证了一个主任务逻辑的正确性。
 >
 > \(此段摘自于&lt;&lt;改善Java程序的151个建议&gt;&gt;, P254\)
-
+>
 > CountDownLatch最重要的方法是**countDown**\(\)和**await**\(\)，**前者主要是倒数一次，后者是等待倒数到0，如果没有到达0，就只有阻塞等待了**。
 
 ### 案例描述 {#h3_6}
 
 > 使用CountDownLatch工具类来实现10个线程对1~100的求和，每个线程对10个数进行求和。
 
-* 第一个线程对1 – 10的数字求和 
-* 第二个线程对 11 – 20的数字求和 
-* 第三个线程对21 – 30 的数字求和 
-* ….. 
-* 第十个线程对91 – 100的数字求和。 
+* 第一个线程对1 – 10的数字求和 
+* 第二个线程对 11 – 20的数字求和 
+* 第三个线程对21 – 30 的数字求和 
+* ….. 
+* 第十个线程对91 – 100的数字求和。 
 
 ### 代码与测试 {#h3_7}
 
@@ -49,54 +49,54 @@ import java.util.concurrent.CountDownLatch;
  */
 public class Calculator implements Callable<Integer> {
 
-	// 开始信号
-	private final CountDownLatch startSignal;
+    // 开始信号
+    private final CountDownLatch startSignal;
 
-	// 结束信号
-	private final CountDownLatch doneSignal;
+    // 结束信号
+    private final CountDownLatch doneSignal;
 
-	private int groupNumber = 0;
+    private int groupNumber = 0;
 
-	/**
-	 * @param startSignal
-	 * @param endSignal
-	 * @param groupId
-	 */
-	public Calculator(CountDownLatch startSignal, CountDownLatch doneSignal,
-			int groupNumber) {
-		this.startSignal = startSignal;
-		this.doneSignal = doneSignal;
-		this.groupNumber = groupNumber;
-	}
+    /**
+     * @param startSignal
+     * @param endSignal
+     * @param groupId
+     */
+    public Calculator(CountDownLatch startSignal, CountDownLatch doneSignal,
+            int groupNumber) {
+        this.startSignal = startSignal;
+        this.doneSignal = doneSignal;
+        this.groupNumber = groupNumber;
+    }
 
-	public Integer call() throws Exception {
-		startSignal.await();
-		Integer result = sum(groupNumber);
-		printCompleteInfor(groupNumber, result);
-		doneSignal.countDown();
+    public Integer call() throws Exception {
+        startSignal.await();
+        Integer result = sum(groupNumber);
+        printCompleteInfor(groupNumber, result);
+        doneSignal.countDown();
 
-		return result;
-	}
+        return result;
+    }
 
-	private Integer sum(int groupNumber) {
-		if (groupNumber < 1) {
-			throw new IllegalArgumentException();
-		}
+    private Integer sum(int groupNumber) {
+        if (groupNumber < 1) {
+            throw new IllegalArgumentException();
+        }
 
-		int sum = 0;
-		int start = (groupNumber - 1) * 10 + 1;
-		int end = groupNumber * 10;
-		for (int i = start; i <= end; i++) {
-			sum += i;
-		}
-		return sum;
-	}
+        int sum = 0;
+        int start = (groupNumber - 1) * 10 + 1;
+        int end = groupNumber * 10;
+        for (int i = start; i <= end; i++) {
+            sum += i;
+        }
+        return sum;
+    }
 
-	private void printCompleteInfor(int groupNumber, int sum) {
-		System.out.println(String.format(
-				"Group %d is finished, the sum in this gropu is %d",
-				groupNumber, sum));
-	}
+    private void printCompleteInfor(int groupNumber, int sum) {
+        System.out.println(String.format(
+                "Group %d is finished, the sum in this gropu is %d",
+                groupNumber, sum));
+    }
 }
 ```
 
@@ -113,62 +113,62 @@ import java.util.concurrent.Future;
 
 public class CountDownLatchTest {
 
-	public static void main(String[] args) throws Exception {
-		/**
-		 * 1－100求和，分10个线程来计算，每个线程对10个数求和。
-		 */
-		int numOfGroups = 10;
-		CountDownLatch startSignal = new CountDownLatch(1);
-		
-		CountDownLatch doneSignal = new CountDownLatch(numOfGroups);
-		
-		ExecutorService service = Executors.newFixedThreadPool(numOfGroups);
-		List<Future<Integer>> futures = new ArrayList<Future<Integer>>();
+    public static void main(String[] args) throws Exception {
+        /**
+         * 1－100求和，分10个线程来计算，每个线程对10个数求和。
+         */
+        int numOfGroups = 10;
+        CountDownLatch startSignal = new CountDownLatch(1);
 
-		submit(futures, numOfGroups, service, startSignal, doneSignal);
-		
-		/**
-		 * 开始，让所有的求和计算线程运行
-		 */
-		startSignal.countDown();
-		
-		/**
-		 * 阻塞，知道所有计算线程完成计算
-		 */
-		doneSignal.await();
+        CountDownLatch doneSignal = new CountDownLatch(numOfGroups);
 
-		shutdown(service);
-		
-		printResult(futures);
-	}
+        ExecutorService service = Executors.newFixedThreadPool(numOfGroups);
+        List<Future<Integer>> futures = new ArrayList<Future<Integer>>();
 
-	private static void submit(List<Future<Integer>> futures, int numOfGroups,
-			ExecutorService service, CountDownLatch startSignal,
-			CountDownLatch doneSignal) {
-		for (int groupNumber = 1; groupNumber <= numOfGroups; groupNumber++) {
-			futures.add(service.submit(new Calculator(startSignal, doneSignal,
-					groupNumber)));
-		}
-	}
+        submit(futures, numOfGroups, service, startSignal, doneSignal);
 
-	private static int getResult(List<Future<Integer>> futures)
-			throws InterruptedException, ExecutionException {
-		int result = 0;
-		for (Future<Integer> f : futures) {
-			result += f.get();
-		}
-		return result;
-	}
+        /**
+         * 开始，让所有的求和计算线程运行
+         */
+        startSignal.countDown();
 
-	private static void printResult(List<Future<Integer>> futures)
-			throws InterruptedException, ExecutionException {
-		System.out.println("[1,100] Sum is :" + getResult(futures));
-	}
-	
-	private static void shutdown(ExecutorService service)
-	{
-		service.shutdown();
-	}
+        /**
+         * 阻塞，知道所有计算线程完成计算
+         */
+        doneSignal.await();
+
+        shutdown(service);
+
+        printResult(futures);
+    }
+
+    private static void submit(List<Future<Integer>> futures, int numOfGroups,
+            ExecutorService service, CountDownLatch startSignal,
+            CountDownLatch doneSignal) {
+        for (int groupNumber = 1; groupNumber <= numOfGroups; groupNumber++) {
+            futures.add(service.submit(new Calculator(startSignal, doneSignal,
+                    groupNumber)));
+        }
+    }
+
+    private static int getResult(List<Future<Integer>> futures)
+            throws InterruptedException, ExecutionException {
+        int result = 0;
+        for (Future<Integer> f : futures) {
+            result += f.get();
+        }
+        return result;
+    }
+
+    private static void printResult(List<Future<Integer>> futures)
+            throws InterruptedException, ExecutionException {
+        System.out.println("[1,100] Sum is :" + getResult(futures));
+    }
+
+    private static void shutdown(ExecutorService service)
+    {
+        service.shutdown();
+    }
 
 }
 ```
@@ -195,13 +195,11 @@ Group 2 is finished, the sum in this gropu is 155
 
 > **使用CountDownLatch时，它关注的一个线程或者多个线程需要在其它在一组线程完成操作之后，在去做一些事情**。比如：服务的启动等。
 
-
-
-### CountDownLatch类源代码  {#h3_3}
+### CountDownLatch类源代码 {#h3_3}
 
 ```java
 /*
- * @(#)CountDownLatch.java	1.5 04/02/09
+ * @(#)CountDownLatch.java    1.5 04/02/09
  *
  * Copyright 2004 Sun Microsystems, Inc. All rights reserved.
  * SUN PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
@@ -334,7 +332,7 @@ public class CountDownLatch {
         Sync(int count) {
             setState(count); 
         }
-        
+
         int getCount() {
             return getState();
         }
@@ -342,7 +340,7 @@ public class CountDownLatch {
         public int tryAcquireShared(int acquires) {
             return getState() == 0? 1 : -1;
         }
-        
+
         public boolean tryReleaseShared(int releases) {
             // Decrement count; signal when transition to zero
             for (;;) {
@@ -482,8 +480,6 @@ public class CountDownLatch {
 
 }
 ```
-
-
 
 
 

@@ -20,9 +20,14 @@
       * [2.4 HashMap实现原理](di-yi-bu-fen-ji-chu/24-hashmapshi-xian-yuan-li.md)
       * [2.5  Java 8系列之重新认识HashMap](di-yi-bu-fen-ji-chu/25-java-8-xi-lie-zhi-zhong-xin-ren-shi-hashmap.md)
       * [2.6  LinkedHashMap实现原理](di-yi-bu-fen-ji-chu/26.md)
+        * [2.6.1 如何设计实现一个LRU Cache？](di-yi-bu-fen-ji-chu/26/261-ru-he-she-ji-shi-xian-yi-ge-lru-cache.md)
       * [2.7  TreeMap实现原理](di-yi-bu-fen-ji-chu/27-treemap-shi-xian-yuan-li.md)
       * [2.8  ConcurrentHashMap实现原理](di-yi-bu-fen-ji-chu/28-concurrenthashmap-shi-xian-yuan-li.md)
-    * 第三章  IO
+      * [2.9 HashSet实现原理](di-yi-bu-fen-ji-chu/29-hashsetshi-xian-yuan-li.md)
+      * [2.10 LinkedHashSet实现原理](di-yi-bu-fen-ji-chu/210-linkedhashsetshi-xian-yuan-li.md)
+      * [2.11 TreeSet实现原理](di-yi-bu-fen-ji-chu/210-treesetshi-xian-yuan-li.md)
+      * [2.12 EnumMap实现原理](di-yi-bu-fen-ji-chu/212-enummapshi-xian-yuan-li.md)
+    * [第三章  IO](di-yi-bu-fen-ji-chu/di-san-zhang-io.md)
     * [第四章  多线程](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng.md)
       * 4.1  竞态条件与临界区
       * [4.2  happen-before规则](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/42-happen-beforegui-ze.md)
@@ -37,7 +42,7 @@
       * [4.11 线程的五大状态](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/411-xian-cheng-de-wu-da-zhuang-tai.md)
       * [4.12 JUC](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/412-juc.md)
         * [4.12.1 AQS简介](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/412-juc/4121-aqsjian-jie.md)
-    * 第五章  网络
+    * [第五章  网络](di-yi-bu-fen-ji-chu/di-wu-zhang-wang-luo.md)
     * [第六章  JVM](di-yi-bu-fen-ji-chu/di-liu-zhang-jvm.md)
       * [6.1,1  Java 虚拟机体系结构](di-yi-bu-fen-ji-chu/61-java-xu-ni-ji-ti-xi-jie-gou.md)
       * [6.1.2  JVM结构](di-yi-bu-fen-ji-chu/612-jvm-jie-gou.md)
