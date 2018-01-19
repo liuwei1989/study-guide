@@ -29,7 +29,7 @@
       * [2.12 EnumMap实现原理](di-yi-bu-fen-ji-chu/212-enummapshi-xian-yuan-li.md)
     * [第三章  IO](di-yi-bu-fen-ji-chu/di-san-zhang-io.md)
     * [第四章  多线程](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng.md)
-      * 4.1  竞态条件与临界区
+      * [4.1  基础知识](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/41-jing-tai-tiao-jian-yu-lin-jie-qu.md)
       * [4.2  happen-before规则](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/42-happen-beforegui-ze.md)
       * [4.4  CountDownLatch](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/44-countdownlatch.md)
       * [4.3  CyclicBarrier](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/43-cyclicbarrier.md)
@@ -44,6 +44,7 @@
         * [4.12.1 AQS简介](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/412-juc/4121-aqsjian-jie.md)
       * [4.13 ThreadLocal](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/413-threadlocal.md)
       * [4.14 深入分析ThreadLocal内存泄漏问题](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/414-shen-ru-fen-xi-threadlocal-nei-cun-xie-lou-wen-ti.md)
+      * [4.15 synchronized](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/415-synchronized.md)
     * [第五章  网络](di-yi-bu-fen-ji-chu/di-wu-zhang-wang-luo.md)
     * [第六章  JVM](di-yi-bu-fen-ji-chu/di-liu-zhang-jvm.md)
       * [6.1,1  Java 虚拟机体系结构](di-yi-bu-fen-ji-chu/61-java-xu-ni-ji-ti-xi-jie-gou.md)
