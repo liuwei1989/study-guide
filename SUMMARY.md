@@ -42,6 +42,8 @@
       * [4.11 线程的五大状态](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/411-xian-cheng-de-wu-da-zhuang-tai.md)
       * [4.12 JUC](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/412-juc.md)
         * [4.12.1 AQS简介](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/412-juc/4121-aqsjian-jie.md)
+      * [4.13 ThreadLocal](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/413-threadlocal.md)
+      * [4.14 深入分析ThreadLocal内存泄漏问题](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/414-shen-ru-fen-xi-threadlocal-nei-cun-xie-lou-wen-ti.md)
     * [第五章  网络](di-yi-bu-fen-ji-chu/di-wu-zhang-wang-luo.md)
     * [第六章  JVM](di-yi-bu-fen-ji-chu/di-liu-zhang-jvm.md)
       * [6.1,1  Java 虚拟机体系结构](di-yi-bu-fen-ji-chu/61-java-xu-ni-ji-ti-xi-jie-gou.md)
