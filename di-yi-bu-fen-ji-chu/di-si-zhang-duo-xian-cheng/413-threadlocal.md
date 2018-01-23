@@ -6,18 +6,17 @@
 
 ```
 public void set(T value) {
-	//获取当前线程
+    //获取当前线程
     Thread t = Thread.currentThread();
     //从当前线程中得到当前线程的ThreadLocalMap
     ThreadLocalMap map = getMap(t);
     if (map != null)
-    	//不为空的话，调用ThreadLocalMap的set方法设置值
+        //不为空的话，调用ThreadLocalMap的set方法设置值
         map.set(this, value);
     else
-    	//ThreadLocalMap为null，还没有被初始化，创建新的map
+        //ThreadLocalMap为null，还没有被初始化，创建新的map
         createMap(t, value);
 }
-
 ```
 
 ### getMap\(Thread t\)
@@ -28,7 +27,6 @@ public void set(T value) {
 ThreadLocalMap getMap(Thread t) {
     return t.threadLocals;
 }
-
 ```
 
 ### createMap\(t, value\)
@@ -41,7 +39,6 @@ ThreadLocalMap getMap(Thread t) {
 void createMap(Thread t, T firstValue) {
     t.threadLocals = new ThreadLocalMap(this, firstValue);
 }
-
 ```
 
 ThreadLocal用来把变量的副本存储到线程中，变量的副本就只能是当前线程私有，而在线程中是通过ThreadLocalMap来存储副本的，所以有必要了解下ThreadLocalMap是怎么实现的。
@@ -80,14 +77,13 @@ static class Entry extends WeakReference<ThreadLocal> {
 private void setThreshold(int len) {
     threshold = len * 2 / 3;
 }
-
 ```
 
 //构造方法，当我们第一次使用的时候会构造一个新的ThreadLocalMap
 
 ```
 ThreadLocalMap(ThreadLocal firstKey, Object firstValue) {
-	//存放线程本地变量的数组，初始容量16
+    //存放线程本地变量的数组，初始容量16
     table = new Entry[INITIAL_CAPACITY];
     //得到存放Entry的数组下标
     int i = firstKey.threadLocalHashCode & (INITIAL_CAPACITY - 1);
@@ -104,7 +100,7 @@ ThreadLocalMap(ThreadLocal firstKey, Object firstValue) {
 
 ```
 private ThreadLocalMap(ThreadLocalMap parentMap) {
-	//父map中存放的线程本地变量数据
+    //父map中存放的线程本地变量数据
     Entry[] parentTable = parentMap.table;
     //父map的长度
     int len = parentTable.length;
@@ -112,7 +108,7 @@ private ThreadLocalMap(ThreadLocalMap parentMap) {
     setThreshold(len);
     //新建长度为len的Entry数组
     table = new Entry[len];
-	//循环把父map的数组的元素放到新数组中去，中间需要重新计算数组下标。
+    //循环把父map的数组的元素放到新数组中去，中间需要重新计算数组下标。
     for (int j = 0; j < len; j++) {
         Entry e = parentTable[j];
         if (e != null) {
@@ -135,14 +131,14 @@ private ThreadLocalMap(ThreadLocalMap parentMap) {
 
 ```
 private Entry getEntry(ThreadLocal key) {
-	//计算数组下标
+    //计算数组下标
     int i = key.threadLocalHashCode & (table.length - 1);
     //获取元素
     Entry e = table[i];
     if (e != null && e.get() == key)
         return e;
     else
-    	//没有找到key的时候的处理
+        //没有找到key的时候的处理
         return getEntryAfterMiss(key, i, e);
 }
 ```
@@ -158,7 +154,7 @@ private Entry getEntryAfterMiss(ThreadLocal key, int i, Entry e) {
     int len = tab.length;
 
     while (e != null) {
-    	//获取key
+        //获取key
         ThreadLocal k = e.get();
         //找到key，返回e
         if (k == key)
@@ -167,14 +163,13 @@ private Entry getEntryAfterMiss(ThreadLocal key, int i, Entry e) {
         if (k == null)
             expungeStaleEntry(i);
         else
-        	//key不为null，计算下一个数组下标
+            //key不为null，计算下一个数组下标
             i = nextIndex(i, len);
         //返回下一个entry
         e = tab[i];
     }
     return null;
 }
-
 ```
 
 //存放指定的key和value
@@ -182,32 +177,32 @@ private Entry getEntryAfterMiss(ThreadLocal key, int i, Entry e) {
 ```
 private void set(ThreadLocal key, Object value) {
 
-	//当前存放的数组
+    //当前存放的数组
     Entry[] tab = table;
     //数组长度
     int len = tab.length;
     //根据key获取存放的数组下标
     int i = key.threadLocalHashCode & (len-1);
-	
-	//从第i个元素开始挨个遍历
+
+    //从第i个元素开始挨个遍历
     for (Entry e = tab[i];
          e != null;
          e = tab[i = nextIndex(i, len)]) {
          //获取到i处的key
         ThreadLocal k = e.get();
-	//i处的key和要存放的key相等，将原来的值替换成新的值，返回。
+    //i处的key和要存放的key相等，将原来的值替换成新的值，返回。
         if (k == key) {
             e.value = value;
             return;
         }
-	//i处key为null
+    //i处key为null
         if (k == null) {
-        	//替换原来的Entry
+            //替换原来的Entry
             replaceStaleEntry(key, value, i);
             return;
         }
     }
-	//不存在key，新建一个Entry
+    //不存在key，新建一个Entry
     tab[i] = new Entry(key, value);
     //size加1
     int sz = ++size;
@@ -221,7 +216,7 @@ private void set(ThreadLocal key, Object value) {
 
 ```
 private void rehash() {
-	//首先清除旧的entry
+    //首先清除旧的entry
     expungeStaleEntries();
 
     // size大于等于阈值的四分之三，将容量扩展为两倍
@@ -236,7 +231,7 @@ ThreadLocalMap内部的Entry的get和set基本就这些，接下来继续看Thre
 
 ```
 public T get() {
-	//获取当前线程
+    //获取当前线程
     Thread t = Thread.currentThread();
     //获取当前线程的ThreadLocalMap
     ThreadLocalMap map = getMap(t);
@@ -248,14 +243,13 @@ public T get() {
     //map为空，设置初始值，并返回
     return setInitialValue();
 }
-
 ```
 
 ## private T setInitialValue\(\)
 
 ```
 private T setInitialValue() {
-	//这里初始值为null
+    //这里初始值为null
     T value = initialValue();
     Thread t = Thread.currentThread();
     ThreadLocalMap map = getMap(t);
@@ -265,7 +259,6 @@ private T setInitialValue() {
         createMap(t, value);
     return value;
 }
-
 ```
 
 ## remove\(\)
@@ -278,7 +271,6 @@ public void remove() {
      if (m != null)
          m.remove(this);
  }
-
 ```
 
 # 总结一下get和set方法
@@ -291,9 +283,7 @@ set方法：
 
 首先获取到当前线程，然后获取当前线程内部的ThreadLocalMap，如果map不为空，直接使用Entry的set设置值，此方法会替换原来的值；如果map为空，说明没有使用过，新建一个map并使用当前线程和指定的值初始化。
 
-
-
-
-
 [参考文章](http://blog.csdn.net/youyou1543724847/article/details/52460852)
+
+[参考文章2](http://blog.csdn.net/xlgen157387/article/details/78297568)
 
