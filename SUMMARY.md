@@ -18,6 +18,7 @@
       * [2.2 LinkedList实现原理](di-yi-bu-fen-ji-chu/22-linkedlistshi-xian-yuan-li.md)
       * [2.3  CopyOnWriteArrayList实现原理](di-yi-bu-fen-ji-chu/23-copyonwritearraylist-shi-xian-yuan-li.md)
       * [2.4 HashMap实现原理](di-yi-bu-fen-ji-chu/24-hashmapshi-xian-yuan-li.md)
+        * [2.4.1 HashMap死循环分析\(JDK1.7\)](di-yi-bu-fen-ji-chu/24-hashmapshi-xian-yuan-li/241-hashmapsi-xun-huan-fen-679028-jdk1-7.md)
       * [2.5  Java 8系列之重新认识HashMap](di-yi-bu-fen-ji-chu/25-java-8-xi-lie-zhi-zhong-xin-ren-shi-hashmap.md)
       * [2.6  LinkedHashMap实现原理](di-yi-bu-fen-ji-chu/26.md)
         * [2.6.1 如何设计实现一个LRU Cache？](di-yi-bu-fen-ji-chu/26/261-ru-he-she-ji-shi-xian-yi-ge-lru-cache.md)
@@ -26,7 +27,7 @@
       * [2.9 HashSet实现原理](di-yi-bu-fen-ji-chu/29-hashsetshi-xian-yuan-li.md)
       * [2.10 LinkedHashSet实现原理](di-yi-bu-fen-ji-chu/210-linkedhashsetshi-xian-yuan-li.md)
       * [2.11 TreeSet实现原理](di-yi-bu-fen-ji-chu/210-treesetshi-xian-yuan-li.md)
-      * [2.12 EnumMap实现原理](di-yi-bu-fen-ji-chu/212-enummapshi-xian-yuan-li.md)
+      * [2.13 HashMap死循环分析\(JDK1.7\)](di-yi-bu-fen-ji-chu/213-hashmapsi-xun-huan-fen-xi.md)
     * [第三章  IO](di-yi-bu-fen-ji-chu/di-san-zhang-io.md)
     * [第四章  多线程](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng.md)
       * [4.1  基础知识](di-yi-bu-fen-ji-chu/di-si-zhang-duo-xian-cheng/41-jing-tai-tiao-jian-yu-lin-jie-qu.md)
@@ -110,6 +111,7 @@
       * [15.7  which、whereis、locate、find命令的区别](di-san-bu-fen-linux/157-which-whereislocatefindming-ling-de-qu-bie.md)
       * [15.8  防火墙iptables命令详解](di-san-bu-fen-linux/158-fang-huo-qiang-iptables-ming-ling-xiang-jie.md)
       * [15.9  面试问题汇总](di-san-bu-fen-linux/159-mian-shi-wen-ti-hui-zong.md)
+      * [15.10 vim常用命令](di-san-bu-fen-linux/1510-vimchang-yong-ming-ling.md)
   * [第四部分  框架](di-si-bu-fen-kuang-jia.md)
     * [第十六章  Spring](di-shi-liu-zhang-spring.md)
       * [16.1  Spring AOP实现原理](di-shi-liu-zhang-spring/161-spring-aop-shi-xian-yuan-li.md)
@@ -171,4 +173,7 @@
       * [30.4  面试题四](304-mian-shi-ti-si.md)
       * [30.5  面试题五](305-mian-shi-ti-wu.md)
       * [30.6  面试题六](306-mian-shi-ti-liu.md)
+  * 第九部分 工具
+    * [第三十一章 Git](di-san-shi-yi-zhang-git.md)
+      * [31.1 Git常用资源](di-san-shi-yi-zhang-git/311-gitchang-yong-zi-yuan.md)
 
