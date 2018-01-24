@@ -7,8 +7,6 @@ I/O ? 或者输入/输出 ? 指的是计算机与外部世界或者一个程序�
 在 Java 编程中，直到最近一直使用 流 的方式完成 I/O。所有 I/O 都被视为单个的字节的移动，通过一个称为 Stream 的对象一次移动一个字节。流 I/O 用于与外部世界接触。它也在内部使用，用于将对象转换为字节，然后再转换回对象。  
 NIO 与原来的 I/O 有同样的作用和目的，但是它使用不同的方式? 块 I/O。正如您将在本教程中学到的，块 I/O 的效率可以比流 I/O 高许多。
 
-
-
 **为什么要使用 NIO?**  
 NIO 的创建目的是为了让 Java 程序员可以实现高速 I/O 而无需编写自定义的本机代码。NIO 将最耗时的 I/O 操作\(即填充和提取缓冲区\)转移回操作系统，因而可以极大地提高速度。
 
@@ -137,13 +135,13 @@ fc.write( buffer );
 
 注意在这里同样不需要告诉通道要写入多数据。缓冲区的内部统计机制会跟踪它包含多少数据以及还有多少数据要写入。
 
-**读写结合  
+**读写结合    
 **  
 下面我们将看一下在结合读和写时会有什么情况。我们以一个名为 CopyFile.java 的简单程序作为这个练习的基础，它将一个文件的所有内容拷贝到另一个文件中。CopyFile.java 执行三个基本操作：首先创建一个 Buffer，然后从源文件中将数据读到这个缓冲区中，然后将缓冲区写入目标文件。这个程序不断重复 ― 读、写、读、写 ― 直到源文件结束。
 
 CopyFile 程序让您看到我们如何检查操作的状态，以及如何使用 clear\(\) 和 flip\(\) 方法重设缓冲区，并准备缓冲区以便将新读取的数据写到另一个通道中。
 
-**运行 CopyFile 例子  
+**运行 CopyFile 例子    
 **  
 因为缓冲区会跟踪它自己的数据，所以 CopyFile 程序的内部循环 \(inner loop\) 非常简单，如下所示：
 
@@ -154,30 +152,30 @@ fcout.write( buffer );
 
 第一行将数据从输入通道 fcin 中读入缓冲区，第二行将这些数据写到输出通道 fcout 。
 
-**检查状态  
+**检查状态    
 **  
 下一步是检查拷贝何时完成。当没有更多的数据时，拷贝就算完成，并且可以在 read\(\) 方法返回 -1 是判断这一点，如下所示：
 
 ```
 int r = fcin.read( buffer );
- 
+
 if (r==-1) {
  break;
 }
 ```
 
-**重设缓冲区  
+**重设缓冲区    
 **  
 最后，在从输入通道读入缓冲区之前，我们调用 clear\(\) 方法。同样，在将缓冲区写入输出通道之前，我们调用 flip\(\) 方法，如下所示
 
 ```
 buffer.clear();
 int r = fcin.read( buffer );
- 
+
 if (r==-1) {
  break;
 }
- 
+
 buffer.flip();
 fcout.write( buffer );
 ```
@@ -185,7 +183,7 @@ fcout.write( buffer );
 clear\(\) 方法重设缓冲区，使它可以接受读入的数据。 flip\(\) 方法让缓冲区可以将新读入的数据写入另一个通道。
 
 **缓冲区内部细节**  
-**概述  
+**概述    
 **  
 本节将介绍 NIO 中两个重要的缓冲区组件：状态变量和访问方法 \(accessor\)。
 
@@ -205,7 +203,7 @@ clear\(\) 方法重设缓冲区，使它可以接受读入的数据。 flip\(\) 
 
 这三个变量一起可以跟踪缓冲区的状态和它所包含的数据。我们将在下面的小节中详细分析每一个变量，还要介绍它们如何适应典型的读/写\(输入/输出\)进程。在这个例子中，我们假定要将数据从一个输入通道拷贝到一个输出通道。
 
-**Position  
+**Position    
 **  
 您可以回想一下，缓冲区实际上就是美化了的数组。在从通道读取时，您将所读取的数据放到底层的数组中。 position 变量跟踪已经写了多少数据。更准确地说，它指定了下一个字节将放到数组的哪一个元素中。因此，如果您从通道中读三个字节到缓冲区中，那么缓冲区的 position 将会设置为3，指向数组中第四个元素。
 
@@ -216,7 +214,7 @@ clear\(\) 方法重设缓冲区，使它可以接受读入的数据。 flip\(\) 
 limit 变量表明还有多少数据需要取出\(在从缓冲区写入通道时\)，或者还有多少空间可以放入数据\(在从通道读入缓冲区时\)。  
 position 总是小于或者等于 limit。
 
-**Capacity  
+**Capacity    
 **  
 缓冲区的 capacity 表明可以储存在缓冲区中的最大数据容量。实际上，它指定了底层数组的大小 ― 或者至少是指定了准许我们使用的底层数组的容量。
 
@@ -271,7 +269,6 @@ limit 没有改变。
 
 **第二次写入**
 
-  
 我们只剩下一个字节可写了。 limit在我们调用 flip\(\) 时被设置为 5，并且 position 不能超过 limit。所以最后一次写入操作从缓冲区取出一个字节并将它写入输出通道。这使得 position 增加到 5，并保持 limit 不变，如下所示：
 
 ![](http://www.ibm.com/developerworks/cn/education/java/j-nio/figure8.gif)
@@ -285,8 +282,6 @@ limit 没有改变。
 下图显示了在调用 clear\(\) 后缓冲区的状态：
 
 ![](http://www.ibm.com/developerworks/cn/education/java/j-nio/figure9.gif)
-
-
 
 缓冲区现在可以接收新的数据了。  
 **访问方法**
@@ -354,11 +349,11 @@ ByteBuffer 类中有四个 get\(\) 方法：
 while (true) {
  buffer.clear();
  int r = fcin.read( buffer );
- 
+
  if (r==-1) {
  break;
  }
- 
+
  buffer.flip();
  fcout.write( buffer );
 }
@@ -367,7 +362,7 @@ while (true) {
 read\(\) 和 write\(\) 调用得到了极大的简化，因为许多工作细节都由缓冲区完成了。 clear\(\) 和 flip\(\) 方法用于让缓冲区在读和写之间切换。
 
 **关于缓冲区的更多内容**  
-**概述  
+**概述    
 **  
 到目前为止，您已经学习了使用缓冲区进行日常工作所需要掌握的大部分内容。我们的例子没怎么超出标准的读/写过程种类，在原来的 I/O 中可以像在 NIO 中一样容易地实现这样的标准读写过程。
 
@@ -391,7 +386,7 @@ ByteBuffer buffer = ByteBuffer.wrap( array );
 
 本例使用了 wrap\(\) 方法将一个数组包装为缓冲区。必须非常小心地进行这类操作。一旦完成包装，底层数据就可以通过缓冲区或者直接访问。
 
-**缓冲区分片  
+**缓冲区分片    
 **  
 slice\(\) 方法根据现有的缓冲区创建一种 子缓冲区 。也就是说，它创建一个新的缓冲区，新缓冲区与原来的缓冲区的一部分共享数据。
 
@@ -438,7 +433,7 @@ for (int i=0; i<slice.capacity(); ++i) {
 ```
 buffer.position( 0 );
 buffer.limit( buffer.capacity() );
- 
+
 while (buffer.remaining()>0) {
  System.out.println( buffer.get() );
 }
@@ -464,7 +459,6 @@ $ java SliceBuffer
 
 **只读缓冲区**
 
-  
 只读缓冲区非常简单 ― 您可以读取它们，但是不能向它们写入。可以通过调用缓冲区的 asReadOnlyBuffer\(\) 方法，将任何常规缓冲区转换为只读缓冲区，这个方法返回一个与原缓冲区完全相同的缓冲区\(并与其共享数据\)，只不过它是只读的。
 
 只读缓冲区对于保护数据很有用。在将缓冲区传递给某个对象的方法时，您无法知道这个方法是否会修改缓冲区中的数据。创建一个只读的缓冲区可以 保证 该缓冲区不会被修改。
@@ -482,7 +476,7 @@ $ java SliceBuffer
 
 还可以用内存映射文件创建直接缓冲区。
 
-**内存映射文件 I/O  
+**内存映射文件 I/O    
 **  
 内存映射文件 I/O 是一种读和写文件数据的方法，它可以比常规的基于流或者基于通道的 I/O 快得多。
 
@@ -492,14 +486,13 @@ $ java SliceBuffer
 
 尽管创建内存映射文件相当简单，但是向它写入可能是危险的。仅只是改变数组的单个元素这样的简单操作，就可能会直接修改磁盘上的文件。修改数据与将数据保存到磁盘是没有分开的。
 
-**将文件映射到内存  
+**将文件映射到内存    
 **  
 了解内存映射的最好方法是使用例子。在下面的例子中，我们要将一个 FileChannel \(它的全部或者部分\)映射到内存中。为此我们将使用 FileChannel.map\(\) 方法。下面代码行将文件的前 1024 个字节映射到内存中：
 
 ```
 MappedByteBuffer mbb = fc.map( FileChannel.MapMode.READ_WRITE,
  0, 1024 );
-
 ```
 
 map\(\) 方法返回一个 MappedByteBuffer，它是 ByteBuffer 的子类。因此，您可以像使用其他任何 ByteBuffer 一样使用新映射的缓冲区，操作系统会在需要时负责执行行映射。
@@ -511,7 +504,6 @@ map\(\) 方法返回一个 MappedByteBuffer，它是 ByteBuffer 的子类。因�
 分散/聚集 I/O 对于将数据流划分为单独的部分很有用，这有助于实现复杂的数据格式。  
 **分散/聚集 I/O**
 
-  
 通道可以有选择地实现两个新的接口： ScatteringByteChannel 和 GatheringByteChannel。一个 ScatteringByteChannel 是一个具有两个附加读方法的通道：
 
 ```
@@ -561,13 +553,12 @@ lock.release();
 
 只使用排它锁。将所有的锁视为劝告式的（advisory）。
 
-  
 **连网和异步 I/O**  
 **概述**  
 连网是学习异步 I/O 的很好基础，而异步 I/O 对于在 Java 语言中执行任何输入/输出过程的人来说，无疑都是必须具备的知识。NIO 中的连网与 NIO 中的其他任何操作没有什么不同 ― 它依赖通道和缓冲区，而您通常使用 InputStream 和 OutputStream 来获得通道。
 
 本节首先介绍异步 I/O 的基础 ― 它是什么以及它不是什么，然后转向更实用的、程序性的例子。  
-**异步 I/O  
+**异步 I/O    
 **  
 异步 I/O 是一种 没有阻塞地 读写数据的方法。通常，在代码进行 read\(\) 调用时，代码会阻塞直至有可供读取的数据。同样，write\(\) 调用将会阻塞直至数据能够写入。
 
@@ -591,14 +582,14 @@ Selector selector = Selector.open();
 
 然后，我们将对不同的通道对象调用 register\(\) 方法，以便注册我们对这些对象中发生的 I/O 事件的兴趣。register\(\) 的第一个参数总是这个 Selector。
 
-**打开一个 ServerSocketChannel  
+**打开一个 ServerSocketChannel    
 **  
 为了接收连接，我们需要一个 ServerSocketChannel。事实上，我们要监听的每一个端口都需要有一个 ServerSocketChannel 。对于每一个端口，我们打开一个 ServerSocketChannel，如下所示：
 
 ```
 ServerSocketChannel ssc = ServerSocketChannel.open();
 ssc.configureBlocking( false );
- 
+
 ServerSocket ss = ssc.socket();
 InetSocketAddress address = new InetSocketAddress( ports[i] );
 ss.bind( address );
@@ -622,10 +613,10 @@ register\(\) 的第一个参数总是这个 Selector。第二个参数是 OP\_AC
 
 ```
 int num = selector.select();
- 
+
 Set selectedKeys = selector.selectedKeys();
 Iterator it = selectedKeys.iterator();
- 
+
 while (it.hasNext()) {
  SelectionKey key = (SelectionKey)it.next();
  // ... deal with I/O event ...
@@ -645,7 +636,7 @@ while (it.hasNext()) {
 ```
 if ((key.readyOps() & SelectionKey.OP_ACCEPT)
  == SelectionKey.OP_ACCEPT) {
- 
+
  // Accept the new connection
  // ...
 }
@@ -653,7 +644,7 @@ if ((key.readyOps() & SelectionKey.OP_ACCEPT)
 
 可以肯定地说， readOps\(\) 方法告诉我们该事件是新的连接。
 
-**接受新的连接  
+**接受新的连接    
 **  
 因为我们知道这个服务器套接字上有一个传入连接在等待，所以可以安全地接受它；也就是说，不用担心 accept\(\) 操作会阻塞：
 
@@ -681,7 +672,7 @@ it.remove();
 
 现在我们可以返回主循环并接受从一个套接字中传入的数据\(或者一个传入的 I/O 事件\)了。
 
-**传入的 I/O  
+**传入的 I/O    
 **  
 当来自一个套接字的数据到达时，它会触发一个 I/O 事件。这会导致在主循环中调用 Selector.select\(\)，并返回一个或者多个 I/O 事件。这一次， SelectionKey 将被标记为 OP\_READ 事件，如下所示：
 
@@ -692,7 +683,6 @@ it.remove();
  SocketChannel sc = (SocketChannel)key.channel();
  // ...
 }
-
 ```
 
 与以前一样，我们取得发生 I/O 事件的通道并处理它。在本例中，由于这是一个 echo server，我们只希望从套接字中读取数据并马上将它发送回去。
@@ -701,7 +691,7 @@ it.remove();
 
 这个程序有点过于简单，因为它的目的只是展示异步 I/O 所涉及的技术。在现实的应用程序中，您需要通过将通道从 Selector 中删除来处理关闭的通道。而且您可能要使用多个线程。这个程序可以仅使用一个线程，因为它只是一个演示，但是在现实场景中，创建一个线程池来负责 I/O 事件处理中的耗时部分会更有意义。
 
-**字符集  
+**字符集    
 **  
 根据 Sun 的文档，一个 Charset 是“十六位 Unicode 字符序列与字节序列之间的一个命名的映射”。实际上，一个 Charset 允许您以尽可能最具可移植性的方式读写字符序列。
 
@@ -760,8 +750,6 @@ ByteBuffer outputData = encoder.encode( cb );
 
 在转换完成之后，我们就可以将数据写到文件中了。
 
-
-
 **结束语和参考资料**  
 **结束语**  
 正如您所看到的， NIO 库有大量的特性。在一些新特性（例如文件锁定和字符集）提供新功能的同时，许多特性在优化方面也非常优秀。
@@ -769,4 +757,10 @@ ByteBuffer outputData = encoder.encode( cb );
 在基础层次上，通道和缓冲区可以做的事情几乎都可以用原来的面向流的类来完成。但是通道和缓冲区允许以 快得多 的方式完成这些相同的旧操作 ― 事实上接近系统所允许的最大速度。
 
 不过 NIO 最强大的长度之一在于，它提供了一种在 Java 语言中执行进行输入/输出的新的（也是迫切需要的）结构化方式。随诸如缓冲区、通道和异步 I/O 这些概念性（且可实现的）实体而来的，是我们重新思考 Java 程序中的 I/O过程的机会。这样，NIO 甚至为我们最熟悉的 I/O 过程也带来了新的活力，同时赋予我们通过和以前不同并且更好的方式执行它们的机会。
+
+
+
+[参考文章](https://my.oschina.net/hosee/blog/615269)
+
+[参考文章](http://www.importnew.com/17735.html)
 
