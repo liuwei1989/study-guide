@@ -15,7 +15,6 @@ Dubbo的扩展点加载机制类似于Java的SPI，我们知道Java的SPI在使�
 ```
 接口A，实现类A1，A2
 接口B，实现类B1，B2
-
 ```
 
 其中实现类A1含有setB\(\)方法，当通过扩展机制加载A的实现的时候，会自动的注入一个B的实现类，但是，此时不是注入B1，也不是注入B2，而是注入一个自适应的B的实现类：`B$Adpative`，该实现类是动态生成的，能够根据参数的不同，自动选择B1或者B2来进行调用。
@@ -34,35 +33,34 @@ public class Protocol$Adpative implements Protocol {
     String extName = ( url.getProtocol() == null ? "dubbo" : url.getProtocol() );
 
     if(extName == null) throw new IllegalStateException("Fail to get extension(Protocol) name from url(" + url.toString() + ") use keys([protocol])");
-    
+
     Protocol extension = (Protocol)ExtensionLoader.getExtensionLoader(Protocol.class).getExtension(extName);
-    
+
     return extension.refer(arg0, arg1);
   }
-  
+
   public Exporter export(Invoker arg0) throws Invoker {
     if (arg0 == null) throw new IllegalArgumentException("Invoker argument == null");
-    
+
     if (arg0.getUrl() == null) throw new IllegalArgumentException("Invoker argument getUrl() == null");URL url = arg0.getUrl();
     //这里会根据url中的信息获取具体的实现类名
     String extName = ( url.getProtocol() == null ? "dubbo" : url.getProtocol() );
-    
+
     if(extName == null) throw new IllegalStateException("Fail to get extension(Protocol) name from url(" + url.toString() + ") use keys([protocol])");
     //根据上面的实现类名，会在运行时，通过Dubbo的扩展机制加载具体实现类
     Protocol extension = (Protocol)ExtensionLoader.getExtensionLoader(Protocol.class).getExtension(extName);
-    
+
     return extension.export(arg0);
   }
-  
+
   public void destroy() {
-  	throw new UnsupportedOperationException("method public abstract void Protocol.destroy() of interface Protocol is not adaptive method!");
+      throw new UnsupportedOperationException("method public abstract void Protocol.destroy() of interface Protocol is not adaptive method!");
   }
-  
+
   public int getDefaultPort() {
-  	throw new UnsupportedOperationException("method public abstract int Protocol.getDefaultPort() of interface Protocol is not adaptive method!");
+      throw new UnsupportedOperationException("method public abstract int Protocol.getDefaultPort() of interface Protocol is not adaptive method!");
   }
 }
-
 ```
 
 使用这种方式的原因也很容易能想到，在我们加载扩展点实现的时候，并没有调用实现的具体逻辑，那我们注入一个扩展点，也就不知道这个扩展点的实现具体是什么，所以要注入一个自适应的实现。等到运行时候，才根据自适应实现，来调用真正实现。
@@ -73,13 +71,12 @@ public class Protocol$Adpative implements Protocol {
 
 ```
 class AWrapper1 implements A{
-	private A a;
+    private A a;
     AWrapper1(A a){
       this.a = a;
     }
-    
-}
 
+}
 ```
 
 AWrapper1相当于A的包装类，类似于AOP的功能，AWrapper1增加了A的功能。当我们获取接口A的实现类的时候，得到的就是包装过的类。
@@ -103,7 +100,6 @@ AWrapper1相当于A的包装类，类似于AOP的功能，AWrapper1增加了A的
 
   ```
   private static final Protocol refprotocol = ExtensionLoader.getExtensionLoader(Protocol.class).getAdaptiveExtension();
-
   ```
 
   当上面代码执行的时候，我们其实还不知道要真正使用的Protocol是什么，可能是具体的实现DubboProtocol，也可能是其他的具体实现的Protocol，那么这时候refprotocol到底是什么呢？refprotocol其实是在调用getAdaptiveExtension\(\)方法时候，自动生成的一个类，代码如下：
@@ -146,7 +142,6 @@ AWrapper1相当于A的包装类，类似于AOP的功能，AWrapper1增加了A的
       throw new UnsupportedOperationException("method public abstract int Protocol.getDefaultPort() of interface Protocol is not adaptive method!");
     }
   }
-
   ```
 
   可以看到被@Adaptive注解的方法都生成了具体的实现，并且实现逻辑都相同。而没有被注解的方法直接抛出不支持操作的异常。
@@ -219,7 +214,7 @@ public static <T> ExtensionLoader<T> getExtensionLoader(Class<T> type) {
 
 ```
 private ExtensionLoader(Class<?> type) {
-	//接口类型
+    //接口类型
     this.type = type;
     //对于扩展类型是ExtensionFactory的，设置为null
     //getAdaptiveExtension方法获取一个运行时自适应的扩展类型
@@ -287,7 +282,6 @@ private T createAdaptiveExtension() {
         return injectExtension((T) getAdaptiveExtensionClass().newInstance());
     } catch (Exception e) {}
 }
-
 ```
 
 ### 获取自适应扩展类
@@ -399,7 +393,6 @@ rmi=com.alibaba.dubbo.rpc.protocol.rmi.RmiProtocol
 thrift=com.alibaba.dubbo.rpc.protocol.thrift.ThriftProtocol
 
 com.alibaba.dubbo.rpc.protocol.webservice.WebServiceProtocol
-
 ```
 
 看下loadFile\(\)方法：
@@ -462,7 +455,7 @@ private void loadFile(Map<String, Class<?>> extensionClasses, String dir) {
                                             }
                                         } else {//不是@Adaptice类型的类，就是没有注解@Adaptive的实现类
                                             try {//判断是否是wrapper类型
-                                            	//如果得到的实现类的构造方法中的参数是扩展点类型的，就是一个Wrapper类
+                                                //如果得到的实现类的构造方法中的参数是扩展点类型的，就是一个Wrapper类
                                                 //比如ProtocolFilterWrapper，实现了Protocol类，
                                                 //而它的构造方法是这样public ProtocolFilterWrapper(Protocol protocol)
                                                 //就说明这个类是一个包装类
@@ -476,15 +469,15 @@ private void loadFile(Map<String, Class<?>> extensionClasses, String dir) {
                                                 wrappers.add(clazz);
                                             } catch (NoSuchMethodException e) {
                                             //没有上面提到的构造器，则说明不是wrapper类型
-                                            	//获取无参构造
+                                                //获取无参构造
                                                 clazz.getConstructor();
                                                 //没有名字，就是配置文件中没有xxx=xxxx.com.xxx这种
                                                 if (name == null || name.length() == 0) {
-                                                	//去找@Extension注解中配置的值
+                                                    //去找@Extension注解中配置的值
                                                     name = findAnnotationName(clazz);
                                                     //如果还没找到名字，从类名中获取
                                                     if (name == null || name.length() == 0) {
-                                                    	//比如clazz是DubboProtocol，type是Protocol
+                                                        //比如clazz是DubboProtocol，type是Protocol
                                                         //这里得到的name就是dubbo
                                                         if (clazz.getSimpleName().length() > type.getSimpleName().length()
                                                                 && clazz.getSimpleName().endsWith(type.getSimpleName())) {
@@ -500,7 +493,7 @@ private void loadFile(Map<String, Class<?>> extensionClasses, String dir) {
                                                     //是否是Active类型的类
                                                     Activate activate = clazz.getAnnotation(Activate.class);
                                                     if (activate != null) {
-                                                    	//第一个名字作为键，放进cachedActivates这个map中缓存
+                                                        //第一个名字作为键，放进cachedActivates这个map中缓存
                                                         cachedActivates.put(names[0], activate);
                                                     }
                                                     for (String n : names) {
@@ -541,7 +534,7 @@ private void loadFile(Map<String, Class<?>> extensionClasses, String dir) {
 
 ```
 private Class<?> createAdaptiveExtensionClass() {
-	//组装自适应扩展点类的代码
+    //组装自适应扩展点类的代码
     String code = createAdaptiveExtensionClassCode();
     //获取到应用的类加载器
     ClassLoader classLoader = findClassLoader();
@@ -570,35 +563,34 @@ public class Protocol$Adpative implements com.alibaba.dubbo.rpc.Protocol {
     String extName = ( url.getProtocol() == null ? "dubbo" : url.getProtocol() );
 
     if(extName == null) throw new IllegalStateException("Fail to get extension(com.alibaba.dubbo.rpc.Protocol) name from url(" + url.toString() + ") use keys([protocol])");
-    
+
     com.alibaba.dubbo.rpc.Protocol extension = (com.alibaba.dubbo.rpc.Protocol)ExtensionLoader.getExtensionLoader(com.alibaba.dubbo.rpc.Protocol.class).getExtension(extName);
-    
+
     return extension.refer(arg0, arg1);
   }
-  
+
   public com.alibaba.dubbo.rpc.Exporter export(com.alibaba.dubbo.rpc.Invoker arg0) throws com.alibaba.dubbo.rpc.Invoker {
     if (arg0 == null) throw new IllegalArgumentException("com.alibaba.dubbo.rpc.Invoker argument == null");
-    
+
     if (arg0.getUrl() == null) throw new IllegalArgumentException("com.alibaba.dubbo.rpc.Invoker argument getUrl() == null");com.alibaba.dubbo.common.URL url = arg0.getUrl();
-    
+
     String extName = ( url.getProtocol() == null ? "dubbo" : url.getProtocol() );
-    
+
     if(extName == null) throw new IllegalStateException("Fail to get extension(com.alibaba.dubbo.rpc.Protocol) name from url(" + url.toString() + ") use keys([protocol])");
-    
+
     com.alibaba.dubbo.rpc.Protocol extension = (com.alibaba.dubbo.rpc.Protocol)ExtensionLoader.getExtensionLoader(com.alibaba.dubbo.rpc.Protocol.class).getExtension(extName);
-    
+
     return extension.export(arg0);
   }
-  
+
   public void destroy() {
-  	throw new UnsupportedOperationException("method public abstract void com.alibaba.dubbo.rpc.Protocol.destroy() of interface com.alibaba.dubbo.rpc.Protocol is not adaptive method!");
+      throw new UnsupportedOperationException("method public abstract void com.alibaba.dubbo.rpc.Protocol.destroy() of interface com.alibaba.dubbo.rpc.Protocol is not adaptive method!");
   }
-  
+
   public int getDefaultPort() {
-  	throw new UnsupportedOperationException("method public abstract int com.alibaba.dubbo.rpc.Protocol.getDefaultPort() of interface com.alibaba.dubbo.rpc.Protocol is not adaptive method!");
+      throw new UnsupportedOperationException("method public abstract int com.alibaba.dubbo.rpc.Protocol.getDefaultPort() of interface com.alibaba.dubbo.rpc.Protocol is not adaptive method!");
   }
 }
-
 ```
 
 其他具体的扩展点的生成也类似。在生成完代码之后，是找到ClassLoader，然后获取到Compiler的自适应实现，这里得到的就是AdaptiveCompiler，最后调用`compiler.compile(code, classLoader);`来编译上面生成的类并返回，先进入AdaptiveCompiler的compile方法：
@@ -631,7 +623,7 @@ public T getExtension(String name) {
         throw new IllegalArgumentException("Extension name == null");
     //如果name指定为true，则获取默认实现
     if ("true".equals(name)) {
-    	//默认实现查找在下面解析
+        //默认实现查找在下面解析
         return getDefaultExtension();
     }
     //先从缓存获取Holder，cachedInstance是一个ConcurrentHashMap，键是扩展的name，值是一个持有name对应的实现类实例的Holder。
@@ -702,7 +694,7 @@ private T createExtension(String name) {
 
 ```
 public T getDefaultExtension() {
-	//首先还是先去加载所有的扩展实现
+    //首先还是先去加载所有的扩展实现
     //加载的时候会设置默认的名字cachedDefaultName，这个名字是在@SPI中指定的，比如Compiler就指定了@SPI("javassist")，所以这里是javassist
     getExtensionClasses();
     if(null == cachedDefaultName || cachedDefaultName.length() == 0
@@ -713,7 +705,6 @@ public T getDefaultExtension() {
     //具体的过程上面已经解析过了
     return getExtension(cachedDefaultName);
 }
-
 ```
 
 关于javassist编译Class的过程暂先不说明。我们接着流程看：
@@ -727,7 +718,6 @@ public T getDefaultExtension() {
         return injectExtension((T) getAdaptiveExtensionClass().newInstance());
     } catch (Exception e) { }
 }
-
 ```
 
 ### 扩展点注入
@@ -738,10 +728,10 @@ public T getDefaultExtension() {
 //这里的实例是Xxxx$Adaptive
 private T injectExtension(T instance) {
     try {
-    	//关于objectFactory的来路，先看下面的解析
+        //关于objectFactory的来路，先看下面的解析
         //这里的objectFactory是AdaptiveExtensionFactory
         if (objectFactory != null) {
-        	//遍历扩展实现类实例的方法
+            //遍历扩展实现类实例的方法
             for (Method method : instance.getClass().getMethods()) {
                 //只处理set方法
                 //set开头，只有一个参数，public
@@ -804,7 +794,6 @@ private ExtensionLoader(Class<?> type) {
 
 ```
 private static final Protocol refprotocol = ExtensionLoader.getExtensionLoader(Protocol.class).getAdaptiveExtension();
-
 ```
 
 ## 得到扩展之后的使用
@@ -820,12 +809,11 @@ public Invoker refer(Class arg0, URL arg1) throws Class {
     String extName = ( url.getProtocol() == null ? "dubbo" : url.getProtocol() );
 
     if(extName == null) throw new IllegalStateException();
-    
+
     Protocol extension = (Protocol)ExtensionLoader.getExtensionLoader(Protocol.class).getExtension(extName);
-    
+
     return extension.refer(arg0, arg1);
   }
-
 ```
 
 可以看到这里首先根据url中的参数获取扩展名字，如果url中没有就使用默认的扩展名，然后根据扩展名去获取具体的实现。关于getExtension\(String name\)上面已经解析过一次，这里再次列出：
@@ -836,7 +824,7 @@ public T getExtension(String name) {
         throw new IllegalArgumentException("Extension name == null");
     //如果name指定为true，则获取默认实现
     if ("true".equals(name)) {
-    	//默认实现查找在下面解析
+        //默认实现查找在下面解析
         return getDefaultExtension();
     }
     //先从缓存获取Holder，cachedInstance是一个ConcurrentHashMap，键是扩展的name，值是一个持有name对应的实现类实例的Holder。
@@ -896,7 +884,7 @@ private T createExtension(String name) {
         Set<Class<?>> wrapperClasses = cachedWrapperClasses;
         if (wrapperClasses != null && wrapperClasses.size() > 0) {
             for (Class<?> wrapperClass : wrapperClasses) {
-            	//比如在包装之前的instance是DubboProtocol实例
+                //比如在包装之前的instance是DubboProtocol实例
                 //先使用构造器来实例化当前的包装类
                 //包装类中就已经包含了我们的DubboProtocol实例
                 //然后对包装类进行injectExtension注入，注入过程在上面
@@ -914,5 +902,11 @@ private T createExtension(String name) {
 
 到此为止调用`refprotocol.refer(Class<T> type, URL url))`方法的过程也解析完了。
 
-关于getActivateExtension方法的解析，等下再添加。
+
+
+[参考文章](http://www.zhenchao.org/2017/12/17/dubbo-spi/)
+
+
+
+
 

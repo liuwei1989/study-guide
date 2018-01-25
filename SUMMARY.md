@@ -133,6 +133,7 @@
       * [16.3 Spring源码解析：资源的描述与加载](di-shi-liu-zhang-spring/163-springyuan-ma-jie-xi-ff1a-zi-yuan-de-miao-shu-yu-jia-zai.md)
       * [16.4 Spring源码解析：IoC容器的基本结构设计](di-shi-liu-zhang-spring/164-springyuan-ma-jie-xi-ff1a-ioc-rong-qi-de-ji-ben-jie-gou-she-ji.md)
       * [16.5 Spring源码解析：简单容器中Bean的加载过程](di-shi-liu-zhang-spring/165-springyuan-ma-jie-xi-ff1a-jian-dan-rong-qi-zhong-bean-de-jia-zai-guo-cheng.md)
+      * [16.6 Spring源码解析：默认标签的解析过程](di-shi-liu-zhang-spring/166-springyuan-ma-jie-xi-ff1a-mo-ren-biao-qian-de-jie-xi-guo-cheng.md)
     * [第十七章 MyBatis](di-shi-qi-zhang-mybatis.md)
       * [17.1  一级缓存](di-shi-qi-zhang-mybatis/171-huan-cun-shi-xian-xiang-jie.md)
       * [17.2  二级缓存](di-shi-qi-zhang-mybatis/172-er-ji-huan-cun.md)
