@@ -194,4 +194,12 @@
   * 第九部分 工具
     * [第三十一章 Git](di-san-shi-yi-zhang-git.md)
       * [31.1 Git常用资源](di-san-shi-yi-zhang-git/311-gitchang-yong-zi-yuan.md)
+    * [第三十二章 Java命令](di-san-shi-er-zhang-java-ming-ling.md)
+      * [32.1 Jps](321-jps.md)
+      * [32.2 Jstack](322-jstack.md)
+      * [32.3 Jmap](323-jmap.md)
+      * [32.4 Jstat](324-jstat.md)
+      * [32.5 Jinfo](325-jinfo.md)
+      * [32.6 Jhat](326-jhat.md)
+      * [32.7 Javap](327-javap.md)
 
