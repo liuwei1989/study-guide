@@ -16,8 +16,6 @@
 * `堆排序`— O\(nlogn\)
 * `快速排序`— O\(nlogn\) 期望时间, O\(n²\) 最坏情况; 对于大的、乱数串行一般相信是最快的已知排序
 
-
-
 ## 交换排序
 
 ### 冒泡排序
@@ -149,16 +147,16 @@ void shell_sort(int* a, int len) {
 
 ```
 void selection_sort(int arr[], int len) {
-	int i, j, min, temp;
-	for (i = 0; i < len - 1; i++) {
-		min = i;
-		for (j = i + 1; j < len; j++)
-			if (arr[min] > arr[j])
-				min = j;
-	   	temp = arr[min];
-		arr[min] = arr[i];
-		arr[i] = temp;
-	}
+    int i, j, min, temp;
+    for (i = 0; i < len - 1; i++) {
+        min = i;
+        for (j = i + 1; j < len; j++)
+            if (arr[min] > arr[j])
+                min = j;
+           temp = arr[min];
+        arr[min] = arr[i];
+        arr[i] = temp;
+    }
 }
 ```
 
@@ -323,7 +321,6 @@ void radixSort(int *arr, int len) {
 
     delete (temp);
 }
-
 ```
 
 ## 拓扑排序
