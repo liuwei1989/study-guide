@@ -1,0 +1,74 @@
+经常使用命令：
+
+1.top 
+
+![](/assets/image2017-11-14 23_3_32.png)
+
+可以通过监测 负载 1 5 15 分钟的一个负载情况（正常值范围参考cpu核心数）
+
+
+
+2.top -H -p pid
+
+![](/assets/image2017-11-14 23_5_52.png)
+
+可以通过这个命令查看进程中工作的线程情况，这里的PID 是十进制的，而映射到jstack 输出的堆栈中的16进制可以通过 printf %x pid 进行转化
+
+
+
+3.jstack pid （7222 是线上某服务的进程ID ）![](/assets/image2017-11-14 23_9_37.png)红框中的nid 就是上述命令转化出来的16进制，两个命令相结合就能找到对应的线程栈的情况。
+
+
+
+4.jstat -gcutil pid 1000
+
+![](/assets/image2017-11-14 23_11_59.png)
+
+该命令可以查询进程的GC 情况，可以简单看到GC 的整个过程
+
+
+
+5.jmap -histo\[:live\] pid\(\[\]里面的:live 是选填项 带上会触发一次full gc\)
+
+![](/assets/image2017-11-14 23_15_58.png)
+
+输出堆中的对象情况。
+
+
+
+6.lsof -i : port
+
+![](/assets/image2017-11-14 23_18_43.png)
+
+netstat -p \| grep port
+
+![](/assets/image2017-11-14 23_17_32.png)
+
+这两个命令就是可以查到端口的占用情况。
+
+
+
+二、根据我们线上服务的启动参数为例，简单说明各参数含义；
+
+-Xms4g -Xmx4g JVM初始内存4g JVM最大内存4g
+
+-Xmn2g 年轻代大小为2G
+
+-Xss1024K 每个线程的堆栈大小为1024k
+
+-XX:PermSize=256m -XX:MaxPermSize=512m 初始化持久代大小 256m 最大为512m JDK1.8已废弃
+
+-XX:ParallelGCThreads=8  配置并行收集器的线程数
+
+-XX:+UseConcMarkSweepGC 设置年老代为并发收集，**并发标记清除（CMS）收集器**
+
+-XX:+UseParNewGC 设置年轻代为并行收集
+
+-XX:+UseCMSCompactAtFullCollection 打开对年老代的压缩。可能会影响性能，但是可以消除碎片
+
+-XX:SurvivorRatio=4 年轻代中Eden区与Survivor区的大小比值。设置为4，则两个Survivor区与一个Eden区的比值为2:4，一个Survivor区占整个年轻代的1/6
+
+-XX:MaxTenuringThreshold=10 设置垃圾最大年龄
+
+-XX:CMSInitiatingOccupancyFraction=80 老年代GC 百分比
+
