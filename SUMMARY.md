@@ -79,9 +79,9 @@
       * [6.3  典型配置](di-yi-bu-fen-ji-chu/63-dian-xing-pei-zhi.md)
       * [6.4 调优](di-yi-bu-fen-ji-chu/64-diao-you.md)
       * [6.5  类加载机制](di-yi-bu-fen-ji-chu/65-lei-jia-zai-ji-zhi.md)
+      * [6.5.1 Java分派机制](di-yi-bu-fen-ji-chu/651-javafen-pai-ji-zhi.md)
+      * [6.5.2 对象的生命周期](di-yi-bu-fen-ji-chu/652-dui-xiang-de-sheng-ming-zhou-qi.md)
       * [6.6  其它](di-yi-bu-fen-ji-chu/66-qi-ta.md)
-      * [6.7 JVM命令参数大全](di-yi-bu-fen-ji-chu/67-jvmming-ling-can-shu-da-quan.md)
-      * 6.2.0 JVM垃圾回收
     * [第七章  异常](di-yi-bu-fen-ji-chu/di-qi-zhang-yi-chang.md)
       * [7.1  面试题一](di-yi-bu-fen-ji-chu/71-mian-shi-ti-yi.md)
       * [7.1  异常处理机制](di-yi-bu-fen-ji-chu/71-yi-chang-chu-li-ji-zhi.md)
