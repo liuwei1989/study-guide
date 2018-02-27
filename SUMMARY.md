@@ -231,4 +231,6 @@
       * [32.7 Javap](327-javap.md)
       * [32.8 配置实例](328-pei-zhi-shi-li.md)
       * [32.9 JVM问题排查流程](329-jvmwen-ti-pai-cha-liu-cheng.md)
+  * 第十部分 设计模式
+    * [第三十三章 设计模式](di-san-shi-san-zhang-she-ji-mo-shi.md)
 
