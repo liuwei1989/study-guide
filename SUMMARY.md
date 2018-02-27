@@ -13,6 +13,8 @@
       * [1.7  Class.forName和classloader的区别](di-yi-bu-fen-ji-chu/di-yi-zhang-123/17-class-fornamehe-classloader-de-qu-bie.md)
       * [1.8 transient关键字使用小记](di-yi-bu-fen-ji-chu/di-yi-zhang-123/18-transientguan-jian-zi-shi-yong-xiao-ji.md)
       * [1.9 foreach原理](di-yi-bu-fen-ji-chu/di-yi-zhang-123/19-foreachyuan-li.md)
+      * [1.10 运算符优先级](di-yi-bu-fen-ji-chu/di-yi-zhang-123/110-yun-suan-fu-you-xian-ji.md)
+      * [1.11 Java泛型](di-yi-bu-fen-ji-chu/di-yi-zhang-123/111-javafan-xing.md)
     * [第二章  集合](di-yi-bu-fen-ji-chu/di-er-zhang-ji-he.md)
       * [2.1  ArrayList实现原理](di-yi-bu-fen-ji-chu/21-arraylist-gong-zuo-yuan-li-ji-shi-xian.md)
       * [2.2 LinkedList实现原理](di-yi-bu-fen-ji-chu/22-linkedlistshi-xian-yuan-li.md)
@@ -78,7 +80,8 @@
       * [6.5  类加载机制](di-yi-bu-fen-ji-chu/65-lei-jia-zai-ji-zhi.md)
       * [6.6  其它](di-yi-bu-fen-ji-chu/66-qi-ta.md)
       * [6.7 JVM命令参数大全](di-yi-bu-fen-ji-chu/67-jvmming-ling-can-shu-da-quan.md)
-    * 第七章  异常
+      * [6.8 Java分派机制](di-yi-bu-fen-ji-chu/68-javafen-pai-ji-zhi.md)
+    * [第七章  异常](di-yi-bu-fen-ji-chu/di-qi-zhang-yi-chang.md)
       * [7.1  面试题一](di-yi-bu-fen-ji-chu/71-mian-shi-ti-yi.md)
       * [7.1  异常处理机制](di-yi-bu-fen-ji-chu/71-yi-chang-chu-li-ji-zhi.md)
     * [第八章  队列](di-yi-bu-fen-ji-chu/di-ba-zhang-dui-lie.md)
@@ -92,7 +95,7 @@
       * [9.5 KMP算法](di-yi-bu-fen-ji-chu/95-kmpsuan-fa.md)
       * [9.6 查找算法](di-yi-bu-fen-ji-chu/96-cha-zhao-suan-fa.md)
       * [9.7 排序算法](di-yi-bu-fen-ji-chu/97-pai-xu-suan-fa.md)
-  * 第二部分 数据库
+  * [第二部分 数据库](di-er-bu-fen-shu-ju-ku.md)
     * [第十章  Redis](di-shi-zhang-redis-shu-ju-jie-gou.md)
       * [10.1  数据结构](di-shi-zhang-redis-shu-ju-jie-gou/101-shu-ju-jie-gou.md)
       * [10.2  跳跃表原理](di-shi-zhang-redis-shu-ju-jie-gou/102-1.md)
@@ -127,6 +130,8 @@
       * [11.8  优化总结一](118-you-hua-zong-jie-yi.md)
       * [11.9  优化总结二](119-you-hua-zong-jie-er.md)
       * [11.10 explain分析查询](1110-explainfen-xi-cha-xun.md)
+    * [事务](shi-wu.md)
+    * [索引](suo-yin.md)
   * [第三部分  Linux](di-san-bu-fen-linux.md)
     * 第十五章  Linux
       * [15.1  常用指令](di-san-bu-fen-linux/151-chang-yong-zhi-ling.md)
