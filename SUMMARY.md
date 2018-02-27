@@ -186,6 +186,7 @@
       * [25.3 ZooKeeper之ZAB协议](253-zookeeperzhi-zab-xie-yi.md)
       * [25.4 Fast Paxos](254-fast-paxos.md)
       * [25.5 基于ZooKeeper的分布式锁和队列](255-ji-yu-zookeeper-de-fen-bu-shi-suo-he-dui-lie.md)
+      * [25.6 ZooKeeper Watch机制](256-zookeeper-watchji-zhi.md)
     * [第二十六章 负载均衡](di-shi-er-liu-zhang-fu-zai-jun-heng.md)
       * [26.1 Nginx配置详解](di-shi-er-liu-zhang-fu-zai-jun-heng/261-nginxpei-zhi-xiang-jie.md)
       * [26.2 Nginx高并发原理](di-shi-er-liu-zhang-fu-zai-jun-heng/262-nginxgao-bing-fa-yuan-li.md)
