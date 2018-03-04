@@ -177,6 +177,7 @@
       * [18.6 filter和listener加载过程](186-filterhe-listener-jia-zai-guo-cheng.md)
       * [18.7 服务注册](187-fu-wu-zhu-ce.md)
       * [18.8 服务订阅以及通知](188-fu-wu-ding-yue-yi-ji-tong-zhi.md)
+      * [18.9 常见序列化协议介绍](189-chang-jian-xu-lie-hua-xie-yi-jie-shao.md)
     * [第十九章 Netty](di-shi-jiu-zhang-netty.md)
     * [第二十章 Tomcat](di-er-shi-zhang-tomcat.md)
   * [第五部分  分布式](di-wu-bu-fen-fen-bu-shi.md)
