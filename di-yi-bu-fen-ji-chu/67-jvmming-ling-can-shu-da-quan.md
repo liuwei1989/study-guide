@@ -1,6 +1,6 @@
 # JVM命令参数大全
 
-JVM命令行选项主要有3类：标准选项（eg：-client）、非标准选项（eg：-Xmxsize）、非稳定选项（eg：-XX:+AggressiveOpts） 选项使用说明:  -XX:+option 启用选项  -XX:-option 不启用选项  -XX:option=number 给选项设置一个数字类型值，可跟单位，例如 128k, 256m, 1g  -XX:option=string 给选项设置一个字符串值，例如-XX:HeapDumpPath=./dump.core
+JVM命令行选项主要有3类：标准选项（eg：-client）、非标准选项（eg：-Xmxsize）、非稳定选项（eg：-XX:+AggressiveOpts） 选项使用说明:  -XX:+option 启用选项  -XX:-option 不启用选项  -XX:option=number 给选项设置一个数字类型值，可跟单位，例如 128k, 256m, 1g  -XX:option=string 给选项设置一个字符串值，例如-XX:HeapDumpPath=./dump.core
 
 | 参数选项 | 含义 |
 | :--- | :--- |
@@ -98,20 +98,20 @@ JVM命令行选项主要有3类：标准选项（eg：-client）、非标准选�
 
 下面的列表展示了所有可用的JFR参数（多个参数用,分隔）：
 
-1. defaultrecording={true\|false}  指定是否在后台一直记录还是只运行一段时间。默认这个参数的值是false，也就是只运行一段时间。如果要一直运行就设置这个参数的值为true。
-2. disk={true\|false}  指定JFR是否持续地把记录写到硬盘，默认这个参数值是false（不会持续）。
-3. maxchunksize=size  设置数据最大块的大小，可以使用单位后缀k\(K\),m\(M\),g\(G\)。默认值是12M。
-4. maxage=time  设置数据最大保留时间，s是秒，m是分钟，h是小时，d是天，默认最大保留时间是15分钟。 仅仅当disk=true 的时候，此选项可用。
-5. maxsize=size  设置数据在硬盘的最大容量，可以使用单位后缀k\(K\),m\(M\),g\(G\)。默认容量没有限制。仅仅当disk=true 的时候，此选项可用。
-6. repository=path  设置临时仓库，默认使用系统临时路径。
-7. dumponexit={true\|false}  指定是否在JVM终止的时候记录JFR数据。默认是false。
-8. dumponexitpath=path  指定JVM终止时记录的JFR数据的存储路径。只有设置了defaultrecording=true时这个路径才有意义。如果指定的是一个目录，JVM会把当前的日期和时间作为文件名，如果指定的是一个文件名，而且这个文件已存在，那么就会加上时间后缀。
-9. globalbuffersize=size  指定保留数据的总大小。可以使用单位后缀k\(K\),m\(M\),g\(G\)。默认大小是462848 个字节。
-10. loglevel={quiet\|error\|warning\|info\|debug\|trace}  指定JFR的日志级别，默认是info。
-11. samplethreads={true\|false}  设置是否进行线程抽样，默认这个选项是true；
-12. settings=path  设置事件配置文件，默认使用default.jfc.这个文件在JAVA\_HOME/jre/lib/jfr
-13. stackdepth=depth  栈追踪的深度，默认深度是64个方法调用，最大是2048，最小是1。
-14. threadbuffersize=size  指定每个线程的本地缓冲小大，可以使用单位后缀k\(K\),m\(M\),g\(G\)。值越大就说明在写磁盘之前可以容纳更多的数据。默认大小是5K。
+1. defaultrecording={true\|false}  指定是否在后台一直记录还是只运行一段时间。默认这个参数的值是false，也就是只运行一段时间。如果要一直运行就设置这个参数的值为true。
+2. disk={true\|false}  指定JFR是否持续地把记录写到硬盘，默认这个参数值是false（不会持续）。
+3. maxchunksize=size  设置数据最大块的大小，可以使用单位后缀k\(K\),m\(M\),g\(G\)。默认值是12M。
+4. maxage=time  设置数据最大保留时间，s是秒，m是分钟，h是小时，d是天，默认最大保留时间是15分钟。 仅仅当disk=true 的时候，此选项可用。
+5. maxsize=size  设置数据在硬盘的最大容量，可以使用单位后缀k\(K\),m\(M\),g\(G\)。默认容量没有限制。仅仅当disk=true 的时候，此选项可用。
+6. repository=path  设置临时仓库，默认使用系统临时路径。
+7. dumponexit={true\|false}  指定是否在JVM终止的时候记录JFR数据。默认是false。
+8. dumponexitpath=path  指定JVM终止时记录的JFR数据的存储路径。只有设置了defaultrecording=true时这个路径才有意义。如果指定的是一个目录，JVM会把当前的日期和时间作为文件名，如果指定的是一个文件名，而且这个文件已存在，那么就会加上时间后缀。
+9. globalbuffersize=size  指定保留数据的总大小。可以使用单位后缀k\(K\),m\(M\),g\(G\)。默认大小是462848 个字节。
+10. loglevel={quiet\|error\|warning\|info\|debug\|trace}  指定JFR的日志级别，默认是info。
+11. samplethreads={true\|false}  设置是否进行线程抽样，默认这个选项是true；
+12. settings=path  设置事件配置文件，默认使用default.jfc.这个文件在JAVA\_HOME/jre/lib/jfr
+13. stackdepth=depth  栈追踪的深度，默认深度是64个方法调用，最大是2048，最小是1。
+14. threadbuffersize=size  指定每个线程的本地缓冲小大，可以使用单位后缀k\(K\),m\(M\),g\(G\)。值越大就说明在写磁盘之前可以容纳更多的数据。默认大小是5K。
 
 
 
