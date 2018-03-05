@@ -252,4 +252,11 @@
       * [32.9 JVM问题排查流程](329-jvmwen-ti-pai-cha-liu-cheng.md)
   * 第十部分 设计模式
     * [第三十三章 设计模式](di-san-shi-san-zhang-she-ji-mo-shi.md)
+  * [第十一部分 开放问题](di-shi-yi-bu-fen-kai-fang-wen-ti.md)
+    * [线上系统突然变得异常缓慢，你如何查找问题](di-shi-yi-bu-fen-kai-fang-wen-ti/xian-shang-xi-tong-tu-ran-bian-de-yi-chang-huan-man-ff0c-ni-ru-he-cha-zhao-wen-ti.md)
+    * [如何解决秒杀的性能问题和超卖的讨论](di-shi-yi-bu-fen-kai-fang-wen-ti/ru-he-jie-jue-miao-sha-de-xing-neng-wen-ti-he-chao-mai-de-tao-lun.md)
+    * [分布式系统唯一ID生成方案汇总](di-shi-yi-bu-fen-kai-fang-wen-ti/fen-bu-shi-xi-tong-wei-yi-id-sheng-cheng-fang-an-hui-zong.md)
+    * [你如何理解AOP中的连接点（Joinpoint）、切点（Pointcut）、增强（Advice）、引介（Introduction）、织入（Weaving）、切面（Aspect）概念](di-shi-yi-bu-fen-kai-fang-wen-ti/ni-ru-he-li-jie-aopzhong-de-lianjie-dian-ff08-joinpointff09-3001-qie-dian-ff08-pointcutff09-3001-zeng-qiang-ff08-advice-ff09-3001-yin-jie-ff08-introduction-ff09-3001-zhi-ru-ff08-weaving-ff09-3001-qie-mian-ff08-aspect-ff09-gai-nian.md)
+    * [描述下常用的重构技巧](di-shi-yi-bu-fen-kai-fang-wen-ti/miao-shu-xia-chang-yong-de-zhong-gou-ji-qiao.md)
+    * [大型网站在架构上应当考虑哪些问题](di-shi-yi-bu-fen-kai-fang-wen-ti/da-xing-wang-zhan-zai-jia-gou-shang-ying-dang-kao-lv-na-xie-wen-ti.md)
 
