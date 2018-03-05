@@ -189,6 +189,8 @@
       * [19.8 protobuf](di-shi-jiu-zhang-netty/198-protobuf.md)
       * [19.9 Netty零拷贝](di-shi-jiu-zhang-netty/199-nettyling-kao-bei.md)
       * [19.10 Netty的高性能及NIO的epoll空轮询bug](di-shi-jiu-zhang-netty/1910-nettyde-gao-xing-neng-ji-nio-de-epoll-kong-lun-xun-bug.md)
+      * [19.11 【Netty源码】内存管理](di-shi-jiu-zhang-netty/1911-nettyyuan-ma-3011-nei-cun-guan-li.md)
+      * [19.12 面试题](di-shi-jiu-zhang-netty/1912-mian-shi-ti.md)
     * [第二十章 Tomcat](di-er-shi-zhang-tomcat.md)
   * [第五部分  分布式](di-wu-bu-fen-fen-bu-shi.md)
     * [第十二五章  zookeeper](di-shi-er-wu-zhang-zookeeper.md)
