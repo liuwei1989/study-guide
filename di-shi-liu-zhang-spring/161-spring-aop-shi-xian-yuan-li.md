@@ -2,8 +2,7 @@
 
 Spring提供了两种方式来生成代理对象: JdkProxy和[**Cglib**](https://github.com/cglib/cglib)，具体使用哪种方式生成由AopProxyFactory根据AdvisedSupport对象的配置来决定。默认的策略是如果目标类是接口，则使用JDK动态代理技术，否则使用Cglib来生成代理。
 
-![](http://upload-images.jianshu.io/upload_images/1401055-5bce642faaec45a7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)  
-aop.png
+![](http://upload-images.jianshu.io/upload_images/1401055-5bce642faaec45a7.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240)
 
 具体逻辑在 `org.springframework.aop.framework.DefaultAopProxyFactory`类中，源码如下：
 
@@ -39,7 +38,6 @@ public class DefaultAopProxyFactory implements AopProxyFactory, Serializable {
     }
 
 }
-
 ```
 
 ### JDK动态代理技术生成代理类及实例对象
@@ -126,7 +124,6 @@ final class JdkDynamicAopProxy implements AopProxy, InvocationHandler, Serializa
         }
     }
 }
-
 ```
 
 JdkDynamicAopProxy 同时实现了AopProxy和InvocationHandler接口，InvocationHandler是JDK动态代理的核心，生成的代理对象的方法调用都会委托到InvocationHandler.invoke\(\)方法。下面我们就通过分析这个类中实现的invoke\(\)方法来具体看下Spring AOP是如何织入切面的。
@@ -222,7 +219,6 @@ JdkDynamicAopProxy 同时实现了AopProxy和InvocationHandler接口，Invocatio
             }
         }
     }
-
 ```
 
 主流程可以简述为：获取可以应用到此方法上的通知链（Interceptor Chain），如果有，则应用通知，并执行joinpoint；如果通知链为空，则直接反射执行joinpoint。
@@ -242,7 +238,6 @@ public List<Object> getInterceptorsAndDynamicInterceptionAdvice(Method method, C
         }
         return cached;
     }
-
 ```
 
 可以看到实际的获取工作其实是由`org.springframework.aop.framework.AdvisorChainFactory`的 getInterceptorsAndDynamicInterceptionAdvice\(\)这个方法来完成的，获取到的结果会被缓存。  
@@ -325,7 +320,6 @@ public class DefaultAdvisorChainFactory implements AdvisorChainFactory, Serializ
     }
 
 }
-
 ```
 
 这个方法执行完成后，Advised中配置能够应用到连接点或者目标类的Advisor全部被转化成了MethodInterceptor.
@@ -347,7 +341,6 @@ public class DefaultAdvisorChainFactory implements AdvisorChainFactory, Serializ
         // Proceed to the joinpoint through the interceptor chain.
         retVal = invocation.proceed();
     }
-
 ```
 
 从这段代码可以看出，如果得到的拦截器链为空，则直接反射调用目标方法，否则创建ReflectiveMethodInvocation，调用其proceed方法，触发拦截器链的执行，来看下 `ReflectiveMethodInvocation` 的proceed\(\) 方法源码：
@@ -396,7 +389,7 @@ public class DefaultAdvisorChainFactory implements AdvisorChainFactory, Serializ
 
 ### Cglib生成代理类及实例对象
 
-接下来的分析会涉及到Cglib 使用，对Cglib不熟悉的同学，先看看 \[Cglib Tutorial\] \([https://github.com/cglib/cglib/wiki/Tutorial\)。](https://github.com/cglib/cglib/wiki/Tutorial%29%E3%80%82)
+接下来的分析会涉及到Cglib 使用，对Cglib不熟悉的同学，先看看 \[Cglib Tutorial\] \([https://github.com/cglib/cglib/wiki/Tutorial\)。](https://github.com/cglib/cglib/wiki/Tutorial%29。)
 
 Spring AOP中使用Cglib生成动态代理的类是  
 `org.springframework.aop.framework.ObjenesisCglibAopProxy` ，它继承自 `org.springframework.aop.framework.CglibAopProxy`，我们首先来看看CglibAopProxy 的源码：
@@ -529,7 +522,6 @@ class CglibAopProxy implements AopProxy, Serializable {
                 enhancer.create());
     }
 }
-
 ```
 
 CglibAopProxy 和 JdkDynamicAopProxy类一样 实现了 `org.springframework.aop.framework.AopProxy`接口。
@@ -604,7 +596,6 @@ private Callback[] getCallbacks(Class<?> rootClass) throws Exception {
         }
         return callbacks;
     }
-
 ```
 
 ObjenesisCglibAopProxy 类源码如下：
@@ -660,7 +651,6 @@ class ObjenesisCglibAopProxy extends CglibAopProxy {
     }
 
 }
-
 ```
 
 ObjenesisCglibAopProxy 重写了父类 `CglibAopProxy` 中的createProxyClassAndInstance方法，使用 [Objenesis](http://objenesis.org/)来生成代理类实例对象。
@@ -750,7 +740,6 @@ public class SpringObjenesis implements Objenesis {
         }
     }
 }
-
 ```
 
 到此，关于Spring AOP内部实现原理分析就结束了。
