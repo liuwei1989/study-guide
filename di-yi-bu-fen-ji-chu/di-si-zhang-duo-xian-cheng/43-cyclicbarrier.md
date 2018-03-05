@@ -3,10 +3,10 @@
 ### CyclicBarrier描述 {#h3_1}
 
 > **CyclicBarrier**是一个同步辅助工具类，**它允许一组线程相互等待，直到到达一个公共的栏栅点。**
-
+>
 > **CyclicBarrier对于那些包含一组固定大小线程，并且这些线程必须不时地相互等待的程序非常有用**。之所以将其称之为循环的Barrier是因为该Barrier在等待的线程释放之后可以重用。
 
-CyclicBarrier 支持一个可选的 Runnable 命令，在一组线程中的最后一个线程到达之后（但在释放所有线程之前），该命令只在每个屏障点运行一次。若在继续所有参与线程之前更新共享状态，此屏障操作很有用。 
+CyclicBarrier 支持一个可选的 Runnable 命令，在一组线程中的最后一个线程到达之后（但在释放所有线程之前），该命令只在每个屏障点运行一次。若在继续所有参与线程之前更新共享状态，此屏障操作很有用。
 
 ### CyclicBarrier工具类相关类图 {#h3_2}
 
@@ -26,7 +26,7 @@ CyclicBarrier 支持一个可选的 Runnable 命令，在一组线程中的最�
 
 > 几个小组包一辆车去旅游，一天行程包括上午小组自由活动和下午自由活动。
 >
-> 各个小组早上自由活动，但是11点半大巴车上集合，然后吃饭并赶赴下一个景区。 
+> 各个小组早上自由活动，但是11点半大巴车上集合，然后吃饭并赶赴下一个景区。
 >
 > 各个小组下午自由活动，但是要5点半大巴车上集合，然后一起回去。
 
@@ -43,35 +43,35 @@ import java.util.concurrent.CyclicBarrier;
  */
 public class TeamGroup implements Runnable {
 
-	private final CyclicBarrier barrier;
+    private final CyclicBarrier barrier;
 
-	private int groupNumber;
+    private int groupNumber;
 
-	/**
-	 * @param barrier
-	 * @param groupNumber
-	 */
-	public TeamGroup(CyclicBarrier barrier, int groupNumber) {
-		this.barrier = barrier;
-		this.groupNumber = groupNumber;
-	}
+    /**
+     * @param barrier
+     * @param groupNumber
+     */
+    public TeamGroup(CyclicBarrier barrier, int groupNumber) {
+        this.barrier = barrier;
+        this.groupNumber = groupNumber;
+    }
 
-	public void run() {
-		try {
-			print();
-			barrier.await();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (BrokenBarrierException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+    public void run() {
+        try {
+            print();
+            barrier.await();
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (BrokenBarrierException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 
-	private void print() {
-		System.out.println(String.format("第%d组完成该地景点浏览，并回到集合点", groupNumber));
-	}
+    private void print() {
+        System.out.println(String.format("第%d组完成该地景点浏览，并回到集合点", groupNumber));
+    }
 
 }
 ```
@@ -83,100 +83,100 @@ import java.util.concurrent.Executors;
 
 public class CyclicBarrierTest {
 
-	private static final int THREAD_SLEEP_MILLIS = 6000;
+    private static final int THREAD_SLEEP_MILLIS = 6000;
 
-	/** 旅游小数的个数 */
-	private static final int NUMBER_OF_GROUPS = 6;
+    /** 旅游小数的个数 */
+    private static final int NUMBER_OF_GROUPS = 6;
 
-	/** 观光是否结束的标识 */
-	private static boolean tourOver = false;
+    /** 观光是否结束的标识 */
+    private static boolean tourOver = false;
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		ExecutorService service = Executors
-				.newFixedThreadPool(NUMBER_OF_GROUPS);
+        ExecutorService service = Executors
+                .newFixedThreadPool(NUMBER_OF_GROUPS);
 
-		CyclicBarrier cb = new CyclicBarrier(NUMBER_OF_GROUPS, new Runnable() {
+        CyclicBarrier cb = new CyclicBarrier(NUMBER_OF_GROUPS, new Runnable() {
 
-			public void run() {
-				/*
-				 * 如果一天的游玩结束了，大家可以坐大巴回去了... ...
-				 */
-				if (isTourOver()) {
-					System.out.println("各个小组都集合到大巴上，准备回家.. ...");
-				}
+            public void run() {
+                /*
+                 * 如果一天的游玩结束了，大家可以坐大巴回去了... ...
+                 */
+                if (isTourOver()) {
+                    System.out.println("各个小组都集合到大巴上，准备回家.. ...");
+                }
 
-			}
-		});
+            }
+        });
 
-		System.out.println("用CyclicBarrier辅助工具类模拟旅游过程中小组集合:：");
+        System.out.println("用CyclicBarrier辅助工具类模拟旅游过程中小组集合:：");
 
-		/**
-		 * 上午各个小组自由活动，然后在某个点，比如11点半集合到大巴上。
-		 */
-		tourInTheMorning(service, cb);
-		sleep(THREAD_SLEEP_MILLIS);
+        /**
+         * 上午各个小组自由活动，然后在某个点，比如11点半集合到大巴上。
+         */
+        tourInTheMorning(service, cb);
+        sleep(THREAD_SLEEP_MILLIS);
 
-		/**
-		 * 调用reset方法，将barrier设置到初始化状态。
-		 * 
-		 */
-		cb.reset();
+        /**
+         * 调用reset方法，将barrier设置到初始化状态。
+         * 
+         */
+        cb.reset();
 
-		/**
-		 * 下午各个小组自由活动，然后在某个点，比如11点半集合到大巴上。
-		 */
-		tourInTheAfternoon(service, cb);
+        /**
+         * 下午各个小组自由活动，然后在某个点，比如11点半集合到大巴上。
+         */
+        tourInTheAfternoon(service, cb);
 
-		/**
-		 * 下午小组集合完毕后，一天的观光就结束了，将标志位记为true;
-		 */
-		tourOver = true;
+        /**
+         * 下午小组集合完毕后，一天的观光就结束了，将标志位记为true;
+         */
+        tourOver = true;
 
-		sleep(THREAD_SLEEP_MILLIS);
-		service.shutdown();
+        sleep(THREAD_SLEEP_MILLIS);
+        service.shutdown();
 
-	}
+    }
 
-	/**
-	 * @return the tourOver
-	 */
-	public static boolean isTourOver() {
-		return tourOver;
-	}
+    /**
+     * @return the tourOver
+     */
+    public static boolean isTourOver() {
+        return tourOver;
+    }
 
-	/**
-	 * @param tourOver
-	 *            the tourOver to set
-	 */
-	public static void setTourOver(boolean tourOver) {
-		CyclicBarrierTest.tourOver = tourOver;
-	}
+    /**
+     * @param tourOver
+     *            the tourOver to set
+     */
+    public static void setTourOver(boolean tourOver) {
+        CyclicBarrierTest.tourOver = tourOver;
+    }
 
-	private static void tourInTheMorning(ExecutorService service,
-			final CyclicBarrier cb) {
-		System.out.println("早上自由玩... ... ");
-		for (int groupNumber = 1; groupNumber <= NUMBER_OF_GROUPS; groupNumber++) {
-			service.execute(new TeamGroup(cb, groupNumber));
-		}
-	}
+    private static void tourInTheMorning(ExecutorService service,
+            final CyclicBarrier cb) {
+        System.out.println("早上自由玩... ... ");
+        for (int groupNumber = 1; groupNumber <= NUMBER_OF_GROUPS; groupNumber++) {
+            service.execute(new TeamGroup(cb, groupNumber));
+        }
+    }
 
-	private static void tourInTheAfternoon(ExecutorService service,
-			final CyclicBarrier cb) {
-		System.out.println("下午自由玩... ... ");
-		for (int groupNumber = 1; groupNumber <= NUMBER_OF_GROUPS; groupNumber++) {
-			service.execute(new TeamGroup(cb, groupNumber));
-		}
-	}
+    private static void tourInTheAfternoon(ExecutorService service,
+            final CyclicBarrier cb) {
+        System.out.println("下午自由玩... ... ");
+        for (int groupNumber = 1; groupNumber <= NUMBER_OF_GROUPS; groupNumber++) {
+            service.execute(new TeamGroup(cb, groupNumber));
+        }
+    }
 
-	private static void sleep(long millis) {
-		try {
-			Thread.sleep(millis);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
+    private static void sleep(long millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 }
 ```
 
@@ -209,15 +209,15 @@ public class CyclicBarrierTest {
 
 ### **不同点** {#h3_9}
 
-#### 从类的实现上看  {#h4_10}
+#### 从类的实现上看 {#h4_10}
 
-> CountDownLatch通过一个继承AbstractQueuedSynchronizer的内部类Sync来完成同步。 
+> CountDownLatch通过一个继承AbstractQueuedSynchronizer的内部类Sync来完成同步。
 >
 > CyclicBarrier通过Condition和Lock来完成同步。
 
 #### 从类的用途上看 {#h4_11}
 
-> CountDownLatch： 一个或者是一部分线程，等待另外一部线程都完成操作。 
+> CountDownLatch： 一个或者是一部分线程，等待另外一部线程都完成操作。
 >
 > CyclicBarrier： 所有线程互相等待完成。
 
@@ -225,22 +225,22 @@ public class CyclicBarrierTest {
 
 > CountDownLatch中计数是不能被重置的。
 >
-> 如果需要一个可以重置计数的版本，需要考虑使用CyclicBarrie。
+> 如果需要一个可以重置计数的版本，需要考虑使用CyclicBarrier。
 
-**CountDownLatch适用于一次同步**。当使用CountDownLatch时，任何线程允许多次调用countDown\(\). 那些调用了await\(\)方法的线程将被阻塞，直到那些没有被阻塞线程调用countDown\(\)使计数到达0为止。   
-  
-![](http://static.oschina.net/uploads/img/201611/06094846_zVFq.jpg)  
-  
+**CountDownLatch适用于一次同步**。当使用CountDownLatch时，任何线程允许多次调用countDown\(\). 那些调用了await\(\)方法的线程将被阻塞，直到那些没有被阻塞线程调用countDown\(\)使计数到达0为止。
+
+![](http://static.oschina.net/uploads/img/201611/06094846_zVFq.jpg)
+
 **相反**，**CyclicBarrier适用于多个同步点。**
 
-例如：一组正在运算的线程，在进入下一个阶段计算之前需要同步。   
-  
-![](http://static.oschina.net/uploads/img/201611/06094846_R9Kx.jpg)  
-  
-与CountDownLatch不同，一个处于某个阶段的线程调用了await\(\)方法将会被阻塞，直到所有属于这个阶段的线程都调用了await\(\)方法为止。   
-  
-在CyclicBarrier中，如果一个线程由于中断，失败或者超时等原因，过早地离开了栅栏点，那么所有在栅栏点等待的其它线程也会通过BrokenBarrierException或者IterupedException异常地离开。   
-  
+例如：一组正在运算的线程，在进入下一个阶段计算之前需要同步。
+
+![](http://static.oschina.net/uploads/img/201611/06094846_R9Kx.jpg)
+
+与CountDownLatch不同，一个处于某个阶段的线程调用了await\(\)方法将会被阻塞，直到所有属于这个阶段的线程都调用了await\(\)方法为止。
+
+在CyclicBarrier中，如果一个线程由于中断，失败或者超时等原因，过早地离开了栅栏点，那么所有在栅栏点等待的其它线程也会通过BrokenBarrierException或者IterupedException异常地离开。
+
 ![](http://static.oschina.net/uploads/img/201611/06094846_i91V.jpg)
 
 #### 从关注点上来看 {#h4_13}
@@ -249,14 +249,11 @@ public class CyclicBarrierTest {
 >
 > **CyclicBarrier更加关注的是公共的栅栏点\(Common Barrier point\),关注的是这个点上的同步。这个点之前之后的事情并不需要太多的关注。**比如：一个并行计算需要分几个阶段完成，在一个阶段完成进入到下一个阶段之前，需要同步，这时候CyclicBarrier很适合。
 
-  
-
-
 ### CyclicBarrier类源代码 {#h3_3}
 
 ```java
 /*
- * @(#)CyclicBarrier.java	1.12 06/03/30
+ * @(#)CyclicBarrier.java    1.12 06/03/30
  *
  * Copyright 2006 Sun Microsystems, Inc. All rights reserved.
  * SUN PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
@@ -410,7 +407,7 @@ public class CyclicBarrier {
      */
     private void breakBarrier() {
         generation.broken = true;
-	count = parties;
+    count = parties;
         trip.signalAll();
     }
 
@@ -437,7 +434,7 @@ public class CyclicBarrier {
            if (index == 0) {  // tripped
                boolean ranAction = false;
                try {
-		   final Runnable command = barrierCommand;
+           final Runnable command = barrierCommand;
                    if (command != null)
                        command.run();
                    ranAction = true;
@@ -459,13 +456,13 @@ public class CyclicBarrier {
                 } catch (InterruptedException ie) {
                     if (g == generation && ! g.broken) {
                         breakBarrier();
-			throw ie;
-		    } else {
-			// We're about to finish waiting even if we had not
-			// been interrupted, so this interrupt is deemed to
-			// "belong" to subsequent execution.
-			Thread.currentThread().interrupt();
-		    }
+            throw ie;
+            } else {
+            // We're about to finish waiting even if we had not
+            // been interrupted, so this interrupt is deemed to
+            // "belong" to subsequent execution.
+            Thread.currentThread().interrupt();
+            }
                 }
 
                 if (g.broken)
@@ -711,8 +708,6 @@ public class CyclicBarrier {
     }
 }
 ```
-
-
 
 
 
