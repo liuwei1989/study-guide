@@ -135,6 +135,7 @@
       * [11.9  优化总结二](119-you-hua-zong-jie-er.md)
       * [11.10 explain分析查询](1110-explainfen-xi-cha-xun.md)
       * [11.11 MVCC](1111-mvcc.md)
+      * [11.12 集群原理](1112-ji-qun-yuan-li.md)
     * [事务](shi-wu.md)
     * [索引](suo-yin.md)
   * [第三部分  Linux](di-san-bu-fen-linux.md)
