@@ -24,19 +24,13 @@ public class VariantTest{
 }
 ```
 
-
-
 **问：Java变量是否有默认值？**
 
 答：Java变量的初始化，如果不赋值，将会有个默认值，对于基本类型，比如int,long是0, boolean 是false等，引用类型如果不设置，将会是null。
 
-
-
 **问：java变量初始化顺序？**
 
 答：Java 先初始化静态变量和静态块，然后再初始化非静态变量和块，这些都在构造方法调用前调用。
-
-
 
 **问：说一说java变量与内存？**
 
@@ -46,34 +40,34 @@ java变量主要分为基本类型和引用类型：
 
 基本类型：
 
-      布尔型：boolean\(1\)
+```
+  布尔型：boolean\(1\)
 
-      整型：byte\(8\),short\(16\),int\(32\),long\(64\)
+  整型：byte\(8\),short\(16\),int\(32\),long\(64\)
 
-      字符型：char\(16\)
+  字符型：char\(16\)
 
-      浮点型：float\(32\),double\(64\)
+  浮点型：float\(32\),double\(64\)
+```
 
 因为java是使用虚拟机的跨平台语言，所以java的这几个类型的长度是不会随着使用系统的不同而发生位数的变化的（这点不同于C++） 基本类型是可以进行转换的，包括：自动类型转换和强制类型转换。
 
-![](http://upload-images.jianshu.io/upload_images/1902495-767477733ca23333.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)  
+![](http://upload-images.jianshu.io/upload_images/1902495-767477733ca23333.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240)  
 强制类型转换：当低精度的数据转化为高精度的数据时，数据值不会丢失，反之会影响数据精度
-
-
 
 引用类型：类，接口，数组（null也可作为一个类型）
 
-数组类型： 
+数组类型：
 
-        定义数组：type\[\] arrayName;或者 type arrayName\[\];  
+```
+    定义数组：type\[\] arrayName;或者 type arrayName\[\];  
 
-        初始化数组： 静态初始化：arrayName = new type\[\]{element1,element2,element3...}; 如：int\[\] a = {5,6,7,8};  
+    初始化数组： 静态初始化：arrayName = new type\[\]{element1,element2,element3...}; 如：int\[\] a = {5,6,7,8};  
 
-        动态初始化：arrayName = new type\[length\];如：int a = new int\[5\]; 
+    动态初始化：arrayName = new type\[length\];如：int a = new int\[5\]; 
+```
 
 数组在内存中是占用连续的内存空间，所以数组的运行效率比较高优于集合。数组的引用变量是存放在栈内存中，引用的实际数组存放在堆内存中。数组变量引用的是数组在堆内存中的首地址，当使用具体下标查找某个数组时指向的是该对应数据的引用地址。
-
-
 
 String类:首先String是不可变的，一旦生成值就不可以再改变，可以另外生成一个新的String，改变引用，但是不会改变之前生成的String。如下:部分String源码
 
@@ -88,7 +82,7 @@ public final class String implement java.io.Seriallizable,Comparable<String>,Cha
 
 从代码中可以看出来，String类其实是对字符数组的封装，value是封装的数组，offset是这个value数组的初始位置,count是数组所占字符的个数。从代码中可以看出来，所提供的这几个变量全都是private的，并且由final修饰（当然这些也是引用，是可以通过反射修改的）。实际的String内存存储情况为
 
-![](http://upload-images.jianshu.io/upload_images/1902495-9babe25b5da8d220.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240/format/jpg)
+![](http://upload-images.jianshu.io/upload_images/1902495-9babe25b5da8d220.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/1240/format/jpg)
 
 关于
 
@@ -104,19 +98,19 @@ String str3 = new String\("hello"\);
 
 关于
 
-String str1 = "ab"+"cd"+"ef";  与 
+String str1 = "ab"+"cd"+"ef";  与
 
 StringBuffer str2 =new StringBuffer\(\);
 
-str2.append\(cd\);str2.append\("ef"\)  
+str2.append\(cd\);str2.append\("ef"\)
 
-创建的字符个数：在str1中首先肯定生成了"ab","cd","ef",三个变量，然后又生成了"abcd"中间变量，最后生成了"abcdef"变量，也就是生成了五个String变量。而str2始终一直是只有一个StringBuffer变量。所以效率之间的比较也就一目了然。
+创建的字符个数：str1生成了"abcdef"变量，也就是生成了一个String变量。而str2始终一直是只有一个StringBuffer变量。所以效率之间的比较也就一目了然。
 
 详细内存分析：
 
 Java内存模型把Java虚拟机内部划分为线程栈和堆。这张图演示了Java内存模型的逻辑视图。
 
-![](http://upload-images.jianshu.io/upload_images/1902495-4fe89dbff2e47459.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240/format/jpg)
+![](http://upload-images.jianshu.io/upload_images/1902495-4fe89dbff2e47459.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/1240/format/jpg)
 
 每一个运行在Java虚拟机里的线程都拥有自己的线程栈。这个线程栈包含了这个线程调用的方法当前执行点相关的信息。一个线程仅能访问自己的线程栈。一个线程创建的本地变量对其它线程不可见，仅自己可见。即使两个线程执行同样的代码，这两个线程任然在在自己的线程栈中的代码来创建本地变量。因此，每个线程拥有每个本地变量的独有版本。
 
@@ -124,7 +118,7 @@ Java内存模型把Java虚拟机内部划分为线程栈和堆。这张图演示
 
 堆上包含在Java程序中创建的所有对象，无论是哪一个对象创建的。这包括原始类型的对象版本。如果一个对象被创建然后赋值给一个局部变量，或者用来作为另一个对象的成员变量，这个对象任然是存放在堆上。下面这张图演示了调用栈和本地变量存放在线程栈上，对象存放在堆上。
 
-![](http://upload-images.jianshu.io/upload_images/1902495-e8c80bbbf6927036.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240/format/jpg)
+![](http://upload-images.jianshu.io/upload_images/1902495-e8c80bbbf6927036.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/1240/format/jpg)
 
 一个本地变量可能是原始类型，在这种情况下，它总是“呆在”线程栈上。  
 一个本地变量也可能是指向一个对象的一个引用。在这种情况下，引用（这个本地变量）存放在线程栈上，但是对象本身存放在堆上。
@@ -139,10 +133,9 @@ Java内存模型把Java虚拟机内部划分为线程栈和堆。这张图演示
 
 下图演示了上面提到的点：
 
-![](http://upload-images.jianshu.io/upload_images/1902495-84b097d017609c15.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240/format/jpg)
+![](http://upload-images.jianshu.io/upload_images/1902495-84b097d017609c15.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/1240/format/jpg)
 
-两个线程拥有一些列的本地变量。其中一个本地变量（Local Variable 2）执行堆上的一个共享对象（Object 3）。这两个线程分别拥有同一个对象的不同引用。这些引用都是本地变量，因此存放在各自线程的线程栈上。这两个不同的引用指向堆上同一个对象。  
-
+两个线程拥有一些列的本地变量。其中一个本地变量（Local Variable 2）执行堆上的一个共享对象（Object 3）。这两个线程分别拥有同一个对象的不同引用。这些引用都是本地变量，因此存放在各自线程的线程栈上。这两个不同的引用指向堆上同一个对象。
 
 注意，这个共享对象（Object 3）持有Object2和Object4一个引用作为其成员变量（如图中Object3指向Object2和Object4的箭头）。通过在Object3中这些成员变量引用，这两个线程就可以访问Object2和Object4。
 
@@ -192,17 +185,15 @@ methodOne\(\)声明了一个原始类型的本地变量和一个引用类型的�
 
 还有一点，MySharedObject类中的两个long类型的成员变量是原始类型的。因为，这些变量是成员变量，所以它们任然随着该对象存放在堆上，仅有本地变量存放在线程栈上。
 
-硬件内存架构  
-
+硬件内存架构
 
 现代硬件内存模型与Java内存模型有一些不同。理解内存模型架构以及Java内存模型如何与它协同工作也是非常重要的。这部分描述了通用的硬件内存架构，下面的部分将会描述Java内存是如何与它“联手”工作的。
 
 下面是现代计算机硬件架构的简单图示：
 
-![](http://upload-images.jianshu.io/upload_images/1902495-525c0967e29e4edd.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240/format/jpg)
+![](http://upload-images.jianshu.io/upload_images/1902495-525c0967e29e4edd.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/1240/format/jpg)
 
-一个现代计算机通常由两个或者多个CPU。其中一些CPU还有多核。从这一点可以看出，在一个有两个或者多个CPU的现代计算机上同时运行多个线程是可能的。每个CPU在某一时刻运行一个线程是没有问题的。这意味着，如果你的Java程序是多线程的，在你的Java程序中每个CPU上一个线程可能同时（并发）执行。  
-
+一个现代计算机通常由两个或者多个CPU。其中一些CPU还有多核。从这一点可以看出，在一个有两个或者多个CPU的现代计算机上同时运行多个线程是可能的。每个CPU在某一时刻运行一个线程是没有问题的。这意味着，如果你的Java程序是多线程的，在你的Java程序中每个CPU上一个线程可能同时（并发）执行。
 
 每个CPU都包含一系列的寄存器，它们是CPU内内存的基础。CPU在寄存器上执行操作的速度远大于在主存上执行的速度。这是因为CPU访问寄存器的速度远大于主存。
 
@@ -218,10 +209,9 @@ Java内存模型和硬件内存架构之间的桥接
 
 上面已经提到，Java内存模型与硬件内存架构之间存在差异。硬件内存架构没有区分线程栈和堆。对于硬件，所有的线程栈和堆都分布在主内中。部分线程栈和堆可能有时候会出现在CPU缓存中和CPU内部的寄存器中。如下图所示：
 
-![](http://upload-images.jianshu.io/upload_images/1902495-71cecd817fd82aac.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240/format/jpg)
+![](http://upload-images.jianshu.io/upload_images/1902495-71cecd817fd82aac.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/1240/format/jpg)
 
-当对象和变量被存放在计算机中各种不同的内存区域中时，就可能会出现一些具体的问题。主要包括如下两个方面：  
-
+当对象和变量被存放在计算机中各种不同的内存区域中时，就可能会出现一些具体的问题。主要包括如下两个方面：
 
 线程对共享变量修改的可见性
 
@@ -237,11 +227,9 @@ Java内存模型和硬件内存架构之间的桥接
 
 下图示意了这种情形。跑在左边CPU的线程拷贝这个共享对象到它的CPU缓存中，然后将count变量的值修改为2。这个修改对跑在右边CPU上的其它线程是不可见的，因为修改后的count的值还没有被刷新回主存中去。
 
-![](http://upload-images.jianshu.io/upload_images/1902495-49d455bef3a7605f.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240/format/jpg)
+![](http://upload-images.jianshu.io/upload_images/1902495-49d455bef3a7605f.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/1240/format/jpg)
 
-  
-解决这个问题你可以使用Java中的volatile关键字。volatile关键字可以保证直接从主存中读取一个变量，如果这个变量被修改后，总是会被写回到主存中去。  
-
+解决这个问题你可以使用Java中的volatile关键字。volatile关键字可以保证直接从主存中读取一个变量，如果这个变量被修改后，总是会被写回到主存中去。
 
 Race Conditions
 
@@ -255,9 +243,6 @@ Race Conditions
 
 下图演示了上面描述的情况：
 
-![](http://upload-images.jianshu.io/upload_images/1902495-2bc2bc75e544475a.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240/format/jpg)  
-解决这个问题可以使用Java同步块。一个同步块可以保证在同一时刻仅有一个线程可以进入代码的临界区。同步块还可以保证代码块中所有被访问的变量将会从主存中读入，当线程退出同步代码块时，所有被更新的变量都会被刷新回主存中去，不管这个变量是否被声明为volatile。  
-
-
-
+![](http://upload-images.jianshu.io/upload_images/1902495-2bc2bc75e544475a.jpg?imageMogr2/auto-orient/strip|imageView2/2/w/1240/format/jpg)  
+解决这个问题可以使用Java同步块。一个同步块可以保证在同一时刻仅有一个线程可以进入代码的临界区。同步块还可以保证代码块中所有被访问的变量将会从主存中读入，当线程退出同步代码块时，所有被更新的变量都会被刷新回主存中去，不管这个变量是否被声明为volatile。
 
