@@ -201,6 +201,8 @@
       * [ActiveMQ传输文件的几种方式原理](di-er-shi-yi-zhang-activemq/activemqchuan-shu-wen-jian-de-ji-zhong-fang-shi-yuan-li.md)
       * [ActiveMQ持久化方式](di-er-shi-yi-zhang-activemq/activemqchi-jiu-hua-fang-shi.md)
       * [ActiveMQ的kahadb存储引擎分析](di-er-shi-yi-zhang-activemq/activemqde-kahadb-cun-chu-yin-qing-fen-xi.md)
+      * [leveldb原理和使用](di-er-shi-yi-zhang-activemq/leveldbyuan-li-he-shi-yong.md)
+      * [ActiveMQ消息传送机制以及ACK机制详解](di-er-shi-yi-zhang-activemq/activemqxiao-xi-chuan-song-ji-zhi-yi-ji-ack-ji-zhi-xiang-jie.md)
   * [第五部分  分布式](di-wu-bu-fen-fen-bu-shi.md)
     * [第二十五章  zookeeper](di-shi-er-wu-zhang-zookeeper.md)
       * [25.1  zookeeper原理](251-zookeeper-yuan-li.md)
