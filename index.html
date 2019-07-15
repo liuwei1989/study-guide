@@ -15,7 +15,7 @@
     window.$docsify = {
       name: 'gitbook',
       repo: 'https://github.com/liuwei1989/gitbook',
-	  maxLevel: 3,//最大支持渲染的标题层级
+	  maxAge: 100,
 	  homepage: 'README.md',
 	  coverpage: true,//封面,_coverpage.md
 	  auto2top: true,//切换页面后是否自动跳转到页面顶部
@@ -24,8 +24,8 @@
         paths: 'auto',
 		placeholder: '搜索',
 		noData: '找不到结果',
-	    // 搜索标题的最大程级, 1 - 6
-        depth: 3,
+	    	// 搜索标题的最大程级, 1 - 6
+        	depth: 6,
         },
 	  
     }
