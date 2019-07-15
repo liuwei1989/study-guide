@@ -8,7 +8,7 @@
 ## 💻 操作系统
 
 - [计算机操作系统](notes/计算机操作系统%20-%20目录1.md) </br>
-- [Linux](docs/第三部分—Linux/README.md)
+- [Linux](第三部分—Linux/README.md)
 
 ## ☁️ 网络
 
