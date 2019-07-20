@@ -27,7 +27,8 @@
 - [SQL](notes/SQL.md) </br>
 - [Leetcode-Database 题解](notes/Leetcode-Database%20题解.md) </br>
 - [MySQL](notes/MySQL.md) </br>
-- [Redis](notes/Redis.md)
+- [Redis](数据库/Redis/Redis.md)
+- [Redis线程模型](数据库/Redis/Redis线程模型.md)
 
 ## ☕️ Java
 
