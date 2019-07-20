@@ -33,7 +33,7 @@ Redis 内部使用文件事件处理器 file event handler，这个文件事件�
 多个 socket 可能会并发产生不同的操作，每个操作对应不同的文件事件，但是 IO 多路复用程序会监听多个 socket ，会将产生事件的 socket 放入队列中排队，事件分派器每次从队列中取出一个 socket ，根据 socket 的事件类型交给对应的事件处理器进行处理。
 
 客户端与 redis 的一次通信过程：
-![image](pics/f0dacdd3779b836ad75fe6b886af1fff.png)
+![](/pics/f0dacdd3779b836ad75fe6b886af1fff.png)
 
 ## Redis快的主要原因
 - 完全基于内存
