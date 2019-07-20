@@ -29,6 +29,7 @@
 - [MySQL](notes/MySQL.md) </br>
 - [Redis](数据库/Redis/Redis.md)
 - [Redis线程模型](数据库/Redis/Redis线程模型.md)
+- [Redis内部数据结构](数据库/Redis/Redis内部数据结构.md)
 
 ## ☕️ Java
 
