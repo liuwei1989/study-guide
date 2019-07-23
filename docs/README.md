@@ -28,12 +28,11 @@
 - [索引](数据库/索引.md) </br>
 - [SQL](数据库/SQL.md) </br>
 - [MySQL](数据库/MySQL/MySQL.md) </br>
-- [Redis](数据库/Redis/Redis.md)
-- [Redis线程模型](数据库/Redis/Redis线程模型.md)
-- [Redis内部数据结构](数据库/Redis/Redis内部数据结构.md)
-- [Redis原理简析(基于2.8)](/数据库/Redis/105-原理简析/Redis原理简析.md)
-
-- [Leetcode-Database 题解（待整理）](notes/Leetcode-Database%20题解.md) </br>
+- [Redis](数据库/Redis/Redis.md)</br>
+- [Redis线程模型](数据库/Redis/Redis线程模型.md)</br>
+- [Redis内部数据结构](数据库/Redis/Redis内部数据结构.md)</br>
+- [Redis原理简析(基于2.8)](/数据库/Redis/105-原理简析/Redis原理简析.md)</br>
+- [Leetcode-Database 题解（待整理）](notes/Leetcode-Database%20题解.md)
 
 ## ☕️ Java
 
