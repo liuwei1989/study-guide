@@ -294,7 +294,7 @@ Redis 服务器是一个事件驱动程序。
 
 Redis 基于 Reactor 模式开发了自己的网络事件处理器，使用 I/O 多路复用程序来同时监听多个套接字，并将到达的事件传送给文件事件分派器，分派器会根据套接字产生的事件类型调用相应的事件处理器。
 
-<div align="center"> <img src="pics/9ea86eb5-000a-4281-b948-7b567bd6f1d8.png" width=""/> </div><br>
+<div align="center"> <img src="https://github.com/liuwei1989/study-guide/blob/master/docs/pics/9ea86eb5-000a-4281-b948-7b567bd6f1d8.png" width=""/> </div><br>
 
 ## 时间事件
 
@@ -347,7 +347,7 @@ def main():
 
 从事件处理的角度来看，服务器运行流程如下：
 
-<div align="center"> <img src="pics/c0a9fa91-da2e-4892-8c9f-80206a6f7047.png" width="350"/> </div><br>
+<div align="center"> <img src="https://github.com/liuwei1989/study-guide/blob/master/docs/pics/c0a9fa91-da2e-4892-8c9f-80206a6f7047.png" width="350"/> </div><br>
 
 # 九、主从复制
 
@@ -367,7 +367,7 @@ def main():
 
 随着负载不断上升，主服务器可能无法很快地更新所有从服务器，或者重新连接和重新同步从服务器将导致系统超载。为了解决这个问题，可以创建一个中间层来分担主服务器的复制工作。中间层的服务器是最上层服务器的从服务器，又是最下层服务器的主服务器。
 
-<div align="center"> <img src="pics/395a9e83-b1a1-4a1d-b170-d081e7bb5bab.png" width="600"/> </div><br>
+<div align="center"> <img src="https://github.com/liuwei1989/study-guide/blob/master/docs/pics/395a9e83-b1a1-4a1d-b170-d081e7bb5bab.png" width="600"/> </div><br>
 
 # 十、集群
 [高可用](数据库/Redis/104-高可用.md)
