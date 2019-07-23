@@ -2,7 +2,7 @@
 
 - [常用指令](/Linux/151-常用指令.md)
 - [性能检查命令总结](/Linux/152-性能检查命令总结.md)
-- [Linux IO模式及select、poll、epoll详解](/Linux/153-Linux IO模式及select、poll、epoll详解.md)
+- [Linux IO模式及select、poll、epoll详解](/Linux/153-LinuxIO模式及epoll详解.md)
 - [ZeroCopy简介](/Linux/154-ZeroCopy简介.md)
 - [Linux内核抢占机制](/Linux/155-Linux内核抢占机制(preempt).md)
 - [Linux中fork()函数详解](/Linux/156-linux中fork()函数详解.md)
