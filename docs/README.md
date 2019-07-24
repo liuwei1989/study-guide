@@ -3,7 +3,6 @@
 - [剑指 Offer 题解（待整理）](notes/剑指%20Offer%20题解%20-%20目录1.md) </br>
 - [Leetcode题解](数据结构算法/算法/Leetcode题解.md) </br>
 - [算法（待整理）](notes/算法%20-%20目录1.md) </br>
-- [后端面试进阶指南（待整理）](https://xiaozhuanlan.com/CyC2018)
 
 ## 💻 操作系统
 
