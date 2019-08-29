@@ -38,6 +38,8 @@
 
 - [面向对象（待整理）](Java基础/面向对象.md) </br>
 - [Java基础](Java基础/Java基础.md) </br>
+- [Java基础知识回顾](Java基础/Java基础知识回顾.md) </br>
+- [Java疑难点](Java基础/Java疑难点.md) </br>
 - [Java 容器（待整理）](notes/Java%20容器.md) </br>
 - [Java 并发（待整理）](notes/Java%20并发.md) </br>
 - [Java 虚拟机（待整理）](notes/Java%20虚拟机.md) </br>
