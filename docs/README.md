@@ -40,7 +40,9 @@
 - [Java基础](Java基础/Java基础.md) </br>
 - [Java基础知识回顾](Java基础/Java基础知识回顾.md) </br>
 - [Java疑难点](Java基础/Java疑难点.md) </br>
-- [Java 容器（待整理）](notes/Java%20容器.md) </br>
+- [Java容器](Java基础/Java容器.md) </br>
+- [Java集合框架常见面试题](Java基础/Java集合框架常见面试题.md) </br>
+- [Java集合类原理简析](Java基础/集合/README.md) </br>
 - [Java 并发（待整理）](notes/Java%20并发.md) </br>
 - [Java 虚拟机（待整理）](notes/Java%20虚拟机.md) </br>
 - [Java I/O（待整理）](notes/Java%20IO.md)
