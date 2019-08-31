@@ -43,7 +43,11 @@
 - [Java容器](Java基础/Java容器.md) </br>
 - [Java集合框架常见面试题](Java基础/Java集合框架常见面试题.md) </br>
 - [Java集合类原理简析](Java基础/集合/README.md) </br>
-- [Java 并发（待整理）](notes/Java%20并发.md) </br>
+- [Java并发](Java基础/Java并发.md) </br>
+- [Java并发基础知识](Java基础/并发/README.md) </br>
+- [并发容器总结](Java基础/并发容器总结.md) </br>
+- [并发基础面试题总结](Java基础/并发/并发基础面试题总结.md) </br>
+- [并发进阶面试题总结](Java基础/并发/并发进阶面试题总结.md) </br>
 - [Java 虚拟机（待整理）](notes/Java%20虚拟机.md) </br>
 - [Java I/O（待整理）](notes/Java%20IO.md)
 
