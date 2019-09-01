@@ -18,7 +18,7 @@
 - [计算机网络知识总结](网络/计算机网络知识总结.md) </br>
 - [HTTP](网络/HTTP.md) </br>
 - [HTTP1.0与HTTP1.1的区别](网络/51-HTTP1.0与HTTP1.1的区别.md) </br>
-- [HTTP Header详解](网络/56-HTTP Header详解.md) </br>
+- [HTTP Header详解](网络/56-HTTP-Header详解.md) </br>
 - [HTTP状态码详解](网络/57-HTTP状态码详解.md) </br>
 - [IP](网络/512-ip.md) </br>
 - [TCP](网络/511-tcp.md) </br>
