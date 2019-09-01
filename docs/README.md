@@ -41,12 +41,39 @@
 - [事务](数据库/事务.md) </br>
 - [索引](数据库/索引.md) </br>
 - [SQL](数据库/SQL.md) </br>
+
+### MySQL
 - [MySQL](数据库/MySQL/MySQL.md) </br>
+- [数据库范式](/数据库/MySQL/110-数据库范式.md) </br>
+- [数据类型](/数据库/MySQL/111-数据类型.md) </br>
+- [共享锁与排他锁](/数据库/MySQL/113-共享锁与排他锁.md) </br>
+- [实现原理](/数据库/MySQL/114-实现原理.md) </br>
+- [B+树索引和哈希索引的区别](/数据库/MySQL/115-B+树索引和哈希索引的区别.md) </br>
+- [索引类型](/数据库/MySQL/116-索引类型.md) </br>
+- [解聚集索引和非聚集索引](/数据库/MySQL/117-聚集索引和非聚集索引.md) </br>
+- [优化总结一](/数据库/MySQL/118-优化总结一.md) </br>
+- [优化总结二](/数据库/MySQL/119-优化总结二.md) </br>
+- [explain分析查询](/数据库/MySQL/1110-explain分析查询.md) </br>
+- [MVCC](/数据库/MySQL/1111-MVCC.md) </br>
+- [集群原理](/数据库/MySQL/1112-集群原理.md) </br>
+
+- [一千行MySQL命令](数据库/MySQL/一千行MySQL命令.md) </br>
+- [MySQL学习与面试](数据库/MySQL/MySQL学习与面试.md) </br>
+- [MySQL高性能优化规范建议](数据库/MySQL/MySQL高性能优化规范建议.md) </br>
+- [Leetcode-Database题解](数据库/MySQL/Leetcode-Database题解.md)
+
+### Redis
 - [Redis](数据库/Redis/Redis.md)</br>
+- [Redis总结](数据库/Redis/Redis总结.md)</br>
 - [Redis线程模型](数据库/Redis/Redis线程模型.md)</br>
+- [Redis持久化](数据库/Redis/103-持久化.md)</br>
+- [Redis高可用](数据库/Redis/104-高可用.md)</br>
 - [Redis内部数据结构](数据库/Redis/Redis内部数据结构.md)</br>
 - [Redis原理简析(基于2.8)](/数据库/Redis/105-原理简析/Redis原理简析.md)</br>
-- [Leetcode-Database 题解（待整理）](notes/Leetcode-Database%20题解.md)
+- [如何做可靠的分布式锁，Redlock真的可行么](数据库/Redis/如何做可靠的分布式锁，Redlock真的可行么.md)
+- [常见面试题](数据库/Redis/106-面试题.md)
+- [分布式锁（待整理）]()
+
 
 ## Java
 
