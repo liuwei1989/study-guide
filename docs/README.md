@@ -81,6 +81,9 @@
 - [BIO-NIO-AIO](Java基础/IO/BIO-NIO-AIO.md)
 - [JavaIO与NIO](Java基础/IO/JavaIO与NIO.md)
 
+### Java8
+- [Java8新特性总结](Java基础/Java8Tutorial.md)
+
 ## 💡 系统设计
 
 - [系统设计基础（待整理）](notes/系统设计基础.md) </br>
