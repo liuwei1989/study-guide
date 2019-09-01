@@ -1,6 +1,7 @@
 ## 数据结构与算法
 
-- [时间空间复杂度](数据结构与算法/时间空间复杂度.md)
+- [时间空间复杂度](数据结构与算法/时间空间复杂度.md) </br>
+- [浅析最好、最坏、平均、均摊时间复杂度](数据结构与算法/浅析最好、最坏、平均、均摊时间复杂度.md) </br>
 - [剑指 Offer 题解（待整理）](notes/剑指%20Offer%20题解%20-%20目录1.md) </br>
 - [Leetcode题解](数据结构算法/算法/Leetcode题解.md) </br>
 - [算法（待整理）](notes/算法%20-%20目录1.md) </br>
@@ -35,21 +36,42 @@
 - [Redis原理简析(基于2.8)](/数据库/Redis/105-原理简析/Redis原理简析.md)</br>
 - [Leetcode-Database 题解（待整理）](notes/Leetcode-Database%20题解.md)
 
-## ☕️ Java
+## Java
 
+### 基础
 - [面向对象（待整理）](Java基础/面向对象.md) </br>
 - [Java基础](Java基础/Java基础.md) </br>
 - [Java基础知识回顾](Java基础/Java基础知识回顾.md) </br>
 - [Java疑难点](Java基础/Java疑难点.md) </br>
+
+### 集合
 - [Java容器](Java基础/Java容器.md) </br>
 - [Java集合框架常见面试题](Java基础/Java集合框架常见面试题.md) </br>
 - [Java集合类原理简析](Java基础/集合/README.md) </br>
+
+### 并发
 - [Java并发](Java基础/Java并发.md) </br>
 - [Java并发基础知识](Java基础/并发/README.md) </br>
 - [并发容器总结](Java基础/并发容器总结.md) </br>
 - [并发基础面试题总结](Java基础/并发/并发基础面试题总结.md) </br>
 - [并发进阶面试题总结](Java基础/并发/并发进阶面试题总结.md) </br>
-- [Java 虚拟机（待整理）](notes/Java%20虚拟机.md) </br>
+
+### JVM
+- [Java虚拟机](Java基础/Java虚拟机.md) </br>
+- [Java内存区域](Java基础/JVM/Java内存区域.md) </br>
+- [JVM垃圾回收](Java基础/JVM/JVM垃圾回收.md) </br>
+- [类文件结构](Java基础/JVM/类文件结构.md) </br>
+- [类加载过程](Java基础/JVM/类加载过程.md) </br>
+- [类加载器](Java基础/JVM/类加载器.md) </br>
+- [Java分派机制](Java基础/JVM/651-Java分派机制.md) </br>
+- [对象的生命周期](Java基础/JVM/652-对象的生命周期.md) </br>
+- [JDK监控和故障处理工具总结](Java基础/JVM/JDK监控和故障处理工具总结.md) </br>
+- [JVM命令参数大全](Java基础/JVM/67-JVM命令参数大全.md) </br>
+- [典型配置](Java基础/JVM/63-典型配置.md) </br>
+- [JVM调优](Java基础/JVM/64-调优.md) </br>
+- [java堆内存溢出的几种情况](Java基础/JVM/68-java堆内存溢出的几种情况.md) </br>
+
+### I/O
 - [Java I/O（待整理）](notes/Java%20IO.md)
 
 ## 💡 系统设计
