@@ -70,9 +70,16 @@
 - [典型配置](Java基础/JVM/63-典型配置.md) </br>
 - [JVM调优](Java基础/JVM/64-调优.md) </br>
 - [java堆内存溢出的几种情况](Java基础/JVM/68-java堆内存溢出的几种情况.md) </br>
+- [JVM问题排查流程](Java基础/JVM/329-JVM问题排查流程.md) </br>
 
 ### I/O
-- [Java I/O（待整理）](notes/Java%20IO.md)
+- [IO模型](Java基础/IO/31-IO模型.md)
+- [IO性能重要指标](Java基础/IO/32-IO性能重要指标.md)
+- [RAID](Java基础/IO/33-raid.md)
+- [JavaIO](Java基础/JavaIO.md)
+- [IO多路复用](Java基础/IO/35-IO多路复用.md)
+- [BIO-NIO-AIO](Java基础/IO/BIO-NIO-AIO.md)
+- [JavaIO与NIO](Java基础/IO/JavaIO与NIO.md)
 
 ## 💡 系统设计
 
