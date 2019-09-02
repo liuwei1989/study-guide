@@ -8,8 +8,20 @@
 ## 操作系统
 
 - [计算机操作系统](操作系统/README.md) </br>
-- [Linux](Linux/Linux.md) </br>
-- [Linux文档](Linux/README.md)
+
+### Linux
+- [Linux详解](Linux/Linux详解.md) </br>
+- [常用指令](Linux/151-常用指令.md) </br>
+- [性能检查命令总结](Linux/152-性能检查命令总结.md) </br>
+- [Linux IO模式及select、poll、epoll详解](Linux/153-LinuxIO模式及epoll详解.md) </br>
+- [ZeroCopy简介](Linux/154-ZeroCopy简介.md) </br>
+- [Linux内核抢占机制](Linux/155-Linux内核抢占机制(preempt).md) </br>
+- [Linux中fork()函数详解](Linux/156-linux中fork()函数详解.md) </br>
+- [which、whereis、locate、find命令的区别](Linux/157-which、whereis、locate、find命令的区别.md) </br>
+- [防火墙iptables命令详解](Linux/158-防火墙iptables命令详解.md) </br>
+- [面试问题汇总](Linux/159-面试问题汇总.md) </br>
+- [vim常用命令](Linux/1510-vim常用命令.md) </br>
+- [awk](Linux/1511-awk.md) </br>
 
 ## 网络
 
