@@ -8,7 +8,7 @@
 
 ## 操作系统
 
-- [计算机操作系统（待整理）](notes/计算机操作系统%20-%20目录1.md) </br>
+- [计算机操作系统](操作系统/README.md) </br>
 - [Linux](Linux/Linux.md) </br>
 - [Linux文档](Linux/README.md)
 
