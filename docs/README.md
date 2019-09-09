@@ -145,6 +145,14 @@
 ### kafka
 
 ### Zookeeper
+- [zookeeper概述](分布式/zookeeper/zookeeper.md) </br>
+- [Fast—Paxos](分布式/zookeeper/254-Fast—Paxos.md) </br>
+- [Zab协议](分布式/zookeeper/252-Zab协议.md) </br>
+- [Zab协议2](分布式/zookeeper/253-ZooKeeper之ZAB协议.md) </br>
+- [ZooKeeperWatch机制](分布式/zookeeper/256-ZooKeeperWatch机制.md) </br>
+- [zookeeper原理](分布式/zookeeper/251-zookeeper原理.md) </br>
+- [zookeeper应用场景](分布式/zookeeper/zookeeper应用场景.md) </br>
+- [基于ZooKeeper的分布式锁和队列(待整理)](分布式/zookeeper/255-基于ZooKeeper的分布式锁和队列.md) </br>
 
 ## 系统设计
 
