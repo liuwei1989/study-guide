@@ -1,10 +1,10 @@
 [](pics/5d1391f88b05665203.jpg)
 
-LinkedList 顾名思义是一个列表。与上一遍中的ArrayList相比，LinkedList的存储结构是链式的，非连续存储。如此它在插入，删除元素方面的效率强于ArrayList，但是随机访问和遍历的效率弱于ArrayList。
+LinkedList 顾名思义是一个列表。与上一篇中的ArrayList相比，LinkedList的存储结构是链式的，非连续存储。如此它在插入，删除元素方面的效率强于ArrayList，但是随机访问和遍历的效率弱于ArrayList。
 
 
 
-## LinkedList构造方法
+## 构造方法
 
 ```
 LinkedList()
