@@ -1,6 +1,7 @@
 package com.gitbook.leetcode;
 
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 
 /**
  * @author liuwei56
