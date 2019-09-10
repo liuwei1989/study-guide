@@ -1,3 +1,10 @@
+<p align="center">
+  <a href="https://snailclimb.gitee.io/javaguide"><img src="https://img.shields.io/badge/阅读-read-brightgreen.svg" alt="阅读"></a>
+</p>
+
+推荐使用 https://liuwei1989.github.io/study-guide 在线阅读。在线阅读内容与本仓库一致。优势在于有侧边栏阅读体验更好。
+
+
 ## 数据结构与算法
 
 - [时间空间复杂度](docs/数据结构与算法/时间空间复杂度.md) </br>
