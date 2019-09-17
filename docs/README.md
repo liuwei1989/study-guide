@@ -144,6 +144,7 @@
 ### Dubbo
 
 ### Spring
+- [Java动态代理与CGLIB](框架/Spring/167-Java动态代理与CGLIB.md)
 - [SpringAOP实现原理](框架/Spring/161-SpringAOP实现原理.md)
 - [Spring常见问题总结](框架/Spring/SpringInterviewQuestions.md)
 - [Spring中bean的作用域与生命周期](框架/Spring/SpringBean.md)
