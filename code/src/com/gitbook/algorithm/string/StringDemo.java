@@ -16,6 +16,8 @@ public class StringDemo {
         System.out.println(StringDemo.longestPalindrome("abccccdd"));
         System.out.println(StringDemo.isIsomorphic("agg", "add"));
         System.out.println(StringDemo.countSubstrings("aaa"));
+        System.out.println(StringDemo.isPalindrome(12321));
+        System.out.println(StringDemo.countBinarySubstrings("00110011"));
     }
 
     /**
@@ -149,5 +151,49 @@ public class StringDemo {
             end++;
             cnt++;
         }
+    }
+
+    /**
+     * [9. Palindrome Number (Easy)](https://leetcode.com/problems/palindrome-number/description/)
+     *
+     * @param x
+     * @return
+     */
+    public static boolean isPalindrome(int x) {
+        if (x == 0) {
+            return true;
+        }
+        if (x < 0 || x % 10 == 0) {
+            return false;
+        }
+        int right = 0;
+        while (x > right) {
+            right = right * 10 + x % 10;
+            x /= 10;
+        }
+        return x == right || x == right / 10;
+    }
+
+    /**
+     * [696. Count Binary Substrings (Easy)](https://leetcode.com/problems/count-binary-substrings/description/)
+     *
+     * @param s
+     * @return
+     */
+    public static int countBinarySubstrings(String s) {
+        int preLen = 0, curLen = 1, count = 0;
+        for (int i = 1; i < s.length(); i++) {
+            if (s.charAt(i) == s.charAt(i - 1)) {
+                curLen++;
+            } else {
+                preLen = curLen;
+                curLen = 1;
+            }
+
+            if (preLen >= curLen) {
+                count++;
+            }
+        }
+        return count;
     }
 }
