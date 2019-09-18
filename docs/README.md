@@ -176,6 +176,11 @@
 - [Spring源码阅读](https://github.com/seaswalker/spring-analysis/blob/master/note/Spring.md)
 
 ### ActiveMQ
+- [ActiveMQ传输文件的几种方式原理](分布式/zookeeper/ActiveMQ传输文件的几种方式原理.md)
+- [ActiveMQ持久化方式](分布式/zookeeper/ActiveMQ持久化方式.md)
+- [ActiveMQ消息传送机制以及ACK机制详解](分布式/zookeeper/ActiveMQ消息传送机制以及ACK机制详解.md)
+- [ActiveMQ的kahadb存储引擎分析](分布式/zookeeper/ActiveMQ的kahadb存储引擎分析.md)
+- [LevelDB原理和使用](分布式/zookeeper/LevelDB原理和使用.md)
 
 ### kafka
 
