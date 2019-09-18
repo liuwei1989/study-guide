@@ -176,11 +176,11 @@
 - [Spring源码阅读](https://github.com/seaswalker/spring-analysis/blob/master/note/Spring.md)
 
 ### ActiveMQ
-- [ActiveMQ传输文件的几种方式原理](分布式/zookeeper/ActiveMQ传输文件的几种方式原理.md)
-- [ActiveMQ持久化方式](分布式/zookeeper/ActiveMQ持久化方式.md)
-- [ActiveMQ消息传送机制以及ACK机制详解](分布式/zookeeper/ActiveMQ消息传送机制以及ACK机制详解.md)
-- [ActiveMQ的kahadb存储引擎分析](分布式/zookeeper/ActiveMQ的kahadb存储引擎分析.md)
-- [LevelDB原理和使用](分布式/zookeeper/LevelDB原理和使用.md)
+- [ActiveMQ传输文件的几种方式原理](框架/ActiveMQ/ActiveMQ传输文件的几种方式原理.md)
+- [ActiveMQ持久化方式](框架/ActiveMQ/ActiveMQ持久化方式.md)
+- [ActiveMQ消息传送机制以及ACK机制详解](框架/ActiveMQ/ActiveMQ消息传送机制以及ACK机制详解.md)
+- [ActiveMQ的kahadb存储引擎分析](框架/ActiveMQ/ActiveMQ的kahadb存储引擎分析.md)
+- [LevelDB原理和使用](框架/ActiveMQ/LevelDB原理和使用.md)
 
 ### kafka
 
@@ -194,6 +194,9 @@
 - [zookeeper应用场景](分布式/zookeeper/zookeeper应用场景.md) <br/>
 - [基于ZooKeeper的分布式锁和队列(待整理)](分布式/zookeeper/255-基于ZooKeeper的分布式锁和队列.md) <br/>
 - [ZooKeeper数据模型和常见命令](分布式/zookeeper/ZooKeeper数据模型和常见命令.md) <br/>
+
+### Solr
+- [Solr概述](框架/Solr/Solr概述.md)
 
 ## 系统设计
 
