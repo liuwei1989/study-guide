@@ -168,15 +168,15 @@
 ### Dubbo
 - [Dubbo概述](框架/Dubbo/Dubbo概述.md)
 - [常用标签](框架/Dubbo/常用标签.md)
-- [Java的SPI机制浅析](框架/Dubbo/182-Java的SPI机制浅析.md)
-- [Dubbo的SPI机制](框架/Dubbo/183-Dubbo的SPI机制.md)
-- [服务暴露过程](框架/Dubbo/184-服务暴露过程.md)
-- [服务注册](框架/Dubbo/187-服务注册.md)
-- [Directory](框架/Dubbo/181-directory.md)
+- [Java的SPI机制](框架/Dubbo/Java的SPI机制.md)
+- [Dubbo的SPI机制](框架/Dubbo/Dubbo的SPI机制.md)
+- [服务暴露过程](框架/Dubbo/服务暴露过程.md)
+- [服务注册](框架/Dubbo/服务注册.md)
 - [Invoker和Exchanger](框架/Dubbo/185-Invoker和Exchanger.md)
-- [filter和listener加载过程](框架/Dubbo/186-filter和listener加载过程.md)
-- [服务订阅以及通知](框架/Dubbo/188-服务订阅以及通知.md)
-- [常见序列化协议介绍](框架/Dubbo/189-常见序列化协议介绍.md)
+- [Directory](框架/Dubbo/Directory.md)
+- [filter和listener加载过程](框架/Dubbo/filter和listener加载过程.md)
+- [服务订阅以及通知](框架/Dubbo/服务订阅以及通知.md)
+- [常见序列化协议介绍](框架/Dubbo/常见序列化协议介绍.md)
 
 ### Spring
 - [Java动态代理与CGLIB](框架/Spring/167-Java动态代理与CGLIB.md)
