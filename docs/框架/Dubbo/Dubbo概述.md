@@ -1,7 +1,7 @@
 ## 1、Dubbo的架构原理
 
 ### Dubbo架构图
-![](https://github.com/zaiyunduan123/Java-Interview/blob/master/image/dubbo-1.png)
+![](./pics/dubbo架构图.png)
 
 ### 节点角色说明
 
@@ -22,7 +22,7 @@
 5.  consumer、provider启动后，在内存中累计调用次数和调用时间，定时每分钟发送一次统计数据到monitor
 
 ### 整体架构分层设计
-![](https://github.com/zaiyunduan123/Java-Interview/blob/master/image/dubbo-15.png)
+![](./pics/dubbo整体架构图.png)
 Dubbo框架设计一共划分了10个层，而最上面的Service层是留给实际想要使用Dubbo开发分布式服务的开发者实现业务逻辑的接口层。图中左边淡蓝背景的为服务消费方使用的接口，右边淡绿色背景的为服务提供方使用的接口， 位于中轴线上的为双方都用到的接口。
 - 接口服务层(Service):该层与业务逻辑相关，根据 provider 和 consumer 的业 务设计对应的接口和实现
 - 配置层(Config):对外配置接口，以 ServiceConfig 和 ReferenceConfig 为中心 
@@ -606,7 +606,7 @@ http\://code.alibabatech.com/schema/dubbo/dubbo.xsd=META-INF/dubbo.xsd
 
 ### 暴露本地服务和暴露远程服务的区别是什么？
 
-1. 暴露本地服务：指暴露在用一个JVM里面，不用通过调用zk来进行远程通信。例如：在同一个服务，自己调用自己的接口，就没必要进行网络IP连接来通信。
+1. 暴露本地服务：指暴露在一个JVM里面，不用通过调用zk来进行远程通信。例如：在同一个服务，自己调用自己的接口，就没必要进行网络IP连接来通信。
 2. 暴露远程服务：指暴露给远程客户端的IP和端口号，通过网络来实现通信。
 
 ```java
@@ -771,7 +771,7 @@ ServiceBean.onApplicationEvent
 
 ### 服务发布整体架构设计图
 
-![](https://github.com/zaiyunduan123/Java-Interview/blob/master/image/dubbo-7.png)
+![](./pics/服务发布整体架构设计图.png)
 ### 重要概念
 
 1、proxyFactory：为了获取一个接口的代理类，例如获取一个远程接口的代理
@@ -795,7 +795,7 @@ ServiceBean.onApplicationEvent
 1. export:暴露远程服务（用于服务端），就是将proxyFactory.getInvoker创建的代理类invoker对象，通过协议暴露给外部
 2. refer：引用远程服务（用于客户端），通过proxyFactory.getProxy来创建远程的动态代理类，例如DemoDemoService的接口
 
-5、exporter：维护invoder的生命周期
+5、exporter：维护invoker的生命周期
 
 6、exchanger：信息交换层，封装请求相应模式，同步转异步
 
@@ -857,7 +857,7 @@ ReferenceBean.getObject()
 
 ###  服务引用整体架构设计图
 
-![](https://github.com/zaiyunduan123/Java-Interview/blob/master/image/dubbo-8.png)
+![](./pics/服务引用整体架构设计图.png)
 
 
 消费端调用提供端服务的过程要执行下面几个步骤： 
@@ -893,7 +893,7 @@ dubbo默认采用了netty做为网络组件，它属于一种NIO的模式。消�
 
 另外，在Dubbo集群容错部分，给出了服务引用的各功能组件关系图：
 
-![](https://github.com/zaiyunduan123/Java-Interview/blob/master/image/dubbo-9.png)
+![](./pics/各功能组件关系图.png)
 
 ### directory目录
 通过目录来查找服务，它代表多个invoker，从methodInvokerMap提取，但是他的值是动态，例如注册中心的变更
@@ -937,8 +937,8 @@ public interface Router extends Comparable<Router> {
 2. ConditionRouter：条件路由，后台管理的路由配置都是条件路由，默认是MockInvokersSelector，只要修改后台管理或注册中心改变的时候就加入ConditionRouter
 3. ScriptRouter：脚本路由
 
-下面是 dubbo 路由服务的类图：
-![](https://github.com/zaiyunduan123/Java-Interview/blob/master/image/dubbo-11.png)
+下面是dubbo路由服务的类图：
+![](./pics/路由服务的类图.png)
 
 
 dubbo 默认会在 AbstractDirectory#setRouters 自动添加 MockInvokersSelector 路由规则。
@@ -1115,7 +1115,7 @@ public class FailoverClusterInvoker<T> extends AbstractClusterInvoker<T> {
         Set<String> providers = new HashSet<String>(len);
         for (int i = 0; i < len; i++) {
             //重试时，进行重新选择，避免重试时invoker列表已发生变化
-            //注意：如果列表发生变化，那么invoker判断会失效，因为invoker示例已经改变
+            //注意：如果列表发生变化，那么invoker判断会失效，因为invoker实例已经改变
             if (i > 0) {
                 checkWhetherDestroyed();
                 copyinvokers = list(invocation);
@@ -1301,12 +1301,14 @@ hello=temp.get();
 异步变同步其实原理和异步请求的通过 Future#get 等待 provider 响应返回一样，只不过异步有返回值是显示调用而默认是 dubbo 内部把这步完成了。
 
   A. 当前线程怎么让它 “暂停，等结果回来后，再执行”？
+
   B. socket是一个全双工的通信方式，那么在多线程的情况下，如何知道那个返回结果对应原先那条线程的调用？
 ​    	
   通过一个全局唯一的ID来做consumer 和 provider 来回传输。
 
   我们都知道在 consumer 发送请求的时候会调用 HeaderExchangeChannel#request 方法：
 > HeaderExchangeChannel#request
+
 ```java
     public ResponseFuture request(Object request, int timeout) throws RemotingException {
         if (closed) {
@@ -1328,7 +1330,9 @@ hello=temp.get();
     }
 
 ```
+
 它首先会通过 dubbo 自定义的 Channel、Request 与 timeout(int) 构造一个 DefaultFuture 对象。然后再通过 NettyChannel 发送请求到 provider，最后返回这个 DefaultFuture。下面我们来看一下通过构造方法是如何创建 DefaultFuture 的。我只把主要涉及到的属性展示出来：
+
 
 ```java
 public class DefaultFuture implements ResponseFuture {
@@ -1425,7 +1429,7 @@ public class DefaultFuture implements ResponseFuture {
 2. 解码（Decode）反序列化（deserialization）把从网络、磁盘等读取的字节数组还原成原始对象（通常是原始对象的拷贝），以方便后续的业务逻辑操作。
 
 
-![](https://github.com/zaiyunduan123/Java-Interview/blob/master/image/dubbo-12.png)
+![](./pics/粘包拆包.png)
 
 ### tcp 为什么会出现粘包拆包的问题？
 TCP是个“流”协议，所谓流，就是没有界限的一串数据。TCP底层并不了解上层业务数据的具体含义，它会根据TCP缓冲区的实际情况进行包的划分，所以在业务上认为，一个完整的包可能会被TCP拆分成多个包进行发送，也有可能把多个小的包封装成一个大的数据包发送，这就是所谓的TCP粘包和拆包的问题。
@@ -1439,7 +1443,7 @@ TCP是个“流”协议，所谓流，就是没有界限的一串数据。TCP�
 在我们眼中的http、tcp协议的包体应该都历历在目。大约是header + body，当然这个dubbo也不失众人所望，仍是如此结构
 ### Header
 下面我们来看一下 dubbo 的协议头约定：
-![](https://github.com/zaiyunduan123/Java-Interview/blob/master/image/dubbo-13.png)
+![](./pics/dubbo协议头.png)
 dubbo 使用长度为 16 的 byte 数组作为协议头。1 个 byte 对应 8 位。所以 dubbo 的协议头有 128 位 (也就是上图的从 0 到 127)。我们来看一下这 128 位协议头分别代表什么意思。
 
 - 0 ~ 7 ： dubbo 魔数((short) 0xdabb) 高位，也就是 (short) 0xda。
@@ -2004,7 +2008,7 @@ EchoFilter -> ClassLoaderFilter -> GenericFilter -> ContextFilter -> Exe cuteLim
 更确切地说，这里是装饰器和责任链模式的混合使用。例如，EchoFilter 的作用是判断 是否是回声测试请求，是的话直接返回内容，这是一种责任链的体现。而像 ClassLoaderFilter 则只是在主功能上添加了功能，更改当前线程的 ClassLoader，这 是典型的装饰器模式。
 ### 3. 观察者模式
 Dubbo 的 Provider 启动时，需要与注册中心交互，先注册自己的服务，再订阅自己的 服务，订阅时，采用了观察者模式，开启一个 listener。注册中心会每 5 秒定时检查是 否有服务更新，如果有更新，向该服务的提供者发送一个 notify 消息，provider 接受 到 notify 消息后，即运行 NotifyListener 的 notify 方法，执行监听器方法。
-### 4. 修饰器模式
+### 4. 装饰器模式
 Dubbo 在启动和调用阶段都大量使用了装饰器模式。比如ProtocolFilterWrapper类是对Protocol类的修饰。在export和refer方法中，配合责任链模式，把Filter组装成责任链，实现对Protocol功能的修饰。其他还有ProtocolListenerWrapper、 ListenerInvokerWrapper、InvokerWrapper等。修饰器模式是一把双刃剑，一方面用它可以方便地扩展类的功能，而且对用户无感，但另一方面，过多地使用修饰器模式不利于理解，因为一个类可能经过层层修饰，最终的行为已经和原始行为偏离较大。
 ### 5. 代理模式
 Dubbo consumer使用Proxy类创建远程服务的本地代理，本地代理实现和远程服务一样的接口，并且屏蔽了网络通信的细节，使得用户在使用本地代理的时候，感觉和使用本地服务一样。
