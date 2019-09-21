@@ -144,7 +144,7 @@ SPI (Service Provider Interface)
 
 - 而如果是调用方来制定接口，实现方来针对接口来实现不同的实现。调用方来选择自己需要的实现方。
 
-![](https://github.com/zaiyunduan123/Java-Interview/blob/master/image/dubbo-2.png)
+![](./pics/dubbo-2.png)
 
 当我们选择在调用方和实现方中间引入接口。我们有三种选择：
 
@@ -176,7 +176,7 @@ SPI (Service Provider Interface)
 ### 3. 接口位于独立的包中
 如果一个“接口”在一个上下文是API，在另一个上下文是SPI，那么你就可以这么组织
 
-![](https://github.com/zaiyunduan123/Java-Interview/blob/master/image/dubbo-3.png)
+![](./pics/dubbo-3.png)
 
 
 
@@ -262,7 +262,7 @@ getExtension(String name) //指定对象缓存在cachedInstances；get出来的�
 ```
 
 可以根据方法的调用得出dubbo的spi流程
-![](https://github.com/zaiyunduan123/Java-Interview/blob/master/image/dubbo-4.png)
+![](./pics/dubboSPI流程图.png)
 
 
 
@@ -355,7 +355,7 @@ public class Protocol$Adpative implements Protocol {
 
 
 ## 5、Dubbo的动态编译
-![](https://github.com/zaiyunduan123/Java-Interview/blob/master/image/dubbo-5.png)
+![](./pics/Dubbo动态编译类图.png)
 
 Compile接口定义：
 ```java
@@ -449,7 +449,7 @@ dubbo采取通过配置文件来启动container容器，dubbo是使用spring来�
 
 
 dubbo实现通过下面的配置schema自定义配置
-![](https://github.com/zaiyunduan123/Java-Interview/blob/master/image/dubbo-6.png)
+![](./pics/schema配置.png)
 
 **完成一个spring的自定义配置一般需要以下5个步骤：**
 
