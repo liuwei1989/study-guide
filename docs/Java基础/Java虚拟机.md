@@ -150,7 +150,15 @@ Java 提供了四种强度不同的引用类型。
 使用 new 一个新对象的方式来创建强引用。
 
 ```java
-Object obj = new Object();
+public class StrongReferenceDemo {
+    public static void main(String[] args) {
+        Object o1 = new Object();
+        Object o2 = new Object();
+        o1 = null;
+        System.gc();
+        System.out.println(o2);
+    }
+}
 ```
 
 ### 2. 软引用
@@ -160,9 +168,49 @@ Object obj = new Object();
 使用 SoftReference 类来创建软引用。
 
 ```java
-Object obj = new Object();
-SoftReference<Object> sf = new SoftReference<Object>(obj);
-obj = null;  // 使对象只被软引用关联
+import java.lang.ref.SoftReference;
+
+/**
+ * -Xms5m -Xmx5m
+ */
+public class SoftReferenceDemo {
+    public static void main(String[] args) {
+        softRef_Memory_Enough();
+        System.out.println("Not Enough");
+        softRef_Memory_NotEnough();
+    }
+
+    private static void softRef_Memory_Enough() {
+        Object o1 = new Object();
+        SoftReference<Object> softReference = new SoftReference<>(o1);
+        System.out.println(o1);
+        System.out.println(softReference.get());
+        System.out.println("===========");
+        o1 = null;
+        System.gc();
+        System.out.println(o1);
+        System.out.println(softReference.get());
+    }
+
+    private static void softRef_Memory_NotEnough() {
+        Object o1 = new Object();
+        SoftReference<Object> softReference = new SoftReference<>(o1);
+        System.out.println(o1);
+        System.out.println(softReference.get());
+        System.out.println("===========");
+        o1 = null;
+        System.gc();
+
+        try {
+            byte[] bytes = new byte[30 * 1024 * 1024];
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            System.out.println(o1);
+            System.out.println(softReference.get());
+        }
+    }
+}
 ```
 
 ### 3. 弱引用
@@ -172,9 +220,21 @@ obj = null;  // 使对象只被软引用关联
 使用 WeakReference 类来创建弱引用。
 
 ```java
-Object obj = new Object();
-WeakReference<Object> wf = new WeakReference<Object>(obj);
-obj = null;
+import java.lang.ref.WeakReference;
+
+public class WeakReferenceDemo {
+    public static void main(String[] args) {
+        Object o1 = new Object();
+        WeakReference<Object> weakReference = new WeakReference<>(o1);
+        System.out.println(o1);
+        System.out.println(weakReference.get());
+        System.out.println("==========");
+        o1 = null;
+        System.gc();
+        System.out.println(o1);
+        System.out.println(weakReference.get());
+    }
+}
 ```
 
 ### 4. 虚引用
@@ -186,9 +246,26 @@ obj = null;
 使用 PhantomReference 来创建虚引用。
 
 ```java
-Object obj = new Object();
-PhantomReference<Object> pf = new PhantomReference<Object>(obj, null);
-obj = null;
+import java.lang.ref.PhantomReference;
+import java.lang.ref.ReferenceQueue;
+
+public class PhantomReferenceDemo {
+    public static void main(String[] args) throws InterruptedException {
+        Object o1 = new Object();
+        ReferenceQueue<Object> referenceQueue = new ReferenceQueue<>();
+        PhantomReference phantomReference = new PhantomReference(o1, referenceQueue);
+        System.out.println(o1);
+        System.out.println(phantomReference.get());
+        System.out.println(referenceQueue.poll());
+        System.out.println("===========");
+        o1 = null;
+        System.gc();
+        Thread.sleep(500);
+        System.out.println(o1);
+        System.out.println(phantomReference.get());
+        System.out.println(referenceQueue.poll());
+    }
+}
 ```
 
 ## 垃圾收集算法
