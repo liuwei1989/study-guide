@@ -1,4 +1,4 @@
-### **零拷贝的定义** {#零拷贝的定义}
+### **零拷贝的定义**
 
 * Zero-copy, 就是在操作数据时, 不需要将数据 buffer 从一个内存区域拷贝到另一个内存区域. 因为少了一次内存的拷贝, 因此 CPU 的效率就得到的提升.
 
@@ -6,7 +6,7 @@
 
 * 但Netty 中的 Zero-copy 与 OS 的 Zero-copy 不太一样, Netty的 Zero-coyp 完全是在用户态\(Java 层面\)的, 它的 Zero-copy 的更多的是偏向于 优化数据操作 。
 
-### **Netty的“零拷贝”主要体现以下几个方面：** {#netty的零拷贝主要体现以下几个方面}
+### **Netty的“零拷贝”主要体现以下几个方面：**
 
 1.Netty的接收和发送ByteBuffer采用DIRECT BUFFERS，使用堆外直接内存进行Socket读写，不需要进行字节缓冲区的二次拷贝。如果使用传统的堆内存（HEAP BUFFERS）进行Socket读写，JVM会将堆内存Buffer拷贝一份到直接内存中，然后才写入Socket中。相比于堆外直接内存，消息在发送过程中多了一次缓冲区的内存拷贝。
 
@@ -16,7 +16,7 @@
 
 4.通过 wrap 操作, 我们可以将 byte\[\] 数组、ByteBuf、ByteBuffer等包装成一个 Netty ByteBuf 对象, 进而避免了拷贝操作。
 
-### **零拷贝的具体分析** {#零拷贝的具体分析}
+### **零拷贝的具体分析**
 
 **1.ByteBuffer分配Direct Buffers**
 
