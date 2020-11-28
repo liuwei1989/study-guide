@@ -1,12 +1,10 @@
 <h1 align="center">学习指南</h1>
 
 ## 数据结构与算法
-- [时间空间复杂度](数据结构与算法/时间空间复杂度.md) <br/>
-- [浅析最好、最坏、平均、均摊时间复杂度](数据结构与算法/浅析最好最坏平均均摊时间复杂度.md) <br/>
-- [剑指Offer题解](数据结构与算法/剑指Offer题解/剑指Offer题解-目录.md) <br/>
-- [Leetcode题解](数据结构与算法/Leetcode题解/Leetcode题解.md) <br/>
-- [算法（待整理）](数据结构与算法/算法/Leetcode题解.md) <br/>
 
+- [算法基础](数据结构与算法/算法基础/算法-目录.md) <br/>
+- [Leetcode题解](数据结构与算法/Leetcode题解/Leetcode题解.md) <br/>
+- [剑指Offer题解](数据结构与算法/剑指Offer题解/剑指Offer题解-目录.md) <br/>
 
 ## 操作系统
 - [计算机操作系统](操作系统/README.md) <br/>
